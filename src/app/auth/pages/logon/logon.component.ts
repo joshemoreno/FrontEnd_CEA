@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FormControl,FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar,  MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, } from '@angular/material/snack-bar';
-import { computeDecimalDigest } from '@angular/compiler/src/i18n/digest';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { requestLogOn } from '../../models/request.class';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
 @Component({
   selector: 'app-logon',
@@ -14,7 +12,7 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 })
 export class LogonComponent implements OnInit {
 
-  constructor(private _authSercive: AuthService, private _router: ActivatedRoute, private _snackBar: MatSnackBar) { 
+  constructor(private _authSercive: AuthService, private _router: ActivatedRoute, private _snackBar: MatSnackBar, private router: Router) { 
     this.roleForm = this.createFormGroup();
   }
 
@@ -44,7 +42,13 @@ export class LogonComponent implements OnInit {
       let code = this.getCode();
       body.code=code;
       body.role=role;
-      this._authSercive.logOnUser(body);
+      this._authSercive.logOnUser(body)
+      .subscribe((res:any)=>{
+        if(res.code=200){
+          localStorage.setItem('Token','asfkjahf');
+          this.router.navigateByUrl('home');
+        }
+      })
     }else{
       this._snackBar.open('Por favor selecciona un perfil', 'ok', {
         horizontalPosition: 'end',

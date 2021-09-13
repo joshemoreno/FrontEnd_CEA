@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   ]
 
   ngOnInit(): void {
-    console.log(this.materias);
+    // console.log(this.materias);
   }
 
   check():boolean{

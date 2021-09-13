@@ -18,11 +18,10 @@ export class AuthService {
   }
 
   logOnUser(body: requestLogOn){
-    this.http.post('http://localhost:3000/auth/logon',body)
-    .subscribe((res:any)=>{
-      console.log(res);
-    })
+    return this.http.post('http://localhost:3000/auth/logon',body);
   }
+
+  
 
 
   }

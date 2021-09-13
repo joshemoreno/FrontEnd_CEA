@@ -15,9 +15,6 @@ export class LoginComponent implements OnInit {
 
   loginUser(){
     this._authSercive.logInUser();
-    // .subscribe((data:any)=>{
-    //   console.log(data.url);
-    // })
   }
 
 }
