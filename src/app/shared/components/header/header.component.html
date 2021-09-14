@@ -1,4 +1,4 @@
-<nav class=" navbar navbar-dark bg-dark navbar-expand-lg nabVar" *ngIf="check()">
+<nav class=" navbar navbar-dark bg-dark navbar-expand-lg nabVar">
   <div class="container-fluid">
     <img src="../../../../assets/Logo.png" alt="" height="40">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,6 +42,8 @@
             <ng-container *ngFor="let opcion of opciones">
               <li><a class="dropdown-item" [routerLink]="opcion.uri">{{opcion.opt}}</a></li>
             </ng-container>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" (click)="logOut()">Cerrar sesión</a></li>
           </ul>
         </li>
       </ul>

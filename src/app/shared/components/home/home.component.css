@@ -1,0 +1,56 @@
+.customText{
+    margin-top: 4%;
+    font-weight: 500;
+    margin-bottom: 4%;
+}
+
+.customTitle{
+    margin-top: 5%;
+    font-weight: 590;
+}    
+
+.customContainer{
+    background: rgb(255,0,0);
+    background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(97,0,0,1) 0%, rgba(240,240,240,0) 54%);
+    display: flex;
+}
+
+.customContainer2{
+    background: rgb(255,0,0);
+    background: linear-gradient(265deg, rgba(255,0,0,1) 0%, rgba(97,0,0,1) 0%, rgba(240,240,240,0) 54%);
+    display: flex;
+}
+
+.customImg{
+    margin: 3%;
+    height: 100%;
+}
+
+.containerChild{
+    float: right;
+}
+.customParagraph{
+    text-align: justify;   
+}
+
+@media (max-width: 1000px) {
+    .customContainer{
+        background: rgb(255,0,0);
+        background: linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(97,0,0,1) 0%, rgba(240,240,240,0) 0%);
+        display: block;
+        padding: 3%;
+    }
+
+    .customContainer2{
+        background: rgb(255,0,0);
+        background: linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(97,0,0,1) 0%, rgba(240,240,240,0) 0%);
+        display: block;
+    }
+
+    .customImg{
+        padding: 8% 3% 3%;
+        margin: 0;
+        width: 100%;
+        display: none;
+    }
+}

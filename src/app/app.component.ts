@@ -13,8 +13,12 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    let res = this._sessionService.checkToken();
-    console.log(res);
+    console.log(this._sessionService.checkToken());
   }
   title = 'frontEnd';
+
+  isLogin():boolean{
+    return this._sessionService.checkToken();
+  }
+
 }

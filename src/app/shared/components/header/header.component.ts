@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from '../../services/session/session.service';
 
 @Component({
   selector: 'app-header',
@@ -20,16 +21,16 @@ export class HeaderComponent implements OnInit {
     {opt:"Perfil",uri:"/home/monitor"},
     {opt:"Área personal",uri:"AreaPersonal"},
     {opt:"Gestión tutorias",uri:"GestionTutoria"},
-    {opt:"Metricas",uri:"Metricas"},
-    {opt:"Cerrar sesión",uri:"CerrarSesion"}
+    {opt:"Metricas",uri:"Metricas"}
   ]
 
   ngOnInit(): void {
-    // console.log(this.materias);
+
   }
 
-  check():boolean{
-    return false;
+  logOut(){
+    localStorage.clear();
+    window.location.replace('');
   }
 
 }

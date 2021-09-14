@@ -1,15 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/pages/login/login.component';
+import { HomeComponent } from './shared/components/home/home.component';
+import { GuardGuard } from './shared/services/guard/guard.guard';
 
 const routes: Routes = [
+
+  {
+    path:'',
+    component: HomeComponent
+  },
   { 
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule )  
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule ),
+    canLoad: [GuardGuard]  
   },
   { 
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomeModule )  
+    loadChildren: () => import('./home/home.module').then( m => m.HomeModule ),
+    canActivate: [GuardGuard],
+    component: HomeComponent  
   },
   {
     path: '**',
