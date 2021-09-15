@@ -4,7 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from '../home/pages/home/home.component';
 
 
 @NgModule({

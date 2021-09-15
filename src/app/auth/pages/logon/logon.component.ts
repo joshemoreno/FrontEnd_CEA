@@ -46,7 +46,8 @@ export class LogonComponent implements OnInit {
       .subscribe((res:any)=>{
         if(res.code=200){
           localStorage.setItem('Token','asfkjahf');
-          this.router.navigateByUrl('home');
+          // this.router.navigateByUrl('home');
+          console.log(res);
         }
       })
     }else{

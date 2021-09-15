@@ -10,3 +10,6 @@
 .navItem{
   background-color: black !important;
 }
+.customCursor:hover{
+  cursor: pointer;
+}

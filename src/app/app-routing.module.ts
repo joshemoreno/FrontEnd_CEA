@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './shared/components/home/home.component';
+import { HomeComponent } from './home/pages/home/home.component';
 import { GuardGuard } from './shared/services/guard/guard.guard';
 
 const routes: Routes = [
 
   {
-    path:'',
-    component: HomeComponent
+    path: '',
+    redirectTo : '/auth/login',
+    pathMatch: 'full'
   },
   { 
     path: 'auth',
@@ -16,14 +17,18 @@ const routes: Routes = [
   },
   { 
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomeModule ),
+    component: HomeComponent,
     canActivate: [GuardGuard],
-    component: HomeComponent  
+  },
+  {
+    path: 'home/estudiante',
+    loadChildren: () => import('./student/student.module').then( m => m.StudentModule )
   },
   {
     path: '**',
     redirectTo: 'auth'
   }
+
 ];
 
 @NgModule({
