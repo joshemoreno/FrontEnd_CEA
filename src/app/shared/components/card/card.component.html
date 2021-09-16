@@ -1,0 +1,17 @@
+<div class="customContainer">
+    <div class="container customCont">
+        <h2 class="card-title customTitel">{{person.name}}</h2>
+        <img class=" customImage" src="{{person.uriProfile}}" alt="">
+    </div>
+    <div class="card-body">
+        <strong>Contacto</strong>
+        <p class="mb-0">{{person.tel}} </p>
+        {{person.email}}
+        <hr>
+        <strong>Fortalezas</strong>
+        <p class="card-text">{{person.about}}</p>
+        <div class="d-grid gap-2 col-4 mx-auto customDiv">
+            <button class="btn btn-danger btn-sm btnCustom" type="button">Ver horarios</button>
+        </div>
+    </div>
+</div>

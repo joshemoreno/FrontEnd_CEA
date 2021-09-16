@@ -13,7 +13,8 @@ import { ProfesionalesComponent } from './pages/profesionales/profesionales.comp
   declarations: [
     MonitoresComponent,
     TutoresComponent,
-    ProfesionalesComponent
+    ProfesionalesComponent,
+    MonitoresComponent
   ],
   imports: [
     CommonModule,
