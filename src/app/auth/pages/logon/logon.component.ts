@@ -39,8 +39,8 @@ export class LogonComponent implements OnInit {
     let body = new requestLogOn;
     let role = this.roleForm.value.role;
     if (role!=null){
-      let code = this.getCode();
-      body.code=code;
+      let codeParam = this.getCode();
+      body.code=codeParam;
       body.role=role;
       this._authSercive.logOnUser(body)
       .subscribe((res:any)=>{
