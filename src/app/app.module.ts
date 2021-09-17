@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { AuthModule } from './auth/auth.module';
 import { StudentModule } from './student/student.module';
+import { AuthService } from './auth/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { StudentModule } from './student/student.module';
     StudentModule,
     SharedModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

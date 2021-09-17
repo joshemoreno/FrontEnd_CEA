@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { DataTransferService } from 'src/app/student/services/data-transfer.service';
+import { SessionService } from '../../services/session/session.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +12,7 @@ import { DataTransferService } from 'src/app/student/services/data-transfer.serv
 export class HeaderComponent implements OnInit {
   option: any;
 
-  constructor(private router: Router, private _DataService: DataTransferService) { }
+  constructor(private router: Router, private _sessionService : SessionService, private _authService: AuthService) { }
 
 
   public materias: Array<any> =[
@@ -28,24 +30,36 @@ export class HeaderComponent implements OnInit {
   ]
 
   ngOnInit(): void {
-
+    this.getCurrentUser();
   }
 
   logOut(){
-    localStorage.clear();
-    window.location.replace('');
+    this._authService.logOutUser();
   }
 
-  goMonitory(codCourse:number){
-    this.router.navigateByUrl(`home/estudiante/monitores?cod=${codCourse}`);
+  prepareData(data:string):string{
+    let res = data.replace(' ','_');
+    return res;
   }
 
-  goTutory(codCourse:number){
-    this.router.navigateByUrl(`home/estudiante/tutores?cod=${codCourse}`);
+  getCurrentUser(){
+    let user = this._sessionService.onSession();
+    return user.userName;
+  }
+
+  goMonitory(codCourse:number, descCourse: string){
+    let res = this.prepareData(descCourse);
+    this.router.navigateByUrl(`home/estudiante/monitores?cod=${codCourse}&desc=${res}`);
+  }
+
+  goTutory(codCourse:number, descCourse: string){
+    let res = this.prepareData(descCourse);
+    this.router.navigateByUrl(`home/estudiante/tutores?cod=${codCourse}&desc=${res}`);
   }
 
   goAdvisory(codCourse:number, descCourse: string){
-    this.router.navigateByUrl(`home/estudiante/profesionales?cod=${codCourse}&desc=${descCourse}`);
+    let res = this.prepareData(descCourse);
+    this.router.navigateByUrl(`home/estudiante/profesionales?cod=${codCourse}&desc=${res}`);
   }
 
 

@@ -28,6 +28,10 @@ export class AuthService {
     return this.http.post(this.uriLogon,body);
   }
 
+  logOutUser(){
+    localStorage.clear();
+    window.location.replace('');
+  }
   
 
 

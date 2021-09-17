@@ -14,7 +14,7 @@ export class GuardGuard implements CanActivate, CanActivateChild, CanDeactivate<
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       
-      if (!this._sessionService.checkToken()){
+      if (!this._sessionService.checkSession()){
         window.location.replace('/auth/login');
         return false;
       }
@@ -38,7 +38,7 @@ export class GuardGuard implements CanActivate, CanActivateChild, CanDeactivate<
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
      
-      if (this._sessionService.checkToken()){
+      if (this._sessionService.checkSession()){
         window.location.replace('/home');
         return false;
       }

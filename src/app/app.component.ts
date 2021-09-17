@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth/services/auth.service';
 import { SessionService } from './shared/services/session/session.service';
 
 @Component({
@@ -8,17 +9,20 @@ import { SessionService } from './shared/services/session/session.service';
 })
 export class AppComponent implements OnInit{
 
-  constructor(private _sessionService: SessionService){
+  constructor(private _sessionService: SessionService, private _authService: AuthService){
 
   }
 
   ngOnInit(): void {
-    console.log(this._sessionService.checkToken());
+    if(this._sessionService.getStorege('Token')!=null){
+      this.isLogin() ? null : this._authService.logOutUser();
+    }
   }
+
   title = 'frontEnd';
 
   isLogin():boolean{
-    return this._sessionService.checkToken();
+    return this._sessionService.checkSession();
   }
 
 }

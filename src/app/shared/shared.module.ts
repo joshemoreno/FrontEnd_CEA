@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 import { HomeComponent } from '../home/pages/home/home.component';
 import { CardComponent } from './components/card/card.component';
-
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    CardComponent
+    CardComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule
@@ -21,7 +23,7 @@ import { CardComponent } from './components/card/card.component';
     MatChipsModule,
     MatSnackBarModule,
     MatTabsModule,
-    CardComponent
+    CardComponent,
   ]
 })
 export class SharedModule { }
