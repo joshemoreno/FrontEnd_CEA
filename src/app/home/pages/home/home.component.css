@@ -2,6 +2,8 @@
     margin-top: 4%;
     font-weight: 500;
     margin-bottom: 4%;
+    justify-self: center;
+    padding-left: 4%;
 }
 
 .customTitle{
@@ -32,6 +34,58 @@
 .customParagraph{
     text-align: justify;   
 }
+
+.titleContainer{
+    display: grid;
+    grid-template-columns: 95% 5%;
+}
+.customIcon{
+    align-self: center;
+    justify-self: center;
+    position: relative;
+}
+.customIcon:hover{
+    align-self: center;
+    justify-self: center;
+}
+
+.popover__wrapper {
+    align-self: center;
+    justify-self: center;
+    position: relative;
+}
+
+.popover__content {
+    opacity: 0;
+    position: absolute;
+    left: -240px;
+    top: 55px;
+    transform: translate(0, 10px);
+    background-color: white;
+    border-radius: 10px;
+    border: solid;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    width: auto;
+}
+
+.popover__wrapper:hover .popover__content {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -20px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+.popover__message {
+    text-align: center;
+}
+
+.customLink{
+    color: blue;
+    text-decoration:  underline blue;
+    cursor: pointer;
+}
+
 
 @media (max-width: 1000px) {
     .customContainer{

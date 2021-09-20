@@ -53,7 +53,8 @@ export class LogonComponent implements OnInit {
       this._snackBar.open('Por favor selecciona un perfil', 'ok', {
         horizontalPosition: 'end',
         verticalPosition: 'top',
-        duration: 2000
+        duration: 2000,
+        panelClass: ['error-scanck-bar'],
       });
     }
   }

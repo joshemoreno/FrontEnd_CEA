@@ -2,3 +2,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.error-scanck-bar{
+    background-color: #AC0D0D;
+    color: white;
+}
+.error-scanck-bar button{
+    background-color: #AC0D0D;
+    color: white;
+    border: none;
+}
