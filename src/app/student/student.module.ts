@@ -6,6 +6,7 @@ import { StudenRoutingModule } from './studen-routing.module';
 import { MonitoresComponent } from './pages/monitores/monitores.component';
 import { TutoresComponent } from './pages/tutores/tutores.component';
 import { ProfesionalesComponent } from './pages/profesionales/profesionales.component';
+import { ReservationsComponent } from './pages/reservations/reservations.component';
 
 
 
@@ -14,7 +15,8 @@ import { ProfesionalesComponent } from './pages/profesionales/profesionales.comp
     MonitoresComponent,
     TutoresComponent,
     ProfesionalesComponent,
-    MonitoresComponent
+    MonitoresComponent,
+    ReservationsComponent
   ],
   imports: [
     CommonModule,

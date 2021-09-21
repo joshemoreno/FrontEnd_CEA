@@ -8,6 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TutoresComponent implements OnInit {
 
+  descSubject!: string;
+  codeSubject!: string;
+
   constructor(private _router: ActivatedRoute) { }
 
   public personas: Array<any>=[
@@ -20,9 +23,15 @@ export class TutoresComponent implements OnInit {
   ]
 
   ngOnInit(): void {
-    this._router.queryParams.subscribe(()=>{
-      console.log( Number(this._router.snapshot.queryParams.cod));
+    this._router.queryParams.subscribe((params)=>{
+      this.descSubject=this.goBackData(params.desc);
+      this.codeSubject=params.cod;
     })
+  }
+
+  goBackData(data:string):string{
+    let res = data.replace('_',' ');
+    return res;
   }
 
 

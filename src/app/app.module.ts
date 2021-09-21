@@ -13,7 +13,7 @@ import { AuthService } from './auth/services/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

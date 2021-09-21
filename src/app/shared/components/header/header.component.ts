@@ -23,8 +23,7 @@ export class HeaderComponent implements OnInit {
   ];
 
   public opciones: Array<any> = [
-    {opt:"Perfil",uri:"/home/estudiante"},
-    {opt:"Área personal",uri:"AreaPersonal"},
+    {opt:"Mis reservas",uri:"/home/estudiante/reservas"},
     {opt:"Gestión tutorias",uri:"GestionTutoria"},
     {opt:"Metricas",uri:"Metricas"}
   ]
