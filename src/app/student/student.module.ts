@@ -7,6 +7,7 @@ import { MonitoresComponent } from './pages/monitores/monitores.component';
 import { TutoresComponent } from './pages/tutores/tutores.component';
 import { ProfesionalesComponent } from './pages/profesionales/profesionales.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
+import { SchedulerComponent } from './pages/scheduler/scheduler.component';
 
 
 
@@ -16,12 +17,13 @@ import { ReservationsComponent } from './pages/reservations/reservations.compone
     TutoresComponent,
     ProfesionalesComponent,
     MonitoresComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    SchedulerComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    StudenRoutingModule
+    StudenRoutingModule,
   ]
 })
 export class StudentModule { }

@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { FormControl,FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { requestLogOn } from '../../models/request.class';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-logon',
@@ -12,51 +13,28 @@ import { requestLogOn } from '../../models/request.class';
 })
 export class LogonComponent implements OnInit {
 
-  constructor(private _authSercive: AuthService, private _router: ActivatedRoute, private _snackBar: MatSnackBar, private router: Router) { 
-    this.roleForm = this.createFormGroup();
-  }
-
-  public roles: Array<any> = [
-    {opt:"Estudiante",role:1},
-    {opt:"Monitor",role:2},
-    {opt:"Tutor",role:3},
-    {opt:"Organizador",role:4}
-  ];
-
-  createFormGroup(){
-    return new FormGroup({
-      role:new FormControl()
-    });
-  }
-
-  roleForm: FormGroup;
-
-  ngOnInit(): void {
+  constructor(private _authSercive: AuthService, private _router: ActivatedRoute, private router: Router, private spinner: NgxSpinnerService) { 
     
   }
 
-  getRole(){
+  ngOnInit(): void {
+    this.spinner.show();
+    this.logOn();
+  }
+
+  logOn(){
     let body = new requestLogOn;
-    let role = this.roleForm.value.role;
-    if (role!=null){
-      let codeParam = this.getCode();
-      body.code=codeParam;
-      body.role=role;
-      this._authSercive.logOnUser(body)
-      .subscribe((res:any)=>{
-        if(res.code=200){
-          localStorage.setItem('Token',res.token);
-          this.router.navigateByUrl('home');
-        }
-      })
-    }else{
-      this._snackBar.open('Por favor selecciona un perfil', 'ok', {
-        horizontalPosition: 'end',
-        verticalPosition: 'top',
-        duration: 2000,
-        panelClass: ['error-scanck-bar'],
-      });
-    }
+    let codeParam = this.getCode();
+    body.code=codeParam;
+    this._authSercive.logOnUser(body)
+    .subscribe((res:any)=>{
+      if(res.code=200){
+        localStorage.setItem('Welcome','true');
+        localStorage.setItem('Token',res.token);
+        // this.router.navigateByUrl('home');
+        this.router.navigateByUrl('auth/welcome');
+      }
+    })
   }
 
   getCode():string{

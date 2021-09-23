@@ -23,6 +23,7 @@ import { AuthService } from './auth/services/auth.service';
     StudentModule,
     SharedModule
   ],
+
   providers: [AuthService],
   bootstrap: [AppComponent]
 })

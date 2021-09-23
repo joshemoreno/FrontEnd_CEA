@@ -11,7 +11,7 @@
         <strong>Fortalezas</strong>
         <p class="card-text">{{person.about}}</p>
         <div class="d-grid gap-2 col-4 mx-auto customDiv">
-            <button class="btn btn-danger btn-sm btnCustom" type="button">Ver horarios</button>
+            <button class="btn btn-danger btn-sm btnCustom" type="button" (click)="goToCalendar(person.id)">Ver horarios</button>
         </div>
     </div>
 </div>

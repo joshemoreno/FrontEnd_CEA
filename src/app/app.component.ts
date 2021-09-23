@@ -19,7 +19,7 @@ export class AppComponent implements OnInit{
     }
   }
 
-  title = 'frontEnd';
+  title = 'frontEndcea';
 
   isLogin():boolean{
     return this._sessionService.checkSession();

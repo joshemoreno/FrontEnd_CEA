@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { DataTransferService } from 'src/app/student/services/data-transfer.service';
 import { SessionService } from '../../services/session/session.service';
 
 @Component({
@@ -47,18 +46,18 @@ export class HeaderComponent implements OnInit {
   }
 
   goMonitory(codCourse:number, descCourse: string){
-    let res = this.prepareData(descCourse);
-    this.router.navigateByUrl(`home/estudiante/monitores?cod=${codCourse}&desc=${res}`);
+    localStorage.setItem('subject', JSON.stringify({cod: codCourse, des: descCourse}));
+    window.location.replace('home/estudiante/monitores');
   }
 
   goTutory(codCourse:number, descCourse: string){
-    let res = this.prepareData(descCourse);
-    this.router.navigateByUrl(`home/estudiante/tutores?cod=${codCourse}&desc=${res}`);
+    localStorage.setItem('subject', JSON.stringify({cod: codCourse, des: descCourse}));
+    window.location.replace('home/estudiante/tutores');
   }
 
   goAdvisory(codCourse:number, descCourse: string){
-    let res = this.prepareData(descCourse);
-    this.router.navigateByUrl(`home/estudiante/profesionales?cod=${codCourse}&desc=${res}`);
+    localStorage.setItem('subject', JSON.stringify({cod: codCourse, des: descCourse}));
+    window.location.replace('home/estudiante/profesionales');
   }
 
 
