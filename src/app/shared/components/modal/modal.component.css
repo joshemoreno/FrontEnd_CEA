@@ -1,5 +1,6 @@
 .customButtonAccions{
     text-align: center;
+
 }
 .customButton{
     margin: 2%;
@@ -41,7 +42,7 @@
 .popover__content {
     opacity: 0;
     position: absolute;
-    top: 60px;
+    bottom: 20px;
     transform: translate(0, 10px);
     background-color: white;
     border-radius: 10px;
@@ -60,4 +61,5 @@
 }
 .popover__message {
     text-align: center;
+    margin-bottom: 0%;
 }

@@ -25,8 +25,7 @@ export class HomeComponent implements OnInit {
     dialogConfig.width = '50%';
     dialogConfig.data = {
       title: 'Envia tu mensaje',
-      // Modal: 'comment'
-      Modal: 'reservation'
+      Modal: 'comment'
     }
 
     const dialogRef = this.dialog.open(ModalComponent, dialogConfig);

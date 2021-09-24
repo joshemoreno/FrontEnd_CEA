@@ -16,6 +16,8 @@ export class SchedulerComponent implements OnInit {
     uriProfile: 'https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c'
   }
 
+  public typeUser:{};
+
   
   ratingDisplay: number;
   
@@ -26,6 +28,11 @@ export class SchedulerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.typeUser={
+      student: true,
+      monitor:false,
+      tutor:false
+    };
   }
 
 
