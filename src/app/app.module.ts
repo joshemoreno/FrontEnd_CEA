@@ -9,6 +9,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { AuthModule } from './auth/auth.module';
 import { StudentModule } from './student/student.module';
 import { AuthService } from './auth/services/auth.service';
+import { MonitorModule } from './monitor/monitor.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AuthService } from './auth/services/auth.service';
     BrowserAnimationsModule,
     AuthModule,
     StudentModule,
+    MonitorModule,
     SharedModule
   ],
 

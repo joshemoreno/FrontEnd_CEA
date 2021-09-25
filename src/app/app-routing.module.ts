@@ -22,7 +22,13 @@ const routes: Routes = [
   },
   {
     path: 'home/estudiante',
-    loadChildren: () => import('./student/student.module').then( m => m.StudentModule )
+    loadChildren: () => import('./student/student.module').then( m => m.StudentModule ),
+    canActivate: [GuardGuard],
+  },
+  {
+    path: 'home/monitor',
+    loadChildren: () => import('./monitor/monitor.module').then( m => m.MonitorModule ),
+    canActivate: [GuardGuard],
   },
   {
     path: '**',

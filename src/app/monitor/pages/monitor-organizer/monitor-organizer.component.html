@@ -1,0 +1,57 @@
+<h1 class="blockquote text-center customText">Programa tu horario</h1>
+<div class="customContainer">
+    <div class="customCalendar">
+        <app-calendar [typeUser]=typeUser ></app-calendar>
+    </div>
+    <div class="customColumCard">
+        <div class="infoCard">
+            <div class="container customCont">
+                <div class="containerTitle">
+                    <h2 class="card-title customTitel">{{owner.name}}</h2>
+                    <div>
+                        <strong>Contacto</strong>
+                        <p class="mb-0 card-text">{{owner.tel}} </p>
+                        <p class="mb-0 card-text">{{owner.email}}</p>
+                    </div>
+                </div>
+                <img class=" customImage" src="{{owner.uriProfile}}" alt="">
+            </div>
+            <div class="container">
+                <hr>
+                <strong>Mis fortalezas</strong>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" formControlName="comment"></textarea>
+            </div>
+            <div class="row container customButtom">
+                <button mat-mini-fab color="primary">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="infoCard">
+            <div class="container customCont2">
+                <h2 class="card-title customTitel2">Resumen</h2>
+                <p class="mb-0 card-text customSub">Cantidad de horas disponibles</p>
+                <div class="customrow">
+                    <div class="customNumber">
+                        <p class="customCount">{{HourCountDis}}</p>
+                    </div>
+                    <div class="customDesc">
+                        <p class="customLabel">Horas</p>
+                    </div>
+                </div>
+                <p class="mb-0 card-text customSub">Cantidad de <a [routerLink]="['/home/monitor/reservas']">horas reservadas</a></p>
+                <div class="customrow">
+                    <div class="customNumber">
+                        <p class="customCount">{{HourCountReservation}}</p>
+                    </div>
+                    <div class="customDesc">
+                        <p class="customLabel">Horas</p>
+                    </div>
+                </div>
+                <p class="mb-0 card-text customSub">Materias registradas</p>
+                <ng-container *ngFor="let materia of materias">
+                    <li>{{materia.desc}}</li>
+                </ng-container>
+            </div>
+        </div>
+</div>
