@@ -15,6 +15,7 @@ const routes: Routes = [
       { path: 'profesionales', component: ProfesionalesComponent, pathMatch: 'full' },
       { path: 'horario', component: SchedulerComponent, pathMatch: 'full' },
       { path: 'reservas', component: ReservationsComponent, pathMatch: 'full' },
+      { path: '**', redirectTo:'/home'}
     ]
   }
 ];
