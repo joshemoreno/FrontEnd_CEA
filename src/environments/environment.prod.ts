@@ -1,8 +1,7 @@
 export const environment = {
   production: true,
 
-  urlBack: 'http://192.168.20.22',
-  portBack: '3000',
+  urlBack: 'https://back-cea.herokuapp.com',
   
   // EndPoints
   loginEndpoint: '/api/auth/login',

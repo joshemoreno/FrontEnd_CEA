@@ -13,8 +13,8 @@ export class AuthService {
   uriLogon = '';
 
   constructor(private http: HttpClient) {
-    this.uriLogin = `${environment.urlBack}:${environment.portBack}${environment.loginEndpoint}`;
-    this.uriLogon = `${environment.urlBack}:${environment.portBack}${environment.logonEndpoint}`;
+    this.uriLogin = `${environment.urlBack}${environment.loginEndpoint}`;
+    this.uriLogon = `${environment.urlBack}${environment.logonEndpoint}`;
    }
 
   logInUser(){
