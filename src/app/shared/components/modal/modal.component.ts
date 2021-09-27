@@ -57,7 +57,7 @@ export class ModalComponent implements OnInit {
     }
   }
 
-  onSubmitForm(optType:string) {
+  onSubmitForm(optType:string='') {
       let dto ={
         optType: optType,
         data:this.ModalForm.value

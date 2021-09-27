@@ -17,6 +17,7 @@
     margin: 5%;
 }
 .customCont{
+    margin-top: 10%;
     padding-top: 8%;
     display: grid;
     grid-template-columns: 60% 45%;
@@ -38,6 +39,10 @@
 .customImage{
     align-self: end;
     border-radius: 50%;
+}
+
+.customInput{
+    margin-right: 33%;
 }
 
 .containerTitle{

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { interval } from 'rxjs';
 import { AuthService } from './auth/services/auth.service';
 import { SessionService } from './shared/services/session/session.service';
 
@@ -14,9 +15,9 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    if(this._sessionService.getStorege('Token')!=null){
-      this.isLogin() ? null : this._authService.logOutUser();
-    }
+      if(this._sessionService.getStorege('Token')!=null){
+          this.isLogin() ? null : this._authService.logOutUser();
+      }
   }
 
   title = 'frontEndcea';

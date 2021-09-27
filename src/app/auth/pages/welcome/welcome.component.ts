@@ -37,7 +37,9 @@ export class WelcomeComponent implements OnInit {
     let role = this.roleForm.value.role;
     if (role!=null){
       localStorage.removeItem('Welcome');
-      this.router.navigateByUrl('home');
+      window.location.replace('/home');
+      // this.router.navigateByUrl('home');
+
     }else{
       this._snackBar.open('Por favor selecciona un perfil', 'ok', {
         horizontalPosition: 'end',

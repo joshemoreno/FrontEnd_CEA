@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-monitor-organizer',
@@ -27,8 +28,19 @@ export class MonitorOrganizerComponent implements OnInit {
   public HourCountReservation = 20;
 
   public typeUser:{};
+  public editMyData = false;
+  constructor() {
+    this.dataForm = this.createFormGroup();
+   }
 
-  constructor() { }
+  createFormGroup(){
+    return new FormGroup({
+      phone:new FormControl(),
+      skills: new FormControl()
+    });
+  }
+
+  dataForm: FormGroup;
 
   ngOnInit(): void {
     this.typeUser={
@@ -36,6 +48,19 @@ export class MonitorOrganizerComponent implements OnInit {
       monitor:true,
       tutor:false
     };
+  }
+
+  editData(){
+    this.editMyData=true;
+    console.log('edit')
+  }
+
+  saveData(){
+    let request = this.dataForm.value;
+    this.owner.about = request.skills;
+    this.owner.tel = request.phone;
+    console.log(request);
+    this.editMyData=false;
   }
 
 }

@@ -111,14 +111,19 @@ export class CalendarComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ModalComponent, this.dialogConfig);
     dialogRef.afterClosed().subscribe(res =>{
-      if(res.optType==='reservation'){
-        console.log('reserva');
-      }
-      if(res.optType==='edit'){
-        console.log('edit');
-      }
-      if(res.optType==='create'){
-        console.log('crear');
+      if(typeof res != 'undefined'){
+        if(res.optType==='reservation'){
+          console.log('reserva');
+        }
+        if(res.optType==='edit'){
+          console.log('edit');
+        }
+        if(res.optType==='create'){
+          console.log('crear');
+        }
+        if(res.optType==='delete'){
+          console.log('delete');
+        }
       }
     })
   }
