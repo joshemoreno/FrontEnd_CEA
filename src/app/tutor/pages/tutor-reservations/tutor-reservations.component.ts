@@ -16,11 +16,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 
 @Component({
-  selector: 'app-monitor-reservations',
-  templateUrl: './monitor-reservations.component.html',
-  styleUrls: ['./monitor-reservations.component.css']
+  selector: 'app-tutor-reservations',
+  templateUrl: './tutor-reservations.component.html',
+  styleUrls: ['./tutor-reservations.component.css']
 })
-export class MonitorReservationsComponent implements OnInit {
+export class TutorReservationsComponent implements OnInit {
 
   constructor() { }
 
@@ -38,5 +38,5 @@ export class MonitorReservationsComponent implements OnInit {
   cancelReservation(cod:number){
     console.log(cod);
   }
-  
+
 }

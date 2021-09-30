@@ -12,6 +12,7 @@ import { AuthService } from './auth/services/auth.service';
 import { MonitorModule } from './monitor/monitor.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorInterceptor } from './shared/services/interceptor/interceptor.interceptor';
+import { TutorModule } from './tutor/tutor.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { InterceptorInterceptor } from './shared/services/interceptor/intercepto
     AuthModule,
     StudentModule,
     MonitorModule,
+    TutorModule,
     SharedModule
   ],
   providers: [

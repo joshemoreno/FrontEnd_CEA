@@ -1,17 +1,5 @@
-import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
-import {MatSort} from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-
-
-export interface PeriodicElement {
-  cod: number;
-  subject: string;
-  owner: string;
-  date: string;
-  detail: string;
-  link: string;
-}
+import { Component, OnInit } from '@angular/core';
+import { PeriodicElement } from './../../models/interfaces/table.interface';
 
 const ELEMENT_DATA: PeriodicElement[] = [
   {cod: 1 ,subject: 'Fisica 1', owner: 'Pedro Perez', date: '2021-08-30T08:00:00',detail: 'Duda sobre el tema de caidalibre', link:'http://localhost:4200'},

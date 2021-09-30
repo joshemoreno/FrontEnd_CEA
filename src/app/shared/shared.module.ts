@@ -28,6 +28,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 
 import { NgxStarsModule } from 'ngx-stars';
+// import { RowsComponent } from './components/dashboardCard/rows/rows.component';
+// import { ContentCardComponent } from './components/dashboardCard/content-card/content-card.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -43,6 +45,8 @@ FullCalendarModule.registerPlugins([
     CardComponent,
     ModalComponent,
     CalendarComponent,
+    // RowsComponent,
+    // ContentCardComponent,
   ],
   imports: [
     CommonModule,

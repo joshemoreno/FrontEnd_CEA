@@ -98,7 +98,7 @@ export class ModalComponent implements OnInit {
   FormReservation(){
     return new FormGroup({
       question:new FormControl('',[Validators.required, Validators.minLength(30)]),
-      file:new FormControl()
+      uriQuestion:new FormControl()
     });
   }
 
