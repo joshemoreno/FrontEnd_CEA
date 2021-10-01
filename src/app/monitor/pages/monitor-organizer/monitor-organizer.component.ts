@@ -46,7 +46,8 @@ export class MonitorOrganizerComponent implements OnInit {
     this.typeUser={
       student: false,
       monitor:true,
-      tutor:false
+      tutor:false,
+      asesor: false
     };
   }
 

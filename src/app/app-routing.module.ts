@@ -36,6 +36,11 @@ const routes: Routes = [
     canActivate: [GuardGuard],
   },
   {
+    path: 'home/asesor',
+    loadChildren: () => import('./asesor/asesor.module').then( m => m.AsesorModule ),
+    canActivate: [GuardGuard],
+  },
+  {
     path: '**',
     redirectTo: 'auth'
   }

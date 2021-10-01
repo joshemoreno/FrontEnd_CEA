@@ -29,10 +29,8 @@ export class LogonComponent implements OnInit {
     this._authSercive.logOnUser(body)
     .subscribe((res:any)=>{
       if(res.code=200){
-        localStorage.setItem('Welcome','true');
         localStorage.setItem('Token',res.token);
-        // this.router.navigateByUrl('home');
-        this.router.navigateByUrl('auth/welcome');
+        this.router.navigateByUrl('home');
       }
     })
   }

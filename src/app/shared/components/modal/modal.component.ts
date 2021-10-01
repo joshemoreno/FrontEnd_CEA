@@ -12,6 +12,8 @@ import * as moment from 'moment';
 export class ModalComponent implements OnInit {
 
   title: string;
+  public descRoom: string = 'Virtual';
+  public typeRoom: boolean = false;
   ModalType: string;
   ModalForm: FormGroup;
   comment: boolean = false;
@@ -83,7 +85,8 @@ export class ModalComponent implements OnInit {
     return new FormGroup({
       subject:new FormControl('',[Validators.required]),
       date:new FormControl('',[Validators.required]),
-      time:new FormControl('',[Validators.required])
+      time:new FormControl('',[Validators.required]),
+      room:new FormControl()
     });
   }
 
@@ -91,7 +94,8 @@ export class ModalComponent implements OnInit {
     return new FormGroup({
       subject:new FormControl('',[Validators.required]),
       date:new FormControl('',[Validators.required]),
-      time:new FormControl('',[Validators.required])
+      time:new FormControl('',[Validators.required]),
+      room:new FormControl()
     });
   }
 
@@ -102,7 +106,11 @@ export class ModalComponent implements OnInit {
     });
   }
 
-
+  changeRoom(){
+    this.typeRoom = this.typeRoom ? false : true;
+    this.descRoom = this.typeRoom ? 'Presencial' : 'Virtual'; 
+    console.log(this.typeRoom);
+  }
 
 
 }

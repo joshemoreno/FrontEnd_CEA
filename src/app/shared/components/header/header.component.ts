@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
     {opt:"Mis reservas",uri:"/home/estudiante/reservas"},
     {opt:"Gestión monitorias",uri:"/home/monitor/monitorias"},
     {opt:"Gestión tutorias",uri:"/home/tutor/tutorias"},
+    {opt:"Gestión asesorias",uri:"/home/asesor/asesorias"},
     {opt:"Metricas",uri:"Metricas"}
   ]
 

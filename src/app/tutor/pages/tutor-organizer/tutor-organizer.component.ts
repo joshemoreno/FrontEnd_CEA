@@ -45,8 +45,9 @@ export class TutorOrganizerComponent implements OnInit {
   ngOnInit(): void {
     this.typeUser={
       student: false,
-      monitor:true,
-      tutor:false
+      monitor:false,
+      tutor:true,
+      asesor: false
     };
   }
 
