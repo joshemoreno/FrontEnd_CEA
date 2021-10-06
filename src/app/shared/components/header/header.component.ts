@@ -29,7 +29,8 @@ export class HeaderComponent implements OnInit {
     {opt:"Gestión monitorias",uri:"/home/monitor/monitorias"},
     {opt:"Gestión tutorias",uri:"/home/tutor/tutorias"},
     {opt:"Gestión asesorias",uri:"/home/asesor/asesorias"},
-    {opt:"Metricas",uri:"Metricas"}
+    {opt:"Metricas",uri:"/home/organizador/metricas"},
+    {opt:"Admin personal",uri:"/home/organizador/personas"}
   ]
 
   ngOnInit(): void {

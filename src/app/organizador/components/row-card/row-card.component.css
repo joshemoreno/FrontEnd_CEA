@@ -1,0 +1,11 @@
+.customRow{
+    /* height: 10%; */
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.customImg{
+    padding: 5%;
+    /* height: 70%; */
+    border-radius: 50%;
+}

@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { AsesorRoutingModule } from './asesor-routing.module';
 import { AsesorOrganizerComponent } from './pages/asesor-organizer/asesor-organizer.component';
 import { AsesorReservationsComponent } from './pages/asesor-reservations/asesor-reservations.component';
+import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,7 +16,11 @@ import { AsesorReservationsComponent } from './pages/asesor-reservations/asesor-
   ],
   imports: [
     CommonModule,
-    AsesorRoutingModule
+    AsesorRoutingModule,
+    SharedModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AsesorModule { }

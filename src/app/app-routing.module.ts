@@ -41,6 +41,11 @@ const routes: Routes = [
     canActivate: [GuardGuard],
   },
   {
+    path: 'home/organizador',
+    loadChildren: () => import('./organizador/organizador.module').then( m => m.OrganizadorModule ),
+    canActivate: [GuardGuard],
+  },
+  {
     path: '**',
     redirectTo: 'auth'
   }

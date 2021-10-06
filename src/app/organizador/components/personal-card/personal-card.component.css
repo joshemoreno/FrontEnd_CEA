@@ -1,0 +1,42 @@
+.customContainer{
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: 15% 85%;
+    align-content: center;
+    height: 100%;
+    -webkit-box-shadow: 0px 5px 5px -1px rgbargba(32, 32, 32, 0.48);
+    -moz-box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
+    box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
+}
+
+.headerCard{
+    border-radius: 10px 10px 0px 0px ;
+    background-color: #d1d1d1;
+    display: grid;
+    grid-template-columns: 75% 25%;
+}
+
+.bodyCard{
+    display: grid;
+    grid-template-rows: 90% 10%;
+}
+
+.customTitel{
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.content{
+    align-self: center;
+    justify-self: start;
+    margin-left: 5%;
+}
+
+.customTitel2{
+    margin: 10%;
+    font-weight: 500;
+    font-size: 25px;
+    align-self: start;
+    justify-self: end;
+}
