@@ -1,7 +1,7 @@
 .customContainer{
     border-radius: 10px;
     display: grid;
-    grid-template-rows: 15% 85%;
+    grid-template-rows: 10% 90%;
     align-content: center;
     height: 100%;
     -webkit-box-shadow: 0px 5px 5px -1px rgbargba(32, 32, 32, 0.48);
@@ -13,12 +13,14 @@
     border-radius: 10px 10px 0px 0px ;
     background-color: #d1d1d1;
     display: grid;
-    grid-template-columns: 75% 25%;
+    grid-template-columns: 80% 20%;
+    position: relative;
 }
 
 .bodyCard{
     display: grid;
     grid-template-rows: 90% 10%;
+    position: relative;
 }
 
 .customTitel{
@@ -32,6 +34,11 @@
     justify-self: start;
     margin-left: 5%;
 }
+.content2{
+    align-self: center;
+    justify-self: center;
+    margin-left: 5%;
+}
 
 .customTitel2{
     margin: 10%;
@@ -39,4 +46,61 @@
     font-size: 25px;
     align-self: start;
     justify-self: end;
+}
+
+.custonRows{
+    overflow-y: scroll;
+    border-bottom: solid #ccc 1px;
+}
+
+.custonRows::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+}
+
+.custonRows::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.custonRows::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.custonRows::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+}
+
+.custonRows::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 4px;
+}
+
+.custonRows::-webkit-scrollbar-track:hover,
+.custonRows::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+} 
+
+.showMore{
+    margin-right: 10%;
+    justify-self: end;
+    align-self: center;
+}
+
+.customDivider{
+    margin: 0 !important;
+}
+
+@media (max-width: 1000px) {
+    .customContainer{
+        display: grid;
+        grid-template-rows: 20% 80%;
+    }
+
+    .bodyCard{
+        display: grid;
+        grid-template-rows: 80% 20%;
+        position: relative;
+    }
 }

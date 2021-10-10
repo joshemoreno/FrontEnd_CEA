@@ -26,6 +26,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
 
 import { NgxStarsModule } from 'ngx-stars';
 
@@ -68,6 +69,7 @@ FullCalendarModule.registerPlugins([
     MatProgressSpinnerModule,
     NgxStarsModule,
     MatIconModule,
+    MatSelectModule
   ],
   entryComponents: [ModalComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

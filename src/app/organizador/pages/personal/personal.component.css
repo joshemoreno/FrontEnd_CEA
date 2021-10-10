@@ -5,23 +5,22 @@
 }
 
 .customContent{
-    /* padding-left: 10%;
-    padding-right: 10%; */
     display: grid;
     grid-template-columns: 50% 50%;
     height: 100%;
 }
 
 .customDisplay{
+    padding: 5%;
     display: grid;
     grid-template-columns: 50% 50%;
-    padding: 5%;
     grid-column-gap: 1em;
     grid-row-gap: 1em;
 }
 
 .customtable{
     padding: 5%;
+    /* background-color: brown; */
 }
 
 @media (max-width: 1000px) {

@@ -1,11 +1,76 @@
 .customRow{
-    /* height: 10%; */
     display: grid;
     grid-template-columns: 30% 70%;
+    position: relative;
 }
 
 .customImg{
-    padding: 5%;
-    /* height: 70%; */
+    padding: 10%;
     border-radius: 50%;
+    width: 90%;
+}
+
+.customDivider{
+    margin: 0 !important;
+}
+
+.customDetail{
+    align-self: center;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    position: relative;
+}
+
+.customSubject{
+    margin-bottom: 0;
+}
+.customName{
+    margin-bottom: 1%;
+}
+
+.customStatus{
+    -webkit-box-shadow: 0px 5px 5px -1px rgbargba(32, 32, 32, 0.48);
+    -moz-box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
+    box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
+    text-align: center;
+    align-self: center;
+    justify-self: end;
+    width: 50%;
+    border-radius: 20px;
+    margin-right: 10%;
+}
+
+.customActive{
+    border-radius: 20px; 
+    background-color: #40A64A;
+}
+
+.customInactive{
+    border-radius: 20px; 
+    background-color: #B01818;
+}
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.status{
+    margin: 2%;
+    font-size: medium;
+    color: white;
+}
+
+@media (max-width: 1000px) {
+    .customImg{
+        padding: 5%;
+        border-radius: 50%;
+        width: 80%;
+    }
+
+    .customRow{
+        display: grid;
+        grid-template-columns: 20% 80%;
+    }
+    
 }

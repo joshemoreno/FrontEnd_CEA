@@ -7,6 +7,7 @@ import { PersonalComponent } from './pages/personal/personal.component';
 import { PersonalCardComponent } from './components/personal-card/personal-card.component';
 import { RowCardComponent } from './components/row-card/row-card.component';
 import { TableCardComponent } from './components/table-card/table-card.component';
+import { ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -21,7 +22,8 @@ import { TableCardComponent } from './components/table-card/table-card.component
   imports: [
     CommonModule,
     SharedModule,
-    OrganizadorRoutingModule
+    OrganizadorRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class OrganizadorModule { }

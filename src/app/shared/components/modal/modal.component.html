@@ -125,3 +125,22 @@
     </form>
   </div>
 </div>
+
+<div *ngIf="status" class="customCard">
+  <h2 mat-dialog-title class="customTitle">{{title}}</h2>
+  <div mat-dialog-content>
+    <form [formGroup]="ModalForm">
+      <h3>¿Esta seguro que desea cambiar el estado del usuario {{user}} ?</h3>
+      <hr>
+      <P>Por favor escriba <strong>{{user}}</strong> para Confirmar</P>
+      <div class="mb-3">
+        <input type="text" class="form-control customInputFile" formControlName="confirm">
+      </div>
+      <div class="customButtonAccions">
+        <button class="btn btn-danger customButton" (click)="close()">Cancelar</button>
+        <button type="submit" [disabled]="ModalForm.invalid" class="btn btn-success customButton"
+          (click)="onSubmitForm('reservation')">Confirmar</button>
+      </div>
+    </form>
+  </div>
+</div>

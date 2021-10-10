@@ -1,4 +1,57 @@
-.customContent{
-    border: solid;
-    height: 100%;
+.customText{
+    font-weight: 500;
+    justify-self: center;
+    margin-bottom: 0;
+}
+
+table{
+    width: 100%;
+}
+
+.customTitle{
+    text-align: center;
+    font-weight: bold !important;
+    color: black;
+    font-size: large;
+    justify-self: center;
+}
+
+.accionsColum{
+    text-align: center;
+    width: 25%;
+    padding: 0 !important;
+}
+
+.roleColum{
+    text-align: center;
+    width: 25%;
+    padding: 0 !important;
+}
+
+.dateColum{
+    text-align: center;
+    width: 20%;
+}
+
+.ownerColum{
+    text-align: center;
+    width: 10%;
+}
+
+.customScroll{
+    overflow-y: scroll;
+    background-color: darkblue;
+}
+
+.customCont{
+    background-color: brown;
+}
+
+.customHead{
+    background-color: coral;
+}
+@media (max-width: 600px) {
+    .customBtn{
+        margin: 5%;
+    }
 }
