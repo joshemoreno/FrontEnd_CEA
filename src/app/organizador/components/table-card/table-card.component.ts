@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 import { AlertsService } from 'src/app/shared/services/alerts/alerts.service';
 
 export interface PeriodicElement {
@@ -55,43 +56,50 @@ export class TableCardComponent implements OnInit {
     private _alert: AlertsService,
     public dialog: MatDialog
     ) { 
-    this.newUserForm = this.createFormGroup();
+
   }
-
-  displayedColumns: string[] = ['date', 'user', 'profile', 'Accions'];
-  dataSource = new MatTableDataSource(this.requests);
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  newUserForm: FormGroup;
 
   ngOnInit(): void {
   }
 
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
-
-  createFormGroup(){
-    return new FormGroup({
-      profile:new FormControl('')
-    });
-  }
-
-  acceptRequest(cod:number){
-    if(this.newUserForm.value.profile != ''){
-      console.log(cod + JSON.stringify(this.newUserForm.value));
-    }else{
-      this._alert.infoAlert('No se puede aceptar a un nuevo usuario sin asignarle un role');
-    }
+  acceptRequest(cod:number, user:string){
+    this.openModal(cod,user);
   }
 
   cancelRequest(cod:number, user:string){
     this._alert.confirmAlert(`Seguro que desea cancelar la solicitud del usuario ${user}`,'','Sí','No')
     .then((res:any)=>{
       if(res.isConfirmed){
-        console.log('chao')
+        console.log('chao'+cod)
+      }
+    })
+  }
+
+  openModal(cod:number, user:string):void{
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    let customWidth:string;
+
+    if(window.innerWidth <= 600){
+      customWidth='100%';
+    }else{
+      customWidth='50%';
+    }  
+
+    dialogConfig.width = customWidth;
+    dialogConfig.data = {
+      title: 'Acceptar nuevo usuario',
+      Modal: 'newUser',
+      user: user
+    }
+
+    const dialogRef = this.dialog.open(ModalComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(res =>{
+      if(typeof res != 'undefined'){
+        console.log(res, cod);
       }
     })
   }

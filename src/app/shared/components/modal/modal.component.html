@@ -139,7 +139,32 @@
       <div class="customButtonAccions">
         <button class="btn btn-danger customButton" (click)="close()">Cancelar</button>
         <button type="submit" [disabled]="ModalForm.invalid" class="btn btn-success customButton"
-          (click)="onSubmitForm('reservation')">Confirmar</button>
+          (click)="onSubmitForm('status')">Confirmar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="newUser" class="customCard">
+  <h2 mat-dialog-title class="customTitle">{{title}}</h2>
+  <div mat-dialog-content>
+    <form [formGroup]="ModalForm">
+      <div class="mb-3">
+        <h3>Para aceptar al usuario {{user}} primero debes asignarle un perfil para su ingreso</h3>
+        <select class="form-select" formControlName="profile">
+          <option value="" disabled selected hidden>Seleciona un perfil</option>
+          <option *ngFor="let role of roles" value="{{role.cod}}">{{role.desc}}</option>
+        </select>
+      </div>
+      <hr>
+      <P>Por favor escriba <strong>{{user}}</strong> para Confirmar</P>
+      <div class="mb-3">
+        <input type="text" class="form-control customInputFile" formControlName="confirm">
+      </div>
+      <div class="customButtonAccions">
+        <button class="btn btn-danger customButton" (click)="close()">Cancelar</button>
+        <button type="submit" [disabled]="ModalForm.invalid" class="btn btn-success customButton"
+          (click)="onSubmitForm('newUser')">Confirmar</button>
       </div>
     </form>
   </div>

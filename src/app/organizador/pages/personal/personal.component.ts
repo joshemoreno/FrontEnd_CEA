@@ -37,6 +37,27 @@ export class PersonalComponent implements OnInit {
           state: 2,
           url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
           subject: "Fisica 1"
+        },
+        {
+          id: "4",
+          name: "Pedro Perez",
+          state: 2,
+          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
+          subject: "Fisica 1"
+        },
+        {
+          id: "4",
+          name: "Pedro Perez",
+          state: 2,
+          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
+          subject: "Fisica 1"
+        },
+        {
+          id: "4",
+          name: "Pedro Perez",
+          state: 2,
+          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
+          subject: "Fisica 1"
         }
       ]
     },

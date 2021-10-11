@@ -19,7 +19,6 @@ table{
 .accionsColum{
     text-align: center;
     width: 25%;
-    padding: 0 !important;
 }
 
 .roleColum{
@@ -28,28 +27,69 @@ table{
     padding: 0 !important;
 }
 
+.customItem{
+    font-size: medium;
+    color: black;
+}
+
 .dateColum{
     text-align: center;
-    width: 20%;
+    width: 30%;
 }
 
 .ownerColum{
     text-align: center;
-    width: 10%;
+    width: 30%;
+}
+
+.customBtn{
+    padding: 2%;
+}
+
+.customCont{
+    padding: 5%;
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: 5% 95%;
+    -webkit-box-shadow: 0px 5px 5px -1px rgbargba(32, 32, 32, 0.48);
+    -moz-box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
+    box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
 }
 
 .customScroll{
     overflow-y: scroll;
-    background-color: darkblue;
+    border-bottom: solid #ccc 1px;
 }
 
-.customCont{
-    background-color: brown;
+.customScroll::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
 }
 
-.customHead{
-    background-color: coral;
+.customScroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
 }
+
+.customScroll::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.customScroll::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+}
+
+.customScroll::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 4px;
+}
+
+.customScroll::-webkit-scrollbar-track:hover,
+.customScroll::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+} 
+
 @media (max-width: 600px) {
     .customBtn{
         margin: 5%;

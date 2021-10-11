@@ -22,6 +22,7 @@ export class ModalComponent implements OnInit {
   read: boolean = false;
   reservation: boolean = false;
   status : boolean = false;
+  newUser : boolean = false;
   
   public materias: Array<any> =[
     {cod: 1, desc:"Fisica 1"},
@@ -30,6 +31,14 @@ export class ModalComponent implements OnInit {
     {cod: 4, desc:"Matematicas Fundamentales"},
   ];
 
+
+  public roles=[
+    {cod: 1, desc: "Estudiante"},
+    {cod: 2, desc: "Monitor"},
+    {cod: 3, desc: "Tutor"},
+    {cod: 4, desc: "Asesor"},
+    {cod: 5, desc: "Organizador"},
+  ]
   constructor(
     private _snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<ModalComponent>,
@@ -62,6 +71,10 @@ export class ModalComponent implements OnInit {
     if(this.ModalType == 'status'){
       this.status = true;
       this.ModalForm = this.FormStatus();
+    }
+    if(this.ModalType == 'newUser'){
+      this.newUser = true;
+      this.ModalForm = this.FormNewUser();
     }
   }
 
@@ -114,6 +127,13 @@ export class ModalComponent implements OnInit {
 
   FormStatus(){
     return new FormGroup({
+      confirm:new FormControl('',[Validators.required, Validators.minLength(this.user.length), Validators.maxLength(this.user.length)]),
+    });
+  }
+
+  FormNewUser(){
+    return new FormGroup({
+      profile: new FormControl('',[Validators.required]),
       confirm:new FormControl('',[Validators.required, Validators.minLength(this.user.length), Validators.maxLength(this.user.length)]),
     });
   }
