@@ -31,7 +31,8 @@ export class SchedulerComponent implements OnInit {
     this.typeUser={
       student: true,
       monitor:false,
-      tutor:false
+      tutor:false,
+      asesor: false
     };
   }
 

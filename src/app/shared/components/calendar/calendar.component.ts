@@ -52,7 +52,7 @@ export class CalendarComponent implements OnInit {
     if (typeUser.student){
       this.calendarOptions.eventClick = this.reservation.bind(this);
     };
-    if (typeUser.monitor || typeUser.tutor){
+    if (typeUser.monitor || typeUser.tutor || typeUser.asesor){
       this.calendarOptions.dateClick = this.createMonitory.bind(this);
       this.calendarOptions.eventClick = this.editMonitory.bind(this);
     };
@@ -69,8 +69,19 @@ export class CalendarComponent implements OnInit {
 
   editMonitory(clickInfo: EventClickArg){
     this.dialogConfig.disableClose = false;
+    let titleModal: string;
+    console.log(this.typeUser);
+    if(this.typeUser.monitor){
+      titleModal = 'Editar Monitoria'
+    } 
+    if(this.typeUser.tutor){
+      titleModal = 'Editar Tutoria'
+    }
+    if(this.typeUser.asesor){
+      titleModal = 'Editar Asesoria'
+    }
     this.dialogConfig.data = {
-      title: 'Datos de Monitoria',
+      title: titleModal,
       Modal: 'edit'
     };
     this.openModal();
@@ -78,8 +89,19 @@ export class CalendarComponent implements OnInit {
 
   createMonitory(selectInfo: DateSelectArg) {
     this.dialogConfig.disableClose = true;
+    let titleModal: string;
+    if(this.typeUser.monitor){
+      titleModal = 'Crear una Monitoria'
+    } 
+    if(this.typeUser.tutor){
+      titleModal = 'Crear una Tutoria'
+    }
+    if(this.typeUser.asesor){
+      titleModal = 'Crear una Asesoria'
+    }
+
     this.dialogConfig.data = {
-      title: 'Datos de Monitoria',
+      title: titleModal,
       Modal: 'create'
     };
     this.openModal();
@@ -107,22 +129,29 @@ export class CalendarComponent implements OnInit {
   openModal():void{
     
     this.dialogConfig.autoFocus = true;
-    this.dialogConfig.width = '50%';
+    let customWidth:string;
 
+    if(window.innerWidth <= 600){
+      customWidth='100%';
+    }else{
+      customWidth='50%';
+    }  
+    
+    this.dialogConfig.width = customWidth;
     const dialogRef = this.dialog.open(ModalComponent, this.dialogConfig);
     dialogRef.afterClosed().subscribe(res =>{
       if(typeof res != 'undefined'){
         if(res.optType==='reservation'){
-          console.log('reserva');
+          console.log(res);
         }
         if(res.optType==='edit'){
-          console.log('edit');
+          console.log(res);
         }
         if(res.optType==='create'){
-          console.log('crear');
+          console.log(res);
         }
         if(res.optType==='delete'){
-          console.log('delete');
+          console.log(res);
         }
       }
     })

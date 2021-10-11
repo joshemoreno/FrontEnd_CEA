@@ -21,8 +21,15 @@ export class HomeComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+    let customWidth:string;
 
-    dialogConfig.width = '50%';
+    if(window.innerWidth <= 600){
+      customWidth='100%';
+    }else{
+      customWidth='50%';
+    }  
+
+    dialogConfig.width = customWidth;
     dialogConfig.data = {
       title: 'Envia tu mensaje',
       Modal: 'comment'

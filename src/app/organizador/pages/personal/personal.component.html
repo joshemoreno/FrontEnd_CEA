@@ -1,0 +1,11 @@
+<h1 class="blockquote text-center customText">Administración de usuarios</h1>
+<div class="customContent">
+    <div class="customDisplay">
+        <ng-container *ngFor="let card of cards">
+            <app-personal-card [cardProp]=card></app-personal-card>
+        </ng-container>
+    </div>
+    <div class="customtable">
+        <app-table-card></app-table-card>
+    </div>
+</div>

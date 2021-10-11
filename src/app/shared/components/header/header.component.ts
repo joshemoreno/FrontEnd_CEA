@@ -27,8 +27,10 @@ export class HeaderComponent implements OnInit {
   public opciones: Array<any> = [
     {opt:"Mis reservas",uri:"/home/estudiante/reservas"},
     {opt:"Gestión monitorias",uri:"/home/monitor/monitorias"},
-    {opt:"Gestión tutorias",uri:"GestionTutoria"},
-    {opt:"Metricas",uri:"Metricas"}
+    {opt:"Gestión tutorias",uri:"/home/tutor/tutorias"},
+    {opt:"Gestión asesorias",uri:"/home/asesor/asesorias"},
+    {opt:"Metricas",uri:"/home/organizador/metricas"},
+    {opt:"Admin personal",uri:"/home/organizador/personas"}
   ]
 
   ngOnInit(): void {

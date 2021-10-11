@@ -1,4 +1,4 @@
-<div *ngIf="comment">
+<div *ngIf="comment" class="customCard">
   <h2 mat-dialog-title class="customTitle">{{title}}</h2>
   <div mat-dialog-content>
     <form [formGroup]="ModalForm">
@@ -15,11 +15,11 @@
   </div>
 </div>
 
-<div *ngIf="create">
+<div *ngIf="create" class="customCard">
   <h2 mat-dialog-title class="customTitle">{{title}}</h2>
   <div mat-dialog-content>
     <form [formGroup]="ModalForm">
-      <div class="mb-3">
+      <div class="mb-3 px-2">
         <label class="form-label">Materia:</label>
         <select class="form-select" formControlName="subject">
           <option value="" disabled selected hidden>Seleciona una materia</option>
@@ -34,6 +34,19 @@
         <div class="mb-3 customInput">
           <label class="form-label">Hora:</label>
           <input type="time" class="form-control" formControlName="time">
+        </div>
+      </div>
+      <div class="customCheck">
+        <label class="form-label">Modalidad:</label>
+        <div class="">
+          <div class="form-check form-switch customCheck">
+            <input class="form-check-input customSwitch" type="checkbox" (click)="changeRoom()" >
+            <label class="form-check-label customLabel" for="flexSwitchCheckChecked">{{descRoom}}</label>
+          </div>
+          <div *ngIf="typeRoom" class="input-group input-group-sm customRoom">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Salón: </span>
+            <input type="text" class="form-control customInput" formControlName="room">
+          </div>
         </div>
       </div>
       <div class="customButtonAccions">
@@ -45,7 +58,7 @@
   </div>
 </div>
 
-<div *ngIf="edit">
+<div *ngIf="edit" class="customCard">
   <h2 mat-dialog-title class="customTitle">{{title}}</h2>
   <div mat-dialog-content>
     <form [formGroup]="ModalForm">
@@ -66,6 +79,19 @@
           <input type="time" class="form-control" formControlName="time">
         </div>
       </div>
+      <div class="customCheck">
+        <label class="form-label">Modalidad:</label>
+        <div class="">
+          <div class="form-check form-switch customCheck">
+            <input class="form-check-input customSwitch" type="checkbox" (click)="changeRoom()" >
+            <label class="form-check-label customLabel" for="flexSwitchCheckChecked">{{descRoom}}</label>
+          </div>
+          <div *ngIf="typeRoom" class="input-group input-group-sm customRoom">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Salón: </span>
+            <input type="text" class="form-control customInput" formControlName="room">
+          </div>
+        </div>
+      </div>
       <div class="customButtonAccions">
         <button type="submit" class="btn btn-primary customButton" (click)="onSubmitForm('edit')">Actualizar</button>
         <button class="btn btn-danger customButton" (click)="onSubmitForm('delete')">Eliminar</button>
@@ -74,7 +100,7 @@
   </div>
 </div>
 
-<div *ngIf="reservation">
+<div *ngIf="reservation" class="customCard">
   <h2 mat-dialog-title class="customTitle">{{title}}</h2>
   <div mat-dialog-content>
     <form [formGroup]="ModalForm">
@@ -95,6 +121,50 @@
         <button class="btn btn-danger customButton" (click)="close()">Cancelar</button>
         <button type="submit" [disabled]="ModalForm.invalid" class="btn btn-success customButton"
           (click)="onSubmitForm('reservation')">Confirmar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="status" class="customCard">
+  <h2 mat-dialog-title class="customTitle">{{title}}</h2>
+  <div mat-dialog-content>
+    <form [formGroup]="ModalForm">
+      <h3>¿Esta seguro que desea cambiar el estado del usuario {{user}} ?</h3>
+      <hr>
+      <P>Por favor escriba <strong>{{user}}</strong> para Confirmar</P>
+      <div class="mb-3">
+        <input type="text" class="form-control customInputFile" formControlName="confirm">
+      </div>
+      <div class="customButtonAccions">
+        <button class="btn btn-danger customButton" (click)="close()">Cancelar</button>
+        <button type="submit" [disabled]="ModalForm.invalid" class="btn btn-success customButton"
+          (click)="onSubmitForm('status')">Confirmar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="newUser" class="customCard">
+  <h2 mat-dialog-title class="customTitle">{{title}}</h2>
+  <div mat-dialog-content>
+    <form [formGroup]="ModalForm">
+      <div class="mb-3">
+        <h3>Para aceptar al usuario {{user}} primero debes asignarle un perfil para su ingreso</h3>
+        <select class="form-select" formControlName="profile">
+          <option value="" disabled selected hidden>Seleciona un perfil</option>
+          <option *ngFor="let role of roles" value="{{role.cod}}">{{role.desc}}</option>
+        </select>
+      </div>
+      <hr>
+      <P>Por favor escriba <strong>{{user}}</strong> para Confirmar</P>
+      <div class="mb-3">
+        <input type="text" class="form-control customInputFile" formControlName="confirm">
+      </div>
+      <div class="customButtonAccions">
+        <button class="btn btn-danger customButton" (click)="close()">Cancelar</button>
+        <button type="submit" [disabled]="ModalForm.invalid" class="btn btn-success customButton"
+          (click)="onSubmitForm('newUser')">Confirmar</button>
       </div>
     </form>
   </div>

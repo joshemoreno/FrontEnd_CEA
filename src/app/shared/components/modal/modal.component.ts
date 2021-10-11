@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-modal',
@@ -12,6 +11,9 @@ import * as moment from 'moment';
 export class ModalComponent implements OnInit {
 
   title: string;
+  public user: string;
+  public descRoom: string = 'Virtual';
+  public typeRoom: boolean = false;
   ModalType: string;
   ModalForm: FormGroup;
   comment: boolean = false;
@@ -19,6 +21,8 @@ export class ModalComponent implements OnInit {
   edit: boolean = false;
   read: boolean = false;
   reservation: boolean = false;
+  status : boolean = false;
+  newUser : boolean = false;
   
   public materias: Array<any> =[
     {cod: 1, desc:"Fisica 1"},
@@ -27,6 +31,14 @@ export class ModalComponent implements OnInit {
     {cod: 4, desc:"Matematicas Fundamentales"},
   ];
 
+
+  public roles=[
+    {cod: 1, desc: "Estudiante"},
+    {cod: 2, desc: "Monitor"},
+    {cod: 3, desc: "Tutor"},
+    {cod: 4, desc: "Asesor"},
+    {cod: 5, desc: "Organizador"},
+  ]
   constructor(
     private _snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<ModalComponent>,
@@ -34,6 +46,7 @@ export class ModalComponent implements OnInit {
 
       this.title = data.title;
       this.ModalType = data.Modal;
+      this.user = data.user;
       this.ModalForm = this.FormDefault();
 
   }
@@ -54,6 +67,14 @@ export class ModalComponent implements OnInit {
     if(this.ModalType == 'reservation'){
       this.reservation = true;
       this.ModalForm = this.FormReservation();
+    }
+    if(this.ModalType == 'status'){
+      this.status = true;
+      this.ModalForm = this.FormStatus();
+    }
+    if(this.ModalType == 'newUser'){
+      this.newUser = true;
+      this.ModalForm = this.FormNewUser();
     }
   }
 
@@ -83,7 +104,8 @@ export class ModalComponent implements OnInit {
     return new FormGroup({
       subject:new FormControl('',[Validators.required]),
       date:new FormControl('',[Validators.required]),
-      time:new FormControl('',[Validators.required])
+      time:new FormControl('',[Validators.required]),
+      room:new FormControl()
     });
   }
 
@@ -91,18 +113,36 @@ export class ModalComponent implements OnInit {
     return new FormGroup({
       subject:new FormControl('',[Validators.required]),
       date:new FormControl('',[Validators.required]),
-      time:new FormControl('',[Validators.required])
+      time:new FormControl('',[Validators.required]),
+      room:new FormControl()
     });
   }
 
   FormReservation(){
     return new FormGroup({
       question:new FormControl('',[Validators.required, Validators.minLength(30)]),
-      file:new FormControl()
+      uriQuestion:new FormControl()
     });
   }
 
+  FormStatus(){
+    return new FormGroup({
+      confirm:new FormControl('',[Validators.required, Validators.minLength(this.user.length), Validators.maxLength(this.user.length)]),
+    });
+  }
 
+  FormNewUser(){
+    return new FormGroup({
+      profile: new FormControl('',[Validators.required]),
+      confirm:new FormControl('',[Validators.required, Validators.minLength(this.user.length), Validators.maxLength(this.user.length)]),
+    });
+  }
+
+  changeRoom(){
+    this.typeRoom = this.typeRoom ? false : true;
+    this.descRoom = this.typeRoom ? 'Presencial' : 'Virtual'; 
+    console.log(this.typeRoom);
+  }
 
 
 }
