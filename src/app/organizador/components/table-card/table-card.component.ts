@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -20,6 +20,8 @@ export interface PeriodicElement {
   styleUrls: ['./table-card.component.css']
 })
 export class TableCardComponent implements OnInit {
+
+  @Input() tableProps: any;
 
   public roles=[
     {cod: 1, desc: "Estudiante"},

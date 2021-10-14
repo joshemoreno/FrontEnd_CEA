@@ -1,1 +1,35 @@
 <h1 class="blockquote text-center customText">Servicios pensados para apoyarte</h1>
+<div class="customContainer">
+    <div class="customRow">
+        <ng-container *ngFor="let card of cards">
+            <app-support-card [card]="card"></app-support-card>
+        </ng-container>
+    </div>
+    <div class="customGrid">
+        <div class="customCard">
+            <div class="headerCard">
+                <div class="content">
+                    <h2 class="customTitel">{{subjectCard.title}}</h2>
+                </div>
+                <!-- <div class="content2">
+                    <h2 class="customTitel">{{cardProp.person.length}}</h2>
+                </div> -->
+            </div>
+            <div class="bodyCard">
+                <div class="custonRows">
+                    <!-- <ng-container *ngFor="let person of cardProp.person">
+                        <app-row-card [person]=person></app-row-card>
+                    </ng-container> -->
+                </div>
+            </div>
+        </div>
+        <div class="customTables">
+            <div class="customTable">
+                <app-comment-table [commentTable]="commentTable"></app-comment-table>
+            </div>
+            <div class="customTable">
+                <app-survey-table [surveyTable]="surveyTable"></app-survey-table>
+            </div>
+        </div>
+    </div>
+</div>
