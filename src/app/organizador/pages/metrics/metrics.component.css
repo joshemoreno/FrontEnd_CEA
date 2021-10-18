@@ -7,7 +7,7 @@
 
 .customContainer{
     display: grid;
-    grid-template-rows: 350px 80%;
+    grid-template-rows: 400px 80%;
 }
 
 .customRow{
@@ -60,4 +60,61 @@
     align-self: center;
     justify-self: start;
     margin-left: 5%;
+}
+
+@media (max-width: 1300px) {
+    .customRow{
+        padding-left: 5%;
+        display: grid;
+        grid-template-columns: 45% 45%;
+        grid-column-gap: 3em;
+        grid-row-gap: 3em;
+    }
+
+    .customGrid{
+        padding-left: 5%;
+        display: grid;
+        grid-template-columns: 94%;
+        grid-column-gap: 3em;
+        grid-row-gap: 3em;
+    }
+
+    .customCard{
+        margin-top: 90px;
+        height: 405px;
+        width: 48%;
+        justify-self: right;
+        display: grid;
+        grid-template-rows: 15% 85%;
+    }
+}
+
+@media (max-width: 500px) {
+    .customRow{
+        padding-left: 5%;
+        display: grid;
+        grid-template-columns: 95%;
+        grid-column-gap: 3em;
+        grid-row-gap: 3em;
+    }
+
+    .customGrid{
+        padding-left: 5%;
+        display: grid;
+        grid-template-columns: 94%;
+        grid-row-gap: 3em;
+    }
+
+    .customContainer{
+        display: grid;
+        grid-template-rows: 40% 55%;
+    }
+
+    .customCard{
+        margin-top: 90px;
+        height: 405px;
+        width: 100%;
+        display: grid;
+        grid-template-rows: 15% 85%;
+    }
 }

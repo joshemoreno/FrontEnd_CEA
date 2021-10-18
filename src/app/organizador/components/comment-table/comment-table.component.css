@@ -34,10 +34,15 @@ table{
 
 .dateColum{
     text-align: center;
-    width: 30%;
+    width: 20%;
 }
 
 .ownerColum{
+    text-align: center;
+    width: 25%;
+}
+
+.commentColum{
     text-align: center;
     width: 30%;
 }

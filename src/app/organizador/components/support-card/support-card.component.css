@@ -3,7 +3,7 @@
     display: grid;
     grid-template-rows: 15% 85%;
     align-content: center;
-    height: 300px;
+    height: 350px;
     -webkit-box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
     -moz-box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
     box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
@@ -34,3 +34,12 @@
     justify-self: start;
     margin-left: 5%;
 }
+
+@media (max-width: 1300px) {
+    .customContainer{
+        height: 400px;
+    }
+}
+
+
+

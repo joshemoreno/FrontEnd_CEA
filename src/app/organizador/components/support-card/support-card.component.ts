@@ -9,9 +9,11 @@ export class SupportCardComponent implements OnInit {
 
   @Input() card: any;
 
+
   constructor() { }
 
   ngOnInit(): void {
+    // this.chart = new Chart('myChart',{})
   }
 
 }
