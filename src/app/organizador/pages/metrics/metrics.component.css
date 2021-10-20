@@ -62,7 +62,7 @@
     margin-left: 5%;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1815px) {
     .customRow{
         padding-left: 5%;
         display: grid;
@@ -80,7 +80,7 @@
     }
 
     .customCard{
-        margin-top: 90px;
+        margin-top: 42px;
         height: 405px;
         width: 48%;
         justify-self: right;
@@ -89,7 +89,7 @@
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 1250px) {
     .customRow{
         padding-left: 5%;
         display: grid;
