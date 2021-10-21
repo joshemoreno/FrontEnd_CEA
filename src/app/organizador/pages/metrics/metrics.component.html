@@ -11,25 +11,14 @@
                 <div class="content">
                     <h2 class="customTitel">{{subjectCard.title}}</h2>
                 </div>
-                <!-- <div class="content2">
-                    <h2 class="customTitel">{{cardProp.person.length}}</h2>
-                </div> -->
+                <div class="content2">
+                    <h2 class="customTitel">{{subjectCard.subject.length}}</h2>
+                </div>
             </div>
             <div class="bodyCard">
-                <div class="custonRows">
-                    <ngx-charts-pie-chart
-                        [view]="view"
-                        scheme="natural"
-                        [results]="single"
-                        [gradient]="gradient"
-                        [legend]="showLegend"
-                        [labels]="showLabels"
-                        [doughnut]="isDoughnut"
-                        (select)="onSelect($event)"
-                        (activate)="onActivate($event)"
-                        (deactivate)="onDeactivate($event)"
-                        >
-                    </ngx-charts-pie-chart>
+                <div>
+                </div>
+                <div class="customRows">
                 </div>
             </div>
         </div>

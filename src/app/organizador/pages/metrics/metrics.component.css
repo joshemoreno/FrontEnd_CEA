@@ -25,6 +25,18 @@
     grid-column-gap: 3em;
 }
 
+.content2{
+    align-self: center;
+    justify-self: center;
+    margin-left: 5%;
+}
+
+.bodyCard{
+    display: grid;
+    grid-template-rows: 20% 80%;
+}
+
+
 .customCard{
     height: 600px;
     border-radius: 10px;

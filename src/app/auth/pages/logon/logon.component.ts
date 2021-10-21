@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { FormControl,FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { requestLogOn } from '../../models/request.class';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -13,9 +11,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class LogonComponent implements OnInit {
 
-  constructor(private _authSercive: AuthService, private _router: ActivatedRoute, private router: Router, private spinner: NgxSpinnerService) { 
-    
-  }
+  constructor(
+    private _authSercive: AuthService, 
+    private _router: ActivatedRoute, 
+    private router: Router, 
+    private spinner: NgxSpinnerService
+    ) 
+    {}
 
   ngOnInit(): void {
     this.spinner.show();
