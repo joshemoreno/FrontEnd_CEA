@@ -1,0 +1,32 @@
+<div class="customCont">
+    <div class="customHead">
+      <h1 class="customText">{{surveyTable.title}}</h1>
+    </div>
+    <div class="customScroll">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="customTitle">{{surveyTable.firstColum}}</th>
+            <th scope="col" class="customTitle">{{surveyTable.secondColum}}</th>
+            <th scope="col" class="customTitle">{{surveyTable.thirdColum}}</th>
+            <th scope="col" class="customTitle">{{surveyTable.fourColum}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let survey of surveys">
+            <td class="customItem dateColum">{{survey.date}}</td>
+            <td class="customItem ownerColum">{{survey.user}}</td>
+            <td class="customItem ownerColum">{{survey.desc}}</td>
+            <td class="customItem accionsColum">
+              <div class="customColum">
+                <button type="button" class="btn btn-primary mx-2 btn-sm customBtn"
+                  (click)="acceptRequest(survey.cod, survey.user)">{{surveyTable.firstBottom}}</button>
+                <button type="button" class="btn btn-danger mx-2 btn-sm customBtn"
+                  (click)="cancelRequest(survey.cod, survey.user)">{{surveyTable.secondBottom}}</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

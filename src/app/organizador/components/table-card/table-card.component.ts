@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -21,6 +21,8 @@ export interface PeriodicElement {
 })
 export class TableCardComponent implements OnInit {
 
+  @Input() tableProps: any;
+
   public roles=[
     {cod: 1, desc: "Estudiante"},
     {cod: 2, desc: "Monitor"},
@@ -34,6 +36,38 @@ export class TableCardComponent implements OnInit {
   {cod: 2 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
   {cod: 3 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
   {cod: 4 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 5 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 6 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 7 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 8 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 9 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 10 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 11, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 12, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 13, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 14, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 15, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 16, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 17, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 18, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 19, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 20, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 5 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 6 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 7 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 8 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 9 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 10 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 11, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 12, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 13, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 14, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 15, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 16, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 17, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 18, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 19, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
+  {cod: 20, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
   {cod: 5 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
   {cod: 6 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
   {cod: 7 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},

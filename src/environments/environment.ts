@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlBack: 'http://192.168.20.22:3000',
+  urlBack: 'http://localhost:3000',
   
   // EndPoints
   loginEndpoint: '/api/auth/login',

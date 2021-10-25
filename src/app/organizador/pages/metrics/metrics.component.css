@@ -3,5 +3,188 @@
     font-weight: 500;
     margin-bottom: 4%;
     justify-self: center;
-    padding-left: 4%;
+}
+
+.customContainer{
+    display: grid;
+    grid-template-rows: 400px 80%;
+}
+
+.customRow{
+    padding-left: 5%;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-column-gap: 3em;
+    grid-row-gap: 3em;
+}
+
+.customBtn{
+    justify-self: end;
+}
+
+.customNew{
+    display: grid;
+    grid-template-columns: 75% 20%;
+    position: relative;
+    grid-column-gap: 1em;
+}
+
+.customRows{
+    overflow-y: scroll;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.customRows::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+}
+
+.customRows::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.customRows::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.customRows::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+}
+
+.customRows::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 4px;
+}
+
+.customRows::-webkit-scrollbar-track:hover,
+.customRows::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+} 
+.customGrid{
+    padding-left: 5%;
+    display: grid;
+    grid-template-columns: 30% 62.5%;
+    grid-column-gap: 3em;
+}
+
+.content2{
+    align-self: center;
+    justify-self: center;
+    margin-left: 5%;
+}
+
+.bodyCard{
+    display: grid;
+    grid-template-rows: 20% 80%;
+}
+
+.customInput{
+    margin: 5%;
+}
+
+.customNewBtn{
+    justify-self: center;
+    align-self: center;
+}
+
+.customCard{
+    height: 600px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: 10% 90%;
+    align-content: center;
+    -webkit-box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
+    -moz-box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
+    box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
+}
+
+.customTables{
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-row-gap: 1em;
+}
+
+.headerCard{
+    border-radius: 10px 10px 0px 0px ;
+    background-color: #d1d1d1;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    position: relative;
+}
+
+.customTitel{
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.content{
+    align-self: center;
+    justify-self: start;
+    margin-left: 5%;
+}
+
+@media (max-width: 1815px) {
+    .customRow{
+        padding-left: 5%;
+        display: grid;
+        grid-template-columns: 45% 45%;
+        grid-column-gap: 3em;
+        grid-row-gap: 3em;
+    }
+
+    .customGrid{
+        padding-left: 5%;
+        display: grid;
+        grid-template-columns: 94%;
+        grid-column-gap: 3em;
+        grid-row-gap: 3em;
+    }
+
+    .customCard{
+        margin-top: 42px;
+        height: 405px;
+        width: 48%;
+        justify-self: right;
+        display: grid;
+        grid-template-rows: 15% 85%;
+    }
+}
+
+@media (max-width: 1250px) {
+    .customRow{
+        padding-left: 5%;
+        display: grid;
+        grid-template-columns: 95%;
+        grid-column-gap: 3em;
+        grid-row-gap: 3em;
+    }
+
+    .customGrid{
+        padding-left: 5%;
+        display: grid;
+        grid-template-columns: 94%;
+        grid-row-gap: 3em;
+    }
+
+    .customContainer{
+        display: grid;
+        grid-template-rows: 40% 55%;
+    }
+
+    .customCard{
+        margin-top: 90px;
+        height: 405px;
+        width: 100%;
+        display: grid;
+        grid-template-rows: 15% 85%;
+    }
+
+    .bodyCard{
+        display: grid;
+        grid-template-rows: 35% 65%;
+    }
 }

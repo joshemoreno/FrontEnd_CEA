@@ -20,6 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": ["clone-deep"],
             "outputPath": "dist/frontEnd",
             "index": "src/index.html",
             "main": "src/main.ts",

@@ -1,14 +1,14 @@
 <div class="customCont">
   <div class="customHead">
-    <h1 class="customText">Solicitudes</h1>
+    <h1 class="customText">{{tableProps.title}}</h1>
   </div>
   <div class="customScroll">
     <table class="table">
       <thead>
         <tr>
-          <th scope="col" class="customTitle">Fecha</th>
-          <th scope="col" class="customTitle">Usuario</th>
-          <th scope="col" class="customTitle">Acciones</th>
+          <th scope="col" class="customTitle">{{tableProps.firstColum}}</th>
+          <th scope="col" class="customTitle">{{tableProps.secondColum}}</th>
+          <th scope="col" class="customTitle">{{tableProps.thirdColum}}</th>
         </tr>
       </thead>
       <tbody>
@@ -18,9 +18,9 @@
           <td class="customItem accionsColum">
             <div class="customColum">
               <button type="button" class="btn btn-primary mx-2 btn-sm customBtn"
-                (click)="acceptRequest(request.cod, request.user)">Aceptar</button>
+                (click)="acceptRequest(request.cod, request.user)">{{tableProps.firstBottom}}</button>
               <button type="button" class="btn btn-danger mx-2 btn-sm customBtn"
-                (click)="cancelRequest(request.cod, request.user)">Cancelar</button>
+                (click)="cancelRequest(request.cod, request.user)">{{tableProps.secondBottom}}</button>
             </div>
           </td>
         </tr>

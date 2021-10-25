@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Calendar } from '@fullcalendar/core'; // include this line
+import { Calendar, EventInput } from '@fullcalendar/core'; // include this line
 
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/angular';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -16,11 +17,7 @@ export class CalendarComponent implements OnInit {
 
   private dialogConfig = new MatDialogConfig();
 
-  constructor( public dialog: MatDialog){}
-
-  @Input() typeUser: any;
-
-  calendarOptions: CalendarOptions = {
+  public calendarOptions:CalendarOptions= {
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
@@ -28,23 +25,28 @@ export class CalendarComponent implements OnInit {
     },
     initialView: 'dayGridMonth',
     weekends: true, // <-- fines de semana
-    initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
     editable: true,
     selectable: true,
     selectMirror: true,
     dayMaxEvents: true,
+    progressiveEventRendering: true
     
-    eventsSet: this.handleEvents.bind(this)
+    // eventsSet: 
     /* you can update a remote database when these fire:
     eventAdd:
     eventChange:
     eventRemove:
     */
   };
-  currentEvents: EventApi[] = [];
+
+  constructor( public dialog: MatDialog, private http : HttpClient){}
+
+  @Input() typeUser: any;
 
   ngOnInit(): void {
     this.checkUser();
+    // id  =  llamando al decode token
+    this.handleEvents('a43c4773-35cc-4b58-923b-faa6474744a7');
   }
 
   checkUser(){
@@ -70,7 +72,7 @@ export class CalendarComponent implements OnInit {
   editMonitory(clickInfo: EventClickArg){
     this.dialogConfig.disableClose = false;
     let titleModal: string;
-    console.log(this.typeUser);
+    console.log(clickInfo.event._def.publicId);
     if(this.typeUser.monitor){
       titleModal = 'Editar Monitoria'
     } 
@@ -82,7 +84,8 @@ export class CalendarComponent implements OnInit {
     }
     this.dialogConfig.data = {
       title: titleModal,
-      Modal: 'edit'
+      Modal: 'edit',
+      id: 'fasfdasfasdfasdas'
     };
     this.openModal();
   };
@@ -122,8 +125,20 @@ export class CalendarComponent implements OnInit {
     //   });
     // }
 
-  handleEvents(events: EventApi[]) {
-    this.currentEvents = events;
+  handleEvents(id:string){
+    let data = [];
+    this.http.get(`https://ontosoft.herokuapp.com/api/Appoinments/users/${id}`)
+    .subscribe((res:any)=>{
+      res.appoinments.map((i:any) =>{
+            let obj = {
+              id: i.id,
+              title: i.title,
+              date: i.date
+            }
+            data.push(obj)
+          })
+      this.calendarOptions.events=data;
+    });
   }
 
   openModal():void{

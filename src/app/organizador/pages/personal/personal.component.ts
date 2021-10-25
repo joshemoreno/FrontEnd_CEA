@@ -6,6 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./personal.component.css']
 })
 export class PersonalComponent implements OnInit {
+
+  public tableProps = {
+    title: 'Solicitudes',
+    firstColum: 'Fecha',
+    secondColum: 'Usuario',
+    thirdColum: 'Acciones',
+    firstBottom: 'Aceptar',
+    secondBottom: 'Cancelar'
+  }
+
   public cards=[
     {
       title:"Monitores",

@@ -5,7 +5,7 @@
 }
 
 .infoCard{
-    -webkit-box-shadow: 0px 5px 5px -1px rgbargba(32, 32, 32, 0.48);
+    -webkit-box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
     -moz-box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
     box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
     margin: 5%;

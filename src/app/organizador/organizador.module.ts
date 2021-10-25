@@ -8,6 +8,10 @@ import { PersonalCardComponent } from './components/personal-card/personal-card.
 import { RowCardComponent } from './components/row-card/row-card.component';
 import { TableCardComponent } from './components/table-card/table-card.component';
 import { ReactiveFormsModule} from '@angular/forms';
+import { SupportCardComponent } from './components/support-card/support-card.component';
+import { CommentTableComponent } from './components/comment-table/comment-table.component';
+import { SurveyTableComponent } from './components/survey-table/survey-table.component';
+import { RowSubjectComponent } from './components/row-subject/row-subject.component';
 
 
 
@@ -17,7 +21,11 @@ import { ReactiveFormsModule} from '@angular/forms';
     PersonalComponent,
     PersonalCardComponent,
     RowCardComponent,
-    TableCardComponent
+    TableCardComponent,
+    SupportCardComponent,
+    CommentTableComponent,
+    SurveyTableComponent,
+    RowSubjectComponent
   ],
   imports: [
     CommonModule,
