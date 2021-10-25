@@ -1,0 +1,19 @@
+.customRow{
+    display: grid;
+    grid-template-columns: 40% 55%;
+    position: relative;
+    grid-column-gap: 1em;
+}
+
+.customDivider{
+    margin: 0 !important;
+}
+
+.customText{
+    margin: 0;
+}
+
+.customPerson{
+    margin-top: auto;
+    margin-bottom: auto;
+}
