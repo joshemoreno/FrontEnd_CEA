@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LegendPosition } from '@swimlane/ngx-charts';
 
 
 @Component({
@@ -10,6 +9,9 @@ import { LegendPosition } from '@swimlane/ngx-charts';
 export class MetricsComponent implements OnInit {
 
   constructor() { }
+
+  public createBtn = false;
+  public textShow = '';
 
   public cards = [
     {
@@ -26,14 +28,72 @@ export class MetricsComponent implements OnInit {
   public subjectCard = {
     title: 'Asignaturas',
     subject: [
-      {
 
-      },
-      {
-        
-      }
     ]
   }
+
+  responseSubject = [
+    {
+      id:1,
+      name:"Fisica 1",
+      owner:"Jose Antonio Moreno Popyan"
+    },
+    {
+      id:2,
+      name:"Fisica 2",
+      owner:"Jose Antonio Moreno Popyan"
+    },
+    {
+      id:3,
+      name:"desarrollo de ciudades inteligentes",
+      owner:"Jose Antonio Moreno Popyan"
+    },
+    {
+      id:4,
+      name:"Matematicas fundamentales",
+      owner:"Jose Antonio Moreno Popyan"
+    },
+    {
+      id:1,
+      name:"Fisica 1",
+      owner:"Jose Antonio Moreno Popyan"
+    },
+    {
+      id:2,
+      name:"Fisica 2",
+      owner:"Jose Antonio Moreno Popyan"
+    },
+    {
+      id:3,
+      name:"Fisica 3",
+      owner:"Jose Antonio Moreno Popyan"
+    },
+    {
+      id:4,
+      name:"Matematicas",
+      owner:"Jose Antonio Moreno Popyan"
+    },
+    {
+      id:1,
+      name:"Fisica 1",
+      owner:"Jose Antonio Moreno Popyan"
+    },
+    {
+      id:2,
+      name:"Fisica 2",
+      owner:"Jose Antonio Moreno Popyan"
+    },
+    {
+      id:3,
+      name:"Fisica 3",
+      owner:"Jose Antonio Moreno Popyan"
+    },
+    {
+      id:4,
+      name:"Matematicas",
+      owner:"Jose Antonio Moreno Popyan"
+    },
+  ]
 
   public commentTable = {
     title: 'Comentarios y sugerencias',
@@ -56,8 +116,25 @@ export class MetricsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subjectCard.subject = this.responseSubject;
   }
 
-
+  search(event:any){
+    let inputText:string;
+    if((event.target.value).length === 0){
+      this.subjectCard.subject = this.responseSubject;
+    }else{
+      inputText = event.target.value;
+      let expresion = new RegExp(`${inputText}.*`, "i");
+      let filterSubject = this.responseSubject.filter(subject => expresion.test(subject.name)); 
+      this.subjectCard.subject = filterSubject;
+    }
+    if ((this.subjectCard.subject).length === 0){
+      this.createBtn = true;
+      this.textShow = inputText;
+    }else{
+      this.createBtn = false;
+    }
+  }
 
 }

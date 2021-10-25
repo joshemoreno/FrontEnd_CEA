@@ -16,9 +16,23 @@
                 </div>
             </div>
             <div class="bodyCard">
-                <div>
+                <div class="customInput">
+                    <p>Buscar</p>
+                    <input type="text" class="form-control customField" placeholder="Materia" (input)="search($event)">
                 </div>
                 <div class="customRows">
+                    <ng-container *ngFor="let subject of subjectCard.subject">
+                        <app-row-subject [subjects]="subject"></app-row-subject>
+                        <hr>
+                    </ng-container>
+                    <div class="customNew" *ngIf="createBtn">
+                        <div>
+                            <h3>La materia <strong>{{textShow}}</strong> no existe, desea crearla</h3>
+                        </div>
+                        <div class="customNewBtn">
+                            <button type="button" class="btn btn-success customBtn">crear</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -11,6 +11,7 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { SupportCardComponent } from './components/support-card/support-card.component';
 import { CommentTableComponent } from './components/comment-table/comment-table.component';
 import { SurveyTableComponent } from './components/survey-table/survey-table.component';
+import { RowSubjectComponent } from './components/row-subject/row-subject.component';
 
 
 
@@ -23,7 +24,8 @@ import { SurveyTableComponent } from './components/survey-table/survey-table.com
     TableCardComponent,
     SupportCardComponent,
     CommentTableComponent,
-    SurveyTableComponent
+    SurveyTableComponent,
+    RowSubjectComponent
   ],
   imports: [
     CommonModule,

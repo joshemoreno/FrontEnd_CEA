@@ -45,7 +45,7 @@ FullCalendarModule.registerPlugins([
     HomeComponent,
     CardComponent,
     ModalComponent,
-    CalendarComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,

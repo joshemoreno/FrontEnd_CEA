@@ -18,6 +18,51 @@
     grid-row-gap: 3em;
 }
 
+.customBtn{
+    justify-self: end;
+}
+
+.customNew{
+    display: grid;
+    grid-template-columns: 75% 20%;
+    position: relative;
+    grid-column-gap: 1em;
+}
+
+.customRows{
+    overflow-y: scroll;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.customRows::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+}
+
+.customRows::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.customRows::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.customRows::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+}
+
+.customRows::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 4px;
+}
+
+.customRows::-webkit-scrollbar-track:hover,
+.customRows::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+} 
 .customGrid{
     padding-left: 5%;
     display: grid;
@@ -36,6 +81,14 @@
     grid-template-rows: 20% 80%;
 }
 
+.customInput{
+    margin: 5%;
+}
+
+.customNewBtn{
+    justify-self: center;
+    align-self: center;
+}
 
 .customCard{
     height: 600px;
@@ -128,5 +181,10 @@
         width: 100%;
         display: grid;
         grid-template-rows: 15% 85%;
+    }
+
+    .bodyCard{
+        display: grid;
+        grid-template-rows: 35% 65%;
     }
 }
