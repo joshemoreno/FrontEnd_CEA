@@ -1,0 +1,52 @@
+.img {
+    float: left;
+    width: 50%;
+    height: 100vh;
+    object-fit: cover;
+}
+  
+.cover {
+    object-fit: cover;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+  
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.custom{
+    text-align:center;
+    align-items: center;
+    justify-content: center;
+}
+
+.customText {
+  margin-left: 30%;
+  margin-right: 30%;
+  text-align: justify;
+}
+
+.customBtn{
+    background-color: #A11C1C;
+}
+
+@media (max-width: 600px) {
+    .img {
+        display: none;
+    }
+
+    html, body {
+        height: 100vh;
+        overflow:hidden;
+    }
+    .customText {
+        margin-left: 10%;
+        margin-right: 10%;
+        text-align: justify;
+      }
+}

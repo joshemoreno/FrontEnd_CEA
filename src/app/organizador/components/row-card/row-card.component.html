@@ -1,0 +1,26 @@
+<div class="customRow">
+        <div>
+                <img class="customImg" src="{{person.url}}" alt="">
+        </div>
+        <div class="customDetail">
+                <div>
+                        <h2 class="customName">{{person.name}}</h2>
+                        <h3 class="customSubject">{{person.subject}}</h3>
+                </div>
+                <div class="customStatus" *ngIf="state === 1">
+                        <a (click)="changeStatus()" class="personal">
+                                <div class="customActive">
+                                        <p class="mb-0 status">{{statusShow}}</p>
+                                </div>
+                        </a>
+                </div>
+                <div class="customStatus" *ngIf="state === 2">
+                        <a (click)="changeStatus()" class="personal">
+                                <div class="customInactive">
+                                        <p class="mb-0 status">{{statusShow}}</p>
+                                </div>
+                        </a>
+                </div>
+        </div>
+</div>
+<hr class="customDivider">

@@ -1,0 +1,17 @@
+<div class="customContainer">
+    <div class="headerCard">
+        <div class="content">
+            <h2 class="customTitel">{{cardProp.title}}</h2>
+        </div>
+        <div class="content2">
+            <h2 class="customTitel">{{cardProp.person.length}}</h2>
+        </div>
+    </div>
+    <div class="bodyCard">
+        <div class="custonRows">
+            <ng-container *ngFor="let person of cardProp.person">
+                <app-row-card [person]=person></app-row-card>
+            </ng-container>
+        </div>
+    </div>
+</div>

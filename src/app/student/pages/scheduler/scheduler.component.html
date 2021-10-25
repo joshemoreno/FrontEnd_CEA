@@ -1,0 +1,30 @@
+<h1 class="blockquote text-center customText">Horario programado</h1>
+<div class="customContainer">
+    <div class="infoCard smallContainer">
+        <div>
+            <div class="container customCont">
+                <h2 class="card-title customTitel">{{owner.name}}</h2>
+                <img class=" customImage" src="{{owner.uriProfile}}" alt="">
+            </div>
+            <div class="text-center pt-2 pb-4">
+                <strong>Califica a tu Monitor</strong>
+                <div class="calificator pt-2">
+                    <ngx-stars [readonly]="false" [size]="2" [maxStars]="5" (ratingOutput)="onRatingSet($event)">
+                    </ngx-stars>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <hr class="hide">
+            <strong>Contacto</strong>
+            <p class="mb-0 card-text">{{owner.tel}} </p>
+            <p class="mb-0 card-text">{{owner.email}}</p>
+            <hr>
+            <strong>Fortalezas</strong>
+            <p class="card-text">{{owner.about}}</p>
+        </div>
+    </div>
+    <div class="customCalendar">
+        <app-calendar [typeUser]=typeUser ></app-calendar>
+    </div>
+</div>
