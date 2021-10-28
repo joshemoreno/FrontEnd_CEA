@@ -1,7 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ProgressBarMode } from '@angular/material/progress-bar';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CalendarService } from '../../services/calendar/calendar.service';
 
 @Component({
   selector: 'app-modal',
@@ -10,6 +14,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ModalComponent implements OnInit {
 
+  public loading: boolean=false;
+  private image: any;
+  color: ThemePalette = 'primary';
+  mode: ProgressBarMode = 'determinate';
+  value = 50;
+  bufferValue = 75;
   title: string;
   public user: string;
   public descRoom: string = 'Virtual';
@@ -40,7 +50,6 @@ export class ModalComponent implements OnInit {
     {cod: 5, desc: "Organizador"},
   ]
   constructor(
-    private _snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) data:any) {  
 
@@ -79,10 +88,21 @@ export class ModalComponent implements OnInit {
   }
 
   onSubmitForm(optType:string='') {
-      let dto ={
+    let dto:{};
+    if(optType=='reservation'){
+      dto ={
+        optType: optType,
+        data:{
+          question: this.ModalForm.value,
+          uri: this.image 
+        }
+      }
+    }else{
+      dto ={
         optType: optType,
         data:this.ModalForm.value
       }
+    }
       this.dialogRef.close(dto);
   } 
 
@@ -121,7 +141,7 @@ export class ModalComponent implements OnInit {
   FormReservation(){
     return new FormGroup({
       question:new FormControl('',[Validators.required, Validators.minLength(30)]),
-      uriQuestion:new FormControl()
+      file:new FormControl('')
     });
   }
 
@@ -142,6 +162,10 @@ export class ModalComponent implements OnInit {
     this.typeRoom = this.typeRoom ? false : true;
     this.descRoom = this.typeRoom ? 'Presencial' : 'Virtual'; 
     console.log(this.typeRoom);
+  }
+
+  handleImage(event:any):void{
+    this.image = event.target.files[0];
   }
 
 

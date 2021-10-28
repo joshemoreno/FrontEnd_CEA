@@ -6,13 +6,6 @@
                 <h2 class="card-title customTitel">{{owner.name}}</h2>
                 <img class=" customImage" src="{{owner.uriProfile}}" alt="">
             </div>
-            <div class="text-center pt-2 pb-4">
-                <strong>Califica a tu Monitor</strong>
-                <div class="calificator pt-2">
-                    <ngx-stars [readonly]="false" [size]="2" [maxStars]="5" (ratingOutput)="onRatingSet($event)">
-                    </ngx-stars>
-                </div>
-            </div>
         </div>
         <div class="card-body">
             <hr class="hide">

@@ -29,6 +29,8 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import { NgxStarsModule } from 'ngx-stars';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { SpinnerComponent } from './components/spinner/spinner.component'; 
 
 
 
@@ -45,7 +47,8 @@ FullCalendarModule.registerPlugins([
     HomeComponent,
     CardComponent,
     ModalComponent,
-    CalendarComponent
+    CalendarComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -54,6 +57,7 @@ FullCalendarModule.registerPlugins([
     MatInputModule,
     MatFormFieldModule,
     FullCalendarModule,
+    MatProgressBarModule
   ],
   exports: [
     MatToolbarModule,
@@ -73,6 +77,7 @@ FullCalendarModule.registerPlugins([
     MatIconModule,
     MatSelectModule,
     NgxChartsModule,
+    SpinnerComponent
   ],
   entryComponents: [ModalComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

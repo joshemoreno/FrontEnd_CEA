@@ -6,6 +6,8 @@ import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { HttpClient } from '@angular/common/http';
+import { CalendarService } from '../../services/calendar/calendar.service';
+import { requestReservation } from '../../models/reservationsDto';
 
 
 @Component({
@@ -39,7 +41,12 @@ export class CalendarComponent implements OnInit {
     */
   };
 
-  constructor( public dialog: MatDialog, private http : HttpClient){}
+  constructor( 
+    public dialog: MatDialog, 
+    private http : HttpClient,
+    private _calendarService: CalendarService
+    )
+    {}
 
   @Input() typeUser: any;
 
@@ -157,7 +164,11 @@ export class CalendarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res =>{
       if(typeof res != 'undefined'){
         if(res.optType==='reservation'){
-          console.log(res);
+          let id = 'fhkahfbhsafhbsadnfasljk';
+          let image = res.data.uri;
+          let question = res.data.question.question;
+          image = image ? image : null;
+          this._calendarService.uploadImage(id,question,image);
         }
         if(res.optType==='edit'){
           console.log(res);
