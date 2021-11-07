@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { interval, timer } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { AlertsService } from '../../services/alerts/alerts.service';
+import { HeaderService } from '../../services/header/header.service';
 import { SessionService } from '../../services/session/session.service';
 
 
@@ -14,7 +14,12 @@ import { SessionService } from '../../services/session/session.service';
 export class HeaderComponent implements OnInit {
   option: any;
 
-  constructor(private _alertService: AlertsService, private _sessionService : SessionService, private _authService: AuthService) { }
+  constructor(
+    private _alertService: AlertsService,
+    private _sessionService : SessionService, 
+    private _authService: AuthService,
+    private _headerService: HeaderService
+  ) { }
 
 
   public materias: Array<any> =[
@@ -34,12 +39,12 @@ export class HeaderComponent implements OnInit {
   ]
 
   ngOnInit(): void {
-
     this.getCurrentUser();
     const checkSession = interval(10000);
     checkSession.subscribe(()=>{
       this._sessionService.checkSession() ? null : this.openAlert();
     });
+    this.getSubjects();
   }
 
   goHome(){
@@ -48,6 +53,13 @@ export class HeaderComponent implements OnInit {
 
   logOut(){
     this._authService.logOutUser();
+  }
+
+  getSubjects(){
+    this._headerService.getAllSubjects()
+    .subscribe((res:any)=>{
+      console.log(res.data)
+    })
   }
 
   prepareData(data:string):string{

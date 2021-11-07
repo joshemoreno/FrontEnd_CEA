@@ -36,7 +36,6 @@ export class RowCardComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     let customWidth:string;
-    console.log(this.state + this.statusShow)
 
     if(window.innerWidth <= 600){
       customWidth='100%';
@@ -53,19 +52,42 @@ export class RowCardComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ModalComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(res =>{
+      console.log(res);
       if(typeof res != 'undefined'){
-        if(this.person.name != res.data.confirm){
-          this._snackBar.open(`No se pudo cambiar el estado del usuario`, 'ok', {
-            horizontalPosition: 'end',
-            verticalPosition: 'top',
-            duration: 5000,
-            panelClass: ['error-scanck-bar'],
-          });
-        }else{
           this.state = this.state ? 2 : 1;
           this.statusShow = this.statusShow ? 'Inactivo' : 'Activo';
           console.log(this.state + this.statusShow)
-        }
+      }
+    })
+  }
+
+  changeRole(){
+    console.log(this.person);
+    
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    let customWidth:string;
+
+    if(window.innerWidth <= 600){
+      customWidth='100%';
+    }else{
+      customWidth='30%';
+    }  
+
+    dialogConfig.width = customWidth;
+    dialogConfig.data = {
+      title: 'Acceptar nuevo usuario',
+      Modal: 'newUser',
+      user: this.person.name
+    }
+    const dialogRef = this.dialog.open(ModalComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(res =>{
+      if(typeof res != 'undefined'){
+        console.log(res);
+          // this.state = this.state ? 2 : 1;
+          // this.statusShow = this.statusShow ? 'Inactivo' : 'Activo';
+          // console.log(this.state + this.statusShow)
       }
     })
   }

@@ -1,6 +1,5 @@
 .customButtonAccions{
     text-align: center;
-
 }
 .customButton{
     margin: 2%;
@@ -37,6 +36,11 @@
     margin-top: 5%;
     display: grid;
     grid-template-columns: 15% 85%;
+}
+
+.countInput{
+    float: right;
+    font-weight: bolder;
 }
 
 .customInputFile{

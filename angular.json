@@ -20,7 +20,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["clone-deep"],
+            "allowedCommonJsDependencies": [
+              "clone-deep"
+            ],
             "outputPath": "dist/frontEnd",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -103,6 +105,16 @@
               "src/styles.css"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "frontEnd:build:production",
+            "firebaseProject": "proyectocea",
+            "firebaseHostingSite": "proyectocea"
           }
         }
       }
