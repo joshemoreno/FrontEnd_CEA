@@ -8,6 +8,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { HttpClient } from '@angular/common/http';
 import { CalendarService } from '../../services/calendar/calendar.service';
 import { requestReservation } from '../../models/reservationsDto';
+import esLocale from '@fullcalendar/core/locales/es';
 
 
 @Component({
@@ -23,13 +24,14 @@ export class CalendarComponent implements OnInit {
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
+    locale: esLocale,
     initialView: 'dayGridMonth',
     weekends: true, // <-- fines de semana
     editable: true,
     selectable: true,
-    selectMirror: true,
+    selectMirror: false,
     dayMaxEvents: true,
     progressiveEventRendering: true
     
@@ -43,7 +45,6 @@ export class CalendarComponent implements OnInit {
 
   constructor( 
     public dialog: MatDialog, 
-    private http : HttpClient,
     private _calendarService: CalendarService
     )
     {}
@@ -59,6 +60,7 @@ export class CalendarComponent implements OnInit {
   checkUser(){
     let typeUser = this.typeUser;
     if (typeUser.student){
+      this.calendarOptions.selectMirror=false,
       this.calendarOptions.eventClick = this.reservation.bind(this);
     };
     if (typeUser.monitor || typeUser.tutor || typeUser.asesor){
@@ -68,10 +70,12 @@ export class CalendarComponent implements OnInit {
   };
 
   reservation(clickInfo: EventClickArg) {
+    let id:string = clickInfo.event._def.publicId;
     this.dialogConfig.disableClose = true;
     this.dialogConfig.data = {
       title: 'Reserva tu Monitoria',
-      Modal: 'reservation'
+      Modal: 'reservation',
+      id: id
     };
     this.openModal();
   };
@@ -79,7 +83,7 @@ export class CalendarComponent implements OnInit {
   editMonitory(clickInfo: EventClickArg){
     this.dialogConfig.disableClose = false;
     let titleModal: string;
-    console.log(clickInfo.event._def.publicId);
+    let id:string = clickInfo.event._def.publicId;
     if(this.typeUser.monitor){
       titleModal = 'Editar Monitoria'
     } 
@@ -92,12 +96,13 @@ export class CalendarComponent implements OnInit {
     this.dialogConfig.data = {
       title: titleModal,
       Modal: 'edit',
-      id: 'fasfdasfasdfasdas'
+      id: id
     };
     this.openModal();
   };
 
-  createMonitory(selectInfo: DateSelectArg) {
+  createMonitory(selectInfo:any) {
+    let date:Array<string> = this.chooseDate(selectInfo.dateStr);
     this.dialogConfig.disableClose = true;
     let titleModal: string;
     if(this.typeUser.monitor){
@@ -112,9 +117,21 @@ export class CalendarComponent implements OnInit {
 
     this.dialogConfig.data = {
       title: titleModal,
-      Modal: 'create'
+      Modal: 'create',
+      dateSelect: date
     };
     this.openModal();
+  }
+
+  chooseDate(date:string):Array<string>{
+    let responseDate:Array<string>=[];
+    if(date.includes('T')){
+      responseDate = date.split('T');
+      responseDate[1] = responseDate[1].split('-')[0];
+    }else{
+      responseDate.push(date);
+    }
+    return responseDate;
   }
 
     // const title = prompt('Please enter a new title for your event');
@@ -134,7 +151,7 @@ export class CalendarComponent implements OnInit {
 
   handleEvents(id:string){
     let data = [];
-    this.http.get(`https://ontosoft.herokuapp.com/api/Appoinments/users/${id}`)
+    this._calendarService.getMeetingsByUser(id)
     .subscribe((res:any)=>{
       res.appoinments.map((i:any) =>{
             let obj = {
@@ -164,7 +181,7 @@ export class CalendarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res =>{
       if(typeof res != 'undefined'){
         if(res.optType==='reservation'){
-          let id = 'fhkahfbhsafhbsadnfasljk';
+          let id = res.data.question.id;
           let image = res.data.uri;
           let question = res.data.question.question;
           image = image ? image : null;

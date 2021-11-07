@@ -32,17 +32,29 @@
     -webkit-box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
     -moz-box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
     box-shadow: 0px 5px 5px -1px rgba(32, 32, 32, 0.48);
-    text-align: center;
-    align-self: center;
-    justify-self: end;
+    margin-left: auto;
+    margin-right: auto;
     width: 50%;
     border-radius: 20px;
-    margin-right: 10%;
+}
+
+.customEdit{
+    justify-self: end;
+    margin-top: 10px;
+}
+
+.customContent{
+    text-align: center;
+    align-self: center;
 }
 
 .customActive{
     border-radius: 20px; 
     background-color: #40A64A;
+}
+.customEdit{
+    border-radius: 20px; 
+    background-color: #4486ED;
 }
 
 .customInactive{

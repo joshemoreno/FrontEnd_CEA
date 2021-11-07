@@ -4,7 +4,8 @@
     <form [formGroup]="ModalForm">
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Cuentanos:</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" formControlName="comment"></textarea>
+        <label for="exampleFormControlTextarea1" class="form-label countInput">{{count}} caracteres de 30 mínimo</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" formControlName="comment" (input)="countChart($event)"></textarea>
       </div>
       <div class="customButtonAccions">
         <button class="btn btn-danger customButton" (click)="close()">Cancelar</button>
@@ -106,7 +107,9 @@
     <form [formGroup]="ModalForm">
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Duda a resolver:</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" formControlName="question"></textarea>
+        <label for="exampleFormControlTextarea1" class="form-label countInput">{{count}} caracteres de 30 mínimo</label>
+        <input type="text" hidden formControlName="id">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" formControlName="question" (input)="countChart($event)"></textarea>
         <div class="input-group customUpload">
           <div class="popover__wrapper">
               <div class="popover__content">
@@ -117,15 +120,6 @@
           <input type="file" class="form-control customInputFile" formControlName="file" (change)="handleImage($event)">
         </div>
       </div>
-      <ng-container *ngIf="loading">
-        <mat-progress-bar
-        class="example-margin"
-        [color]="color"
-        [mode]="mode"
-        [value]="value"
-        [bufferValue]="bufferValue">
-        </mat-progress-bar>   
-      </ng-container>
       <ng-container *ngIf="!loading">
         <div class="customButtonAccions">
           <button class="btn btn-danger customButton" (click)="close()">Cancelar</button>
@@ -145,11 +139,11 @@
       <hr>
       <P>Por favor escriba <strong>{{user}}</strong> para Confirmar</P>
       <div class="mb-3">
-        <input type="text" class="form-control customInputFile" formControlName="confirm">
+        <input type="text" class="form-control customInputFile" (input)="validatorRead($event)" [ngStyle]="{'border': cssBorder}">
       </div>
       <div class="customButtonAccions">
         <button class="btn btn-danger customButton" (click)="close()">Cancelar</button>
-        <button type="submit" [disabled]="ModalForm.invalid" class="btn btn-success customButton"
+        <button type="submit" [disabled]="disabled" class="btn btn-success customButton"
           (click)="onSubmitForm('status')">Confirmar</button>
       </div>
     </form>
@@ -162,7 +156,7 @@
     <form [formGroup]="ModalForm">
       <div class="mb-3">
         <h3>Para aceptar al usuario {{user}} primero debes asignarle un perfil para su ingreso</h3>
-        <select class="form-select" formControlName="profile">
+        <select class="form-select" formControlName="profile" (click)="validatorRole($event)">
           <option value="" disabled selected hidden>Seleciona un perfil</option>
           <option *ngFor="let role of roles" value="{{role.cod}}">{{role.desc}}</option>
         </select>
@@ -170,11 +164,11 @@
       <hr>
       <P>Por favor escriba <strong>{{user}}</strong> para Confirmar</P>
       <div class="mb-3">
-        <input type="text" class="form-control customInputFile" formControlName="confirm">
+        <input type="text" class="form-control customInputFile" (input)="validatorRead($event)" [ngStyle]="{'border': cssBorder}">
       </div>
       <div class="customButtonAccions">
         <button class="btn btn-danger customButton" (click)="close()">Cancelar</button>
-        <button type="submit" [disabled]="ModalForm.invalid" class="btn btn-success customButton"
+        <button type="submit" [disabled]="disabled" [disabled]="disabledRole" class="btn btn-success customButton"
           (click)="onSubmitForm('newUser')">Confirmar</button>
       </div>
     </form>

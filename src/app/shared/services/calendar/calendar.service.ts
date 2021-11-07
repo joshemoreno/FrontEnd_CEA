@@ -5,6 +5,7 @@ import { take, finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { requestReservation } from '../../models/reservationsDto';
 import { GenericsService } from '../generics/generics.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class CalendarService {
 
   constructor(
     private _storage:AngularFireStorage,
-    private _genericService: GenericsService
+    private _genericService: GenericsService,
+    private http : HttpClient,
     ) { }
     
     uploadImage(id:string, question:string, image:FileInterface){
@@ -50,6 +52,10 @@ export class CalendarService {
     createReservation(reservation:requestReservation){
       this._genericService.hide();
       console.log(reservation)
+    }
+
+    getMeetingsByUser(id:string){
+      return this.http.get(`https://ontosoft.herokuapp.com/api/Appoinments/users/${id}`)
     }
 
 }

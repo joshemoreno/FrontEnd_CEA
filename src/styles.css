@@ -52,3 +52,71 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     align-items: center;
     justify-content: center;
 }
+
+.fc-today-button:enabled{
+    background-color: var(--fc-today-button,#000000) !important;
+}
+
+.fc-button{ 
+    color: var(--fc-button-text-color,#fff) !important;
+    background-color: var(--fc-button-active-bg-color,#000000) !important;
+    border-color: var(--fc-button-active-border-color,black) !important;
+}
+
+.fc-event-main{
+    background-color: #D78989;
+}
+
+.fc-event-title{
+    color: var(--fc-event-text-color,black); 
+    font-weight: 550; 
+}
+
+.fc-event-title-container {
+    background-color: white !important;
+}
+
+.fc-event-title-container > .fc-event-title{
+    color: black;
+    font-weight: bolder;
+}
+
+.fc-event-main-frame > .fc-event-time{
+    color: white !important;
+}
+.fc-toolbar-title{
+    text-transform: capitalize;
+}
+
+.fc-col-header-cell-cushion:hover{
+    color: black;
+    cursor: context-menu;
+}
+.fc-col-header-cell-cushion{
+    color: black;
+    text-transform: capitalize;
+}
+
+.fc-col-header-cell{
+    background-color: #E1E1E1;
+}
+.fc-daygrid-event-dot{
+    border: calc(var(--fc-daygrid-event-dot-width, 8px) / 2) solid var(--fc-event-border-color,#AF5353) !important;
+}
+.fc-event-time{
+    color: black !important;
+}
+
+.fc-daygrid-day-number{
+    text-decoration: none;
+    color: black !important;
+}
+
+.fc-day-today{
+    background-color: #ECECEC !important;
+    border-bottom: #AF5353 solid !important;
+}
+
+.fc-day-sun{
+    display: none;
+}

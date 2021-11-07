@@ -7,19 +7,37 @@
                         <h2 class="customName">{{person.name}}</h2>
                         <h3 class="customSubject">{{person.subject}}</h3>
                 </div>
-                <div class="customStatus" *ngIf="state === 1">
-                        <a (click)="changeStatus()" class="personal">
-                                <div class="customActive">
-                                        <p class="mb-0 status">{{statusShow}}</p>
-                                </div>
-                        </a>
+                <div class="customContent" *ngIf="state === 1">
+                        <div class="customStatus" >
+                                <a (click)="changeStatus()" >
+                                        <div class="customActive">
+                                                <p class="mb-0 status">{{statusShow}}</p>
+                                        </div>
+                                </a>
+                        </div>
+                        <div class="customStatus" >
+                                <a (click)="changeRole()" >
+                                        <div class="customEdit">
+                                                <p class="mb-0 status">Editar</p>
+                                        </div>
+                                </a>
+                        </div>
                 </div>
-                <div class="customStatus" *ngIf="state === 2">
-                        <a (click)="changeStatus()" class="personal">
-                                <div class="customInactive">
-                                        <p class="mb-0 status">{{statusShow}}</p>
-                                </div>
-                        </a>
+                <div class="customContent" *ngIf="state === 2">
+                        <div class="customStatus">
+                                <a (click)="changeStatus()">
+                                        <div class="customInactive">
+                                                <p class="mb-0 status">{{statusShow}}</p>
+                                        </div>
+                                </a>
+                        </div>
+                        <div class="customStatus" >
+                                <a (click)="changeRole()" >
+                                        <div class="customEdit">
+                                                <p class="mb-0 status">Editar</p>
+                                        </div>
+                                </a>
+                        </div>
                 </div>
         </div>
 </div>
