@@ -1,14 +1,5 @@
 {
   "projects": {
     "default": "proyectocea"
-  },
-  "targets": {
-    "proyectocea": {
-      "hosting": {
-        "frontEnd": [
-          "proyectocea"
-        ]
-      }
-    }
   }
 }
