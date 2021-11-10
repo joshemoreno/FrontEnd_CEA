@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 import { CalendarService } from '../../services/calendar/calendar.service';
 import { requestReservation } from '../../models/reservationsDto';
 import esLocale from '@fullcalendar/core/locales/es';
+import { SubjectService } from 'src/app/organizador/services/subject/subject.service';
+import { subjectDto } from 'src/app/organizador/models/subject.class';
 
 
 @Component({
@@ -44,12 +46,14 @@ export class CalendarComponent implements OnInit {
   };
 
   constructor( 
-    public dialog: MatDialog, 
-    private _calendarService: CalendarService
+    public dialog: MatDialog,
+    private _calendarService: CalendarService,
+    private _SubjectService: SubjectService
     )
     {}
 
-  @Input() typeUser: any;
+    public subjects: Array<subjectDto>;
+    @Input() typeUser: any;
 
   ngOnInit(): void {
     this.checkUser();
@@ -120,6 +124,7 @@ export class CalendarComponent implements OnInit {
       Modal: 'create',
       dateSelect: date
     };
+
     this.openModal();
   }
 
@@ -151,18 +156,18 @@ export class CalendarComponent implements OnInit {
 
   handleEvents(id:string){
     let data = [];
-    this._calendarService.getMeetingsByUser(id)
-    .subscribe((res:any)=>{
-      res.appoinments.map((i:any) =>{
-            let obj = {
-              id: i.id,
-              title: i.title,
-              date: i.date
-            }
-            data.push(obj)
-          })
-      this.calendarOptions.events=data;
-    });
+    // this._calendarService.getMeetingsByUser(id)
+    // .subscribe((res:any)=>{
+    //   res.appoinments.map((i:any) =>{
+    //         let obj = {
+    //           id: i.id,
+    //           title: i.title,
+    //           date: i.date
+    //         }
+    //         data.push(obj)
+    //       })
+    //   this.calendarOptions.events=data;
+    // });
   }
 
   openModal():void{

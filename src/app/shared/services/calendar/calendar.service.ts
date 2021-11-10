@@ -24,7 +24,11 @@ export class CalendarService {
     uploadImage(id:string, question:string, image:FileInterface){
       this._genericService.show();
       if(image!=undefined || image!=null){
-        this.filePath=`images/${image.name}`;
+        let currentDate:Date = new Date();
+        let nameDir = currentDate.toISOString();
+        nameDir = nameDir.split('T')[0];
+        nameDir = nameDir.replace(/\//g,'-');
+        this.filePath=`images/${nameDir}/${image.name}`;
         let fileRef = this._storage.ref(this.filePath);
         let task = this._storage.upload(this.filePath, image);
         task.snapshotChanges()

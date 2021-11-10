@@ -1,48 +1,53 @@
 <h1 class="blockquote text-center customText">Servicios pensados para apoyarte</h1>
-<div class="customContainer">
-    <div class="customRow">
-        <ng-container *ngFor="let card of cards">
-            <app-support-card [card]="card"></app-support-card>
-        </ng-container>
-    </div>
-    <div class="customGrid">
-        <div class="customCard">
-            <div class="headerCard">
-                <div class="content">
-                    <h2 class="customTitel">{{subjectCard.title}}</h2>
+    <div class="customContainer">
+        <div class="customRow">
+            <ng-container *ngFor="let card of cards">
+                <app-support-card [card]="card"></app-support-card>
+            </ng-container>
+        </div>
+        <form [formGroup]="subjectForm">
+        <div class="customGrid">
+            <div class="customCard">
+                <div class="headerCard">
+                    <div class="content">
+                        <h2 class="customTitel">{{subjectCard.title}}</h2>
+                    </div>
+                    <div class="content2">
+                        <h2 class="customTitel">{{subjectCard.subject.length}}</h2>
+                    </div>
                 </div>
-                <div class="content2">
-                    <h2 class="customTitel">{{subjectCard.subject.length}}</h2>
-                </div>
-            </div>
-            <div class="bodyCard">
-                <div class="customInput">
-                    <p>Buscar</p>
-                    <input type="text" class="form-control customField" placeholder="Materia" (input)="search($event)">
-                </div>
-                <div class="customRows">
-                    <ng-container *ngFor="let subject of subjectCard.subject">
-                        <app-row-subject [subjects]="subject"></app-row-subject>
-                        <hr>
-                    </ng-container>
-                    <div class="customNew" *ngIf="createBtn">
-                        <div>
-                            <h3>La materia <strong>{{textShow}}</strong> no existe, desea crearla</h3>
-                        </div>
-                        <div class="customNewBtn">
-                            <button type="button" class="btn btn-success customBtn">crear</button>
+
+                <div class="bodyCard">
+                    <div class="customInput">
+                        <p>Buscar</p>
+                        <input type="text" class="form-control customField" placeholder="Materia"
+                            (input)="search($event)" formControlName="description">
+                    </div>
+                    <div class="customRows">
+                        <ng-container *ngFor="let subject of subjectCard.subject">
+                            <app-row-subject [subjects]="subject"></app-row-subject>
+                            <hr>
+                        </ng-container>
+                        <div class="customNew" *ngIf="createBtn">
+                            <div>
+                                <h3>La materia <strong>{{textShow}}</strong> no existe, desea crearla</h3>
+                            </div>
+                            <div class="customNewBtn">
+                                <button type="button" class="btn btn-success customBtn"
+                                    (click)="createSubject()">crear</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="customTables">
-            <div class="customTable">
-                <app-comment-table [commentTable]="commentTable"></app-comment-table>
+            <div class="customTables">
+                <div class="customTable">
+                    <app-comment-table [commentTable]="commentTable"></app-comment-table>
+                </div>
+                <div class="customTable">
+                    <app-survey-table [surveyTable]="surveyTable"></app-survey-table>
+                </div>
             </div>
-            <div class="customTable">
-                <app-survey-table [surveyTable]="surveyTable"></app-survey-table>
-            </div>
         </div>
+    </form>
     </div>
-</div>

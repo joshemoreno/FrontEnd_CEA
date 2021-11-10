@@ -1,11 +1,15 @@
 import { AstVisitor } from '@angular/compiler';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProgressBarMode } from '@angular/material/progress-bar';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subject } from 'rxjs';
+import { timeout } from 'rxjs/operators';
+import { subjectDto } from 'src/app/organizador/models/subject.class';
+import { SubjectService } from 'src/app/organizador/services/subject/subject.service';
 import { CalendarService } from '../../services/calendar/calendar.service';
 
 @Component({
@@ -42,6 +46,8 @@ export class ModalComponent implements OnInit {
   status : boolean = false;
   newUser : boolean = false;
   
+  public subjects: Array<subjectDto>=[];
+
   public materias: Array<any> =[
     {cod: 1, desc:"Fisica 1"},
     {cod: 2, desc:"Fisica 2"},
@@ -59,6 +65,7 @@ export class ModalComponent implements OnInit {
   ]
   constructor(
     private dialogRef: MatDialogRef<ModalComponent>,
+    private _SubjectService: SubjectService,
     @Inject(MAT_DIALOG_DATA) data:any) {  
       this.title = data.title;
       this.ModalType = data.Modal;
@@ -67,8 +74,10 @@ export class ModalComponent implements OnInit {
       this.searchId = data.id;
       this.ModalForm = this.FormDefault();
   }
+  
 
   ngOnInit(): void {
+    this.subjects=[];
     if(this.ModalType == 'comment'){
       this.comment = true;
       this.ModalForm = this.FormComment();
@@ -93,6 +102,16 @@ export class ModalComponent implements OnInit {
       this.newUser = true;
       this.ModalForm = this.FormNewUser();
     }
+  }
+
+  ngAfterContentInit(){
+    setTimeout(()=>{
+      this._SubjectService.getAllSubjects()
+      .subscribe((res:any)=>{
+        console.log(res.data);
+        this.subjects = res.data ;
+      });
+    },0)
   }
 
   onSubmitForm(optType:string='') {

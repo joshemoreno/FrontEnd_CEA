@@ -1,10 +1,9 @@
 .customRow{
-    display: grid;
-    grid-template-columns: 40% 55%;
+    /* display: grid; */
+    /* grid-template-columns: 40% 55%; */
     position: relative;
-    grid-column-gap: 1em;
+    /* grid-column-gap: 1em; */
 }
-
 .customDivider{
     margin: 0 !important;
 }

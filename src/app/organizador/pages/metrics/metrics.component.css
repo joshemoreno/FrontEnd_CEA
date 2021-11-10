@@ -145,16 +145,24 @@
     }
 
     .customCard{
-        margin-top: 42px;
+        margin-top: 0px;
         height: 405px;
         width: 48%;
         justify-self: right;
         display: grid;
         grid-template-rows: 15% 85%;
     }
+
+    .customRows{
+        overflow-y: scroll;
+        margin-top: 10%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1296px) {
     .customRow{
         padding-left: 5%;
         display: grid;
@@ -186,5 +194,12 @@
     .bodyCard{
         display: grid;
         grid-template-rows: 35% 65%;
+    }
+
+    .customRows{
+        overflow-y: scroll;
+        margin-top: 2%;
+        margin-left: 5%;
+        margin-right: 5%;
     }
 }

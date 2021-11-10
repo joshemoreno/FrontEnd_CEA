@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { subjectDto } from '../../models/subject.class';
+import { SubjectService } from '../../services/subject/subject.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -8,7 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MetricsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _subjectService: SubjectService) { 
+    this.subjectForm = this.createFormGroup();
+  }
+
+  createFormGroup(){
+    return new FormGroup({
+      description:new FormControl()
+    });
+  }
+
+  subjectForm: FormGroup;
 
   public createBtn = false;
   public textShow = '';
@@ -32,68 +45,7 @@ export class MetricsComponent implements OnInit {
     ]
   }
 
-  responseSubject = [
-    {
-      id:1,
-      name:"Fisica 1",
-      owner:"Jose Antonio Moreno Popyan"
-    },
-    {
-      id:2,
-      name:"Fisica 2",
-      owner:"Jose Antonio Moreno Popyan"
-    },
-    {
-      id:3,
-      name:"desarrollo de ciudades inteligentes",
-      owner:"Jose Antonio Moreno Popyan"
-    },
-    {
-      id:4,
-      name:"Matematicas fundamentales",
-      owner:"Jose Antonio Moreno Popyan"
-    },
-    {
-      id:1,
-      name:"Fisica 1",
-      owner:"Jose Antonio Moreno Popyan"
-    },
-    {
-      id:2,
-      name:"Fisica 2",
-      owner:"Jose Antonio Moreno Popyan"
-    },
-    {
-      id:3,
-      name:"Fisica 3",
-      owner:"Jose Antonio Moreno Popyan"
-    },
-    {
-      id:4,
-      name:"Matematicas",
-      owner:"Jose Antonio Moreno Popyan"
-    },
-    {
-      id:1,
-      name:"Fisica 1",
-      owner:"Jose Antonio Moreno Popyan"
-    },
-    {
-      id:2,
-      name:"Fisica 2",
-      owner:"Jose Antonio Moreno Popyan"
-    },
-    {
-      id:3,
-      name:"Fisica 3",
-      owner:"Jose Antonio Moreno Popyan"
-    },
-    {
-      id:4,
-      name:"Matematicas",
-      owner:"Jose Antonio Moreno Popyan"
-    },
-  ]
+  responseSubject:Array<subjectDto>
 
   public commentTable = {
     title: 'Comentarios y sugerencias',
@@ -116,7 +68,28 @@ export class MetricsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subjectCard.subject = this.responseSubject;
+    this.getAllSubjects();
+  }
+  
+  getAllSubjects(){
+    this._subjectService.getAllSubjects()
+    .subscribe((res:any)=>{
+        this.responseSubject = res.data;
+        this.subjectCard.subject = this.responseSubject;
+      });
+  }
+
+  createSubject(){
+    let subject:subjectDto = new subjectDto();
+    subject.description = this.subjectForm.value.description; 
+    this._subjectService.createNewSubject(subject)
+    .subscribe((res:any)=>{
+      if(res.status==201){
+        this.getAllSubjects();
+        this.subjectForm.reset();
+        this.createBtn = false;
+      }
+    })    
   }
 
   search(event:any){
@@ -126,7 +99,7 @@ export class MetricsComponent implements OnInit {
     }else{
       inputText = event.target.value;
       let expresion = new RegExp(`${inputText}.*`, "i");
-      let filterSubject = this.responseSubject.filter(subject => expresion.test(subject.name)); 
+      let filterSubject = this.responseSubject.filter(subject => expresion.test(subject.description)); 
       this.subjectCard.subject = filterSubject;
     }
     if ((this.subjectCard.subject).length === 0){
