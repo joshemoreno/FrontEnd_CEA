@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { WelcomeComponent } from './auth/pages/welcome/welcome.component';
 import { HomeComponent } from './home/pages/home/home.component';
+import { WebexComponent } from './shared/components/webex/webex.component';
 import { GuardGuard } from './shared/services/guard/guard.guard';
 
 const routes: Routes = [
@@ -18,6 +20,11 @@ const routes: Routes = [
   { 
     path: 'home',
     component: HomeComponent,
+    canActivate: [GuardGuard],
+  },
+  { 
+    path: 'webEx',
+    component: WebexComponent,
     canActivate: [GuardGuard],
   },
   {

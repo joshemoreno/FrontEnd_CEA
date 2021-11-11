@@ -14,7 +14,6 @@ export class SessionService {
 
   checkSession(){
     let token = this.getStorege('Token');
-    let res:boolean;
     if(token){
       return !this.helper.isTokenExpired(token);
     }

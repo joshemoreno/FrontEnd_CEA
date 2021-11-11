@@ -10,7 +10,7 @@ const routes: Routes = [
     children:[
       { path: 'login', component: LoginComponent},
       { path: 'logon', component: LogonComponent},
-      { path: 'welcome', component: WelcomeComponent},
+      { path: 'webEx', component: WelcomeComponent},
       { path: '**', redirectTo: 'login' }
     ]
   }
