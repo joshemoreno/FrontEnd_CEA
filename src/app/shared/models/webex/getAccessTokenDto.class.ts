@@ -7,3 +7,13 @@ export class Access_token {
     code: string;
     redirect_uri: string = environment.redirect_uri;
 }
+
+export class mettingWebesDto {
+    subjectId:string;
+    mode:boolean;
+    title:string;
+    start: string;
+    end: string;
+    idWebEx?: string;
+    room?: string;
+}

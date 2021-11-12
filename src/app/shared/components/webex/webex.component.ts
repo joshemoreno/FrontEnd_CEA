@@ -27,9 +27,10 @@ export class WebexComponent implements OnInit {
     .subscribe((res:any)=>{
       if(res.status=200){
         let accessToken:string = res.body.access_token;
-        let body; 
-        this._webexService.createAmeeting(accessToken,body)
+        let bodyJson = JSON.parse(localStorage.getItem('newMeet')); 
+        this._webexService.createAmeeting(accessToken,bodyJson)
         .subscribe((res:any)=>{
+          localStorage.removeItem('newMeet');
           console.log(res);
         })
       }

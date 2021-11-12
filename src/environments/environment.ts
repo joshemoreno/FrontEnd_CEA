@@ -16,6 +16,7 @@ export const environment = {
   urlBack: 'http://localhost:3000',
   
   //WebEx
+  uriGetCode: 'https://webexapis.com/v1/authorize?client_id=Ce070a17e97544e67bb329f030e4ff59426af5ea618a17a715f1bb13d5a7fd3a7&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A4200%2FwebEx&scope=spark%3Akms%20meeting%3Aschedules_write&state=set_state_here',
   uriAccessToken:'https://webexapis.com/v1/access_token',
   uriCreateMeeting:'https://webexapis.com/v1/meetings',
   uriMeetingInvitees:'https://webexapis.com/v1/meetingInvitees',

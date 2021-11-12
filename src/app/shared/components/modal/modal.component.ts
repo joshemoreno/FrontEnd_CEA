@@ -10,6 +10,7 @@ import { Subject } from 'rxjs';
 import { timeout } from 'rxjs/operators';
 import { subjectDto } from 'src/app/organizador/models/subject.class';
 import { SubjectService } from 'src/app/organizador/services/subject/subject.service';
+import { AlertsService } from '../../services/alerts/alerts.service';
 import { CalendarService } from '../../services/calendar/calendar.service';
 
 @Component({
@@ -25,7 +26,7 @@ export class ModalComponent implements OnInit {
   mode: ProgressBarMode = 'determinate';
   value = 50;
   bufferValue = 75;
-  title: string;
+  public title: string;
   public user: string;
   public dateSelect: string;
   public descRoom: string = 'Virtual';
@@ -66,6 +67,7 @@ export class ModalComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<ModalComponent>,
     private _SubjectService: SubjectService,
+    private _AlertsService: AlertsService,
     @Inject(MAT_DIALOG_DATA) data:any) {  
       this.title = data.title;
       this.ModalType = data.Modal;
@@ -83,8 +85,27 @@ export class ModalComponent implements OnInit {
       this.ModalForm = this.FormComment();
     }
     if(this.ModalType == 'create'){
-      this.create = true;
-      this.ModalForm = this.FormCreate();
+      let currenDate = new Date();
+      let newDate:Date;
+      let selectDate = this.dateSelect[0]; 
+      if(this.dateSelect.length==2){
+        let selectTime = this.dateSelect[1];
+        newDate = new Date(`${selectDate}T${selectTime}`);
+      }else{
+        let hours:number = currenDate.getHours();
+        let minute:number = currenDate.getMinutes();
+        let seconds:number = currenDate.getSeconds();
+        newDate = new Date(`${selectDate}T${hours}:${minute}:${seconds}`);
+      }
+      if(currenDate>=newDate){
+        setTimeout(()=>{
+          this.dialogRef.close();
+          this._AlertsService.errorAlert(`la fecha debe ser mayor a ${currenDate.toLocaleString()}`);
+        },0);
+      }else{
+        this.create = true;
+        this.ModalForm = this.FormCreate();
+      }
     }
     if(this.ModalType == 'edit'){
       this.edit = true;
@@ -104,11 +125,15 @@ export class ModalComponent implements OnInit {
     }
   }
 
+  convertDateFormat(string) {
+    var info = string.split('-').reverse().join('-');
+    return info;
+  }
+
   ngAfterContentInit(){
     setTimeout(()=>{
       this._SubjectService.getAllSubjects()
       .subscribe((res:any)=>{
-        console.log(res.data);
         this.subjects = res.data ;
       });
     },0)
@@ -158,7 +183,8 @@ export class ModalComponent implements OnInit {
       subject:new FormControl('',[Validators.required]),
       date:new FormControl(date,[Validators.required]),
       time:new FormControl(time,[Validators.required]),
-      room:new FormControl()
+      room:new FormControl(),
+      mode:new FormControl(false)
     });
   }
 
@@ -167,7 +193,8 @@ export class ModalComponent implements OnInit {
       subject:new FormControl('',[Validators.required]),
       date:new FormControl('',[Validators.required]),
       time:new FormControl('',[Validators.required]),
-      room:new FormControl()
+      room:new FormControl(),
+      mode:new FormControl(false)
     });
   }
 
@@ -194,7 +221,6 @@ export class ModalComponent implements OnInit {
   changeRoom(){
     this.typeRoom = this.typeRoom ? false : true;
     this.descRoom = this.typeRoom ? 'Presencial' : 'Virtual'; 
-    console.log(this.typeRoom);
   }
 
   handleImage(event:any):void{

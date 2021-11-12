@@ -17,6 +17,15 @@ export class AlertsService {
     });
   }
 
+  errorAlert(text:string, title:string=null):any{
+   return Swal.fire({
+      icon: 'error',
+      title: title,
+      text: text,
+      allowOutsideClick: false,
+    });
+  }
+
   confirmAlert(text:string, title:string=null, btnAcept:string, btnCancel:string){
     return Swal.fire({
       icon: 'info',

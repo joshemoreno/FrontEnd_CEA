@@ -11,6 +11,9 @@ import { requestReservation } from '../../models/reservationsDto';
 import esLocale from '@fullcalendar/core/locales/es';
 import { SubjectService } from 'src/app/organizador/services/subject/subject.service';
 import { subjectDto } from 'src/app/organizador/models/subject.class';
+import { mettingWebesDto } from '../../models/webex/getAccessTokenDto.class';
+import { WebexService } from '../../services/webex/webex.service';
+import { AlertsService } from '../../services/alerts/alerts.service';
 
 
 @Component({
@@ -48,7 +51,9 @@ export class CalendarComponent implements OnInit {
   constructor( 
     public dialog: MatDialog,
     private _calendarService: CalendarService,
-    private _SubjectService: SubjectService
+    private _SubjectService: SubjectService,
+    private _WebexService: WebexService,
+    private _AlertsService: AlertsService
     )
     {}
 
@@ -196,7 +201,34 @@ export class CalendarComponent implements OnInit {
           console.log(res);
         }
         if(res.optType==='create'){
-          console.log(res);
+          let date:string = res.data.date;
+          let time:string = res.data.time;
+          let startDate = (new Date(`${date}T${time}:00`).getTime());  
+          let endDate = startDate+3600000;
+          let startMeet = new Date(startDate);
+          let endMeet = new Date(endDate);       
+          let webexMeet = new mettingWebesDto();
+          let title2 = (res.data.subject).split(',')[2];
+          let title = title2.split(' ')[2];
+          title = title+' de '+(res.data.subject).split(',')[1];
+          webexMeet.title = title;
+          webexMeet.start = startMeet.toISOString();
+          webexMeet.end = endMeet.toISOString();
+          webexMeet.mode = res.data.mode;
+          webexMeet.room = res.data.room;
+          webexMeet.idWebEx = null;
+          webexMeet.subjectId = (res.data.subject).split(',')[0];
+          if(!res.data.mode){
+            localStorage.setItem('newMeet',JSON.stringify(webexMeet));
+            this._WebexService.getCode();
+          }else{
+            if(webexMeet.room!=null){
+              localStorage.setItem('newMeet',JSON.stringify(webexMeet));
+            }else{
+              console.log(webexMeet);
+              this._AlertsService.errorAlert('El proceso se cancelo porque no ha ingresado un salón');
+            }
+          }
         }
         if(res.optType==='delete'){
           console.log(res);

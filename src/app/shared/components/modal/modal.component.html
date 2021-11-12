@@ -24,7 +24,7 @@
         <label class="form-label">Materia:</label>
         <select class="form-select" formControlName="subject">
           <option value="" disabled selected hidden>Seleciona una materia</option>
-          <option *ngFor="let materia of subjects" value="{{materia.id}}">{{materia.description}}</option>
+          <option *ngFor="let materia of subjects" value="{{materia.id+','+materia.description+','+title}}">{{materia.description}}</option>
         </select>
       </div>
       <div class="customFormDate">
@@ -41,7 +41,7 @@
         <label class="form-label">Modalidad:</label>
         <div class="">
           <div class="form-check form-switch customCheck">
-            <input class="form-check-input customSwitch" type="checkbox" (click)="changeRoom()" >
+            <input class="form-check-input customSwitch" type="checkbox" (click)="changeRoom()" formControlName="mode">
             <label class="form-check-label customLabel" for="flexSwitchCheckChecked">{{descRoom}}</label>
           </div>
           <div *ngIf="typeRoom" class="input-group input-group-sm customRoom">
