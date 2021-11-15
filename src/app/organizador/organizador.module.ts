@@ -14,7 +14,6 @@ import { SurveyTableComponent } from './components/survey-table/survey-table.com
 import { RowSubjectComponent } from './components/row-subject/row-subject.component';
 
 
-
 @NgModule({
   declarations: [
     MetricsComponent,

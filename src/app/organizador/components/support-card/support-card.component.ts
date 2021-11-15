@@ -12,6 +12,7 @@ export class SupportCardComponent implements OnInit {
 
   @Input() card: any;
 
+
   single = [
     {
       "name": "Germany",

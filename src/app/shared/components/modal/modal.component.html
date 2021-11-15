@@ -174,3 +174,24 @@
     </form>
   </div>
 </div>
+
+<div *ngIf="editSubject" class="customCard">
+  <h2 mat-dialog-title class="customTitle">{{title}}</h2>
+  <div mat-dialog-content>
+    <form [formGroup]="ModalForm">
+      <div class="mb-3">
+        <h3>¿Seguro que desea modificar la asignatura <strong>{{subject.description}}</strong>?</h3>
+      </div>
+      <hr>
+      <p>Si así lo es por favor ingrese el nuevo nombre:</p>
+      <div class="mb-3">
+        <input type="text" class="form-control customInputFile" formControlName="subjectName" >
+      </div>
+      <div class="customButtonAccions">
+        <button class="btn btn-danger customButton" (click)="close()">Cancelar</button>
+        <button type="submit" [disabled]="ModalForm.invalid" class="btn btn-success customButton"
+          (click)="onSubmitForm('editSubject')">Confirmar</button>
+      </div>
+    </form>
+  </div>
+</div>

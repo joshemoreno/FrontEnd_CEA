@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { subjectDto } from '../../models/subject.class';
 import { SubjectService } from '../../services/subject/subject.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -11,7 +12,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class MetricsComponent implements OnInit {
 
-  constructor(private _subjectService: SubjectService) { 
+  constructor(
+    private _subjectService: SubjectService,
+    private _snackBar: MatSnackBar,
+    ) { 
     this.subjectForm = this.createFormGroup();
   }
 
@@ -88,6 +92,12 @@ export class MetricsComponent implements OnInit {
         this.getAllSubjects();
         this.subjectForm.reset();
         this.createBtn = false;
+        this._snackBar.open('Asignatura creada con exito', 'ok', {
+          horizontalPosition: 'end',
+          verticalPosition: 'top',
+          duration: 2000,
+          panelClass: ['succes-scanck-bar'],
+        });
       }
     })    
   }

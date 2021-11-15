@@ -28,6 +28,7 @@ export class ModalComponent implements OnInit {
   bufferValue = 75;
   public title: string;
   public user: string;
+  public subject: subjectDto;
   public dateSelect: string;
   public descRoom: string = 'Virtual';
   public typeRoom: boolean = false;
@@ -46,6 +47,7 @@ export class ModalComponent implements OnInit {
   reservation: boolean = false;
   status : boolean = false;
   newUser : boolean = false;
+  editSubject : boolean = false;
   
   public subjects: Array<subjectDto>=[];
 
@@ -74,6 +76,7 @@ export class ModalComponent implements OnInit {
       this.user = data.user;
       this.dateSelect = data.dateSelect;
       this.searchId = data.id;
+      this.subject = data.subject;
       this.ModalForm = this.FormDefault();
   }
   
@@ -123,6 +126,10 @@ export class ModalComponent implements OnInit {
       this.newUser = true;
       this.ModalForm = this.FormNewUser();
     }
+    if(this.ModalType == 'editSubject'){
+      this.editSubject = true;
+      this.ModalForm = this.FormEditSubject();
+    }
   }
 
   convertDateFormat(string) {
@@ -131,12 +138,14 @@ export class ModalComponent implements OnInit {
   }
 
   ngAfterContentInit(){
-    setTimeout(()=>{
-      this._SubjectService.getAllSubjects()
-      .subscribe((res:any)=>{
-        this.subjects = res.data ;
-      });
-    },0)
+    if(this.ModalType == 'create' || this.ModalType == 'edit'){
+      setTimeout(()=>{
+        this._SubjectService.getAllSubjects()
+        .subscribe((res:any)=>{
+          this.subjects = res.data ;
+        });
+      },0)
+    }
   }
 
   onSubmitForm(optType:string='') {
@@ -215,6 +224,13 @@ export class ModalComponent implements OnInit {
   FormNewUser(){
     return new FormGroup({
       profile: new FormControl('',[Validators.required])
+    });
+  }
+
+  FormEditSubject(){
+    return new FormGroup({
+      subjectName: new FormControl('',[Validators.required]),
+      id: new FormControl(this.subject.id)
     });
   }
 

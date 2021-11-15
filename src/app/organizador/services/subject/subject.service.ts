@@ -23,6 +23,10 @@ export class SubjectService {
   createNewSubject(body:subjectDto){
     return this.http.post(this.uriCreateSubject,body,{observe: 'response'});
   }
+  
+  updateSubject(body:subjectDto){
+    return this.http.put(`${this.uriCreateSubject}/${body.id}`,body,{observe: 'response'});
+  }
 
 
 }

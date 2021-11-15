@@ -27,7 +27,6 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
-import { NgxStarsModule } from 'ngx-stars';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { SpinnerComponent } from './components/spinner/spinner.component';
@@ -75,7 +74,6 @@ FullCalendarModule.registerPlugins([
     FullCalendarModule,
     NgxSpinnerModule,
     MatProgressSpinnerModule,
-    NgxStarsModule,
     MatIconModule,
     MatSelectModule,
     NgxChartsModule,
