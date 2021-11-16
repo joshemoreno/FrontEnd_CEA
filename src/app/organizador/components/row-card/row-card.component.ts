@@ -77,9 +77,9 @@ export class RowCardComponent implements OnInit {
 
     dialogConfig.width = customWidth;
     dialogConfig.data = {
-      title: 'Acceptar nuevo usuario',
-      Modal: 'newUser',
-      user: this.person.name
+      title: 'Editar usuario',
+      Modal: 'editUser',
+      user: this.person
     }
     const dialogRef = this.dialog.open(ModalComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(res =>{

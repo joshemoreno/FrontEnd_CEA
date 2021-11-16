@@ -27,11 +27,14 @@ export class ModalComponent implements OnInit {
   value = 50;
   bufferValue = 75;
   public title: string;
-  public user: string;
+  public user: any;
   public subject: subjectDto;
   public dateSelect: string;
   public descRoom: string = 'Virtual';
   public typeRoom: boolean = false;
+  public stateUser: number;
+  public labelUser: String;
+  public stateCheck: boolean;
   public count:number = 0;
   public disabled:boolean = true;
   public disabledRole:boolean = true;
@@ -48,6 +51,7 @@ export class ModalComponent implements OnInit {
   status : boolean = false;
   newUser : boolean = false;
   editSubject : boolean = false;
+  editUser : boolean = false;
   
   public subjects: Array<subjectDto>=[];
 
@@ -129,6 +133,18 @@ export class ModalComponent implements OnInit {
     if(this.ModalType == 'editSubject'){
       this.editSubject = true;
       this.ModalForm = this.FormEditSubject();
+    }
+    if(this.ModalType == 'editUser'){
+      this.stateUser = this.user.state;
+      if(this.stateUser==1){
+        this.stateCheck = true;
+        this.labelUser = 'Activo';
+      }else{
+        this.stateCheck = false;
+        this.labelUser = 'Inactivo';
+      }
+      this.editUser = true;
+      this.ModalForm = this.FormEditUser();
     }
   }
 
@@ -234,9 +250,27 @@ export class ModalComponent implements OnInit {
     });
   }
 
+  FormEditUser(){
+    return new FormGroup({
+      user: new FormControl(this.user.id),
+      profile: new FormControl('',[Validators.required]),
+      state: new FormControl(this.stateUser)
+    });
+  }
+
   changeRoom(){
     this.typeRoom = this.typeRoom ? false : true;
     this.descRoom = this.typeRoom ? 'Presencial' : 'Virtual'; 
+  }
+
+  changeState(){
+    if(this.stateUser==1){
+      this.stateUser=2;
+      this.labelUser = 'Inactivo';
+    }else{
+      this.labelUser = 'Activo';
+      this.stateUser=1;
+    }
   }
 
   handleImage(event:any):void{
@@ -258,7 +292,7 @@ export class ModalComponent implements OnInit {
   }
 
   validatorRead(event:any){
-    if(event.target.value.toLocaleUpperCase()==this.user.toLocaleUpperCase()){
+    if(event.target.value.toLocaleUpperCase()==this.user.name.toLocaleUpperCase()){
       if(!this.disabledRole){
         this.disabled = false;
       }

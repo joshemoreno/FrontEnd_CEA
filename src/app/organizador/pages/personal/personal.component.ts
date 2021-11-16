@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PersonalService } from '../../services/personal/personal.service';
 
 @Component({
   selector: 'app-personal',
@@ -19,160 +20,76 @@ export class PersonalComponent implements OnInit {
   public cards=[
     {
       title:"Monitores",
-      person: [
-        {
-          id: "1",
-          name: "Pedro Perez",
-          state: 1,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 1"
-        },
-        {
-          id: "2",
-          name: "Pedro Perez",
-          state: 2,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 2"
-        },
-        {
-          id: "3",
-          name: "Pedro Perez",
-          state: 1,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 3"
-        },
-        {
-          id: "4",
-          name: "Pedro Perez",
-          state: 2,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 1"
-        },
-        {
-          id: "4",
-          name: "Pedro Perez",
-          state: 2,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 1"
-        },
-        {
-          id: "4",
-          name: "Pedro Perez",
-          state: 2,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 1"
-        },
-        {
-          id: "4",
-          name: "Pedro Perez",
-          state: 2,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 1"
-        }
-      ]
+      person: []
     },
     {
       title:"Tutores",
-      person: [
-        {
-          id: "1",
-          name: "Pedro Perez",
-          state: 1,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 1"
-        },
-        {
-          id: "2",
-          name: "Pedro Perez",
-          state: 2,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 1"
-        },
-        {
-          id: "3",
-          name: "Pedro Perez",
-          state: 2,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 1"
-        },
-        {
-          id: "4",
-          name: "Pedro Perez",
-          state: 1,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 1"
-        }
-      ]
+      person: []
     },
     {
       title:"Estudiantes",
-      person: [
-        {
-          id: "1",
-          name: "Pedro Perez",
-          state: 1,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c"
-        },
-        {
-          id: "2",
-          name: "Pedro Perez",
-          state: 2,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c"
-        },
-        {
-          id: "3",
-          name: "Pedro Perez",
-          state: 1,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c"
-        },
-        {
-          id: "4",
-          name: "Pedro Perez",
-          state: 2,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c"
-        }
-      ]
+      person: []
     },
     {
       title:"Asesores",
-      // count:10,
-      person: [
-        {
-          id: "1",
-          name: "Pedro Perez",
-          state: 1,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 1"
-        },
-        {
-          id: "2",
-          name: "Pedro Perez",
-          state: 1,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 1"
-        },
-        {
-          id: "3",
-          name: "Pedro Perez",
-          state: 1,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 1"
-        },
-        {
-          id: "4",
-          name: "Pedro Perez",
-          state: 1,
-          url: "https://lh3.googleusercontent.com/a-/AOh14GhxQ5NxgAIzWf_bSZe6HlqnlOl-IF9asUkASeO4lw=s96-c",
-          subject: "Fisica 1"
-        }
-      ]
+      person: []
     },
   ]
   
 
-  constructor() { }
+  constructor(private _PersonalService: PersonalService) { }
 
   ngOnInit(): void {
+      this.getAllMonitores(1);
+      this.getAllTutores(2);
+      this.getAllEstudiantes(3);
+      this.getAllAsesores(5);
+  }
+
+  ngAfterContentInit(){
+    // this.cards[0].person = this.getAllMonitores();
+    // console.log(this.cards);
+  }
+
+
+  getAllMonitores(role:number){
+    let response = [];
+    this._PersonalService.getAllPersonal(role)
+    .then((res:any)=>{
+      console.log(res);
+      this.cards[0].person = res.data
+      response = res.data;
+    })
+  }
+
+  getAllTutores(role:number){
+    let response = [];
+    this._PersonalService.getAllPersonal(role)
+    .then((res:any)=>{
+      console.log(res);
+      this.cards[1].person = res.data
+      response = res.data;
+    })
+  }
+
+  getAllEstudiantes(role:number){
+    let response = [];
+    this._PersonalService.getAllPersonal(role)
+    .then((res:any)=>{
+      console.log(res);
+      this.cards[2].person = res.data
+      response = res.data;
+    })
+  }
+
+  getAllAsesores(role:number){
+    let response = [];
+    this._PersonalService.getAllPersonal(role)
+    .then((res:any)=>{
+      console.log(res);
+      this.cards[3].person = res.data
+      response = res.data;
+    })
   }
 
 }

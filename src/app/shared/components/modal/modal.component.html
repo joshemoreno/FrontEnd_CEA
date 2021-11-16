@@ -175,6 +175,37 @@
   </div>
 </div>
 
+<div *ngIf="editUser" class="customCard">
+  <h2 mat-dialog-title class="customTitle">{{title}}</h2>
+  <div mat-dialog-content>
+    <form [formGroup]="ModalForm">
+      <div class="mb-3">
+        <h3>Esta seguro de editar al usuario {{user.name}}</h3>
+        <p class="customRole">Rol:</p>
+        <select class="form-select" formControlName="profile" (click)="validatorRole($event)">
+          <option value="" disabled selected hidden>Seleciona un perfil</option>
+          <option *ngFor="let role of roles" value="{{role.cod}}">{{role.desc}}</option>
+        </select>
+        <p class="customState">Estado:</p>
+        <div class="form-check form-switch customCheck">
+          <input class="form-check-input customSwitch" type="checkbox" (click)="changeState()" [checked]="stateCheck">
+          <label class="form-check-label customLabel" for="flexSwitchCheckChecked">{{labelUser}}</label>
+        </div>
+      </div>
+      <hr>
+      <P>Por favor escriba <strong>{{user.name}}</strong> para Confirmar</P>
+      <div class="mb-3">
+        <input type="text" class="form-control customInputFile" (input)="validatorRead($event)" [ngStyle]="{'border': cssBorder}">
+      </div>
+      <div class="customButtonAccions">
+        <button class="btn btn-danger customButton" (click)="close()">Cancelar</button>
+        <button type="submit" [disabled]="disabled" class="btn btn-success customButton"
+          (click)="onSubmitForm('newUser')">Confirmar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <div *ngIf="editSubject" class="customCard">
   <h2 mat-dialog-title class="customTitle">{{title}}</h2>
   <div mat-dialog-content>

@@ -1,12 +1,13 @@
 .customRow{
     display: grid;
-    grid-template-columns: 40% 55%;
+    grid-template-columns: 75% 20%;
     position: relative;
     grid-column-gap: 1em;
 }
 
 .editBtn{
-    justify-self: end;
+    justify-self: center;
+    align-self: center;
 }
 
 .customDivider{

@@ -83,6 +83,15 @@
     text-align: center;
     margin-bottom: 0%;
 }
+
+.customRole{
+    margin: 0px;
+}
+.customState{
+    margin-top: 8px;
+    margin-bottom: 0px;
+}
+
 @media (max-width: 900px) {
     .customRoom{
         width: 100% !important;
