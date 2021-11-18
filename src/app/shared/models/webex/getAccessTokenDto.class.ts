@@ -9,11 +9,12 @@ export class Access_token {
 }
 
 export class mettingWebesDto {
-    subjectId:string;
+    subjectId:number;
+    supportId:number;
+    idWebEx?: string;
+    classRoom?: string;
     mode:boolean;
     title:string;
-    start: string;
-    end: string;
-    idWebEx?: string;
-    room?: string;
+    start_time: string;
+    end_time: string;
 }

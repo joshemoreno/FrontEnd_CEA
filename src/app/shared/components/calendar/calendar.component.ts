@@ -14,6 +14,7 @@ import { subjectDto } from 'src/app/organizador/models/subject.class';
 import { mettingWebesDto } from '../../models/webex/getAccessTokenDto.class';
 import { WebexService } from '../../services/webex/webex.service';
 import { AlertsService } from '../../services/alerts/alerts.service';
+import { MeetsService } from 'src/app/monitor/services/meets/meets.service';
 
 
 @Component({
@@ -53,15 +54,19 @@ export class CalendarComponent implements OnInit {
     private _calendarService: CalendarService,
     private _SubjectService: SubjectService,
     private _WebexService: WebexService,
-    private _AlertsService: AlertsService
+    private _AlertsService: AlertsService,
+    private _MeetsService: MeetsService
     )
     {}
 
     public subjects: Array<subjectDto>;
+    public currenDate:Date;
+    private supportId:number;
     @Input() typeUser: any;
 
   ngOnInit(): void {
     this.checkUser();
+    this.currenDate = new Date();
     // id  =  llamando al decode token
     this.handleEvents('a43c4773-35cc-4b58-923b-faa6474744a7');
   }
@@ -115,12 +120,15 @@ export class CalendarComponent implements OnInit {
     this.dialogConfig.disableClose = true;
     let titleModal: string;
     if(this.typeUser.monitor){
+      this.supportId=1;
       titleModal = 'Crear una Monitoria'
     } 
     if(this.typeUser.tutor){
+      this.supportId=2;
       titleModal = 'Crear una Tutoria'
     }
     if(this.typeUser.asesor){
+      this.supportId=3;
       titleModal = 'Crear una Asesoria'
     }
 
@@ -130,7 +138,30 @@ export class CalendarComponent implements OnInit {
       dateSelect: date
     };
 
-    this.openModal();
+    if(this.validatorDate(date)){
+      this.openModal();
+    }else{
+      this._AlertsService.errorAlert(`la fecha debe ser mayor al día de hoy ${this.currenDate.toLocaleDateString()}`);
+    }
+  }
+
+  validatorDate(date: Array<string>): boolean {
+    let response: boolean = true;
+    let newDate: Date;
+    let selectDate = date[0];
+    if (date.length == 2) {
+      let selectTime = date[1];
+      newDate = new Date(`${selectDate}T${selectTime}`);
+    } else {
+      let hours: number = this.currenDate.getHours();
+      let minute: number = this.currenDate.getMinutes();
+      let seconds: number = this.currenDate.getSeconds();
+      newDate = new Date(`${selectDate}T${hours}:${minute}:${seconds}`);
+    }
+    if (this.currenDate >= newDate) {
+      response = false;
+    };
+    return response;
   }
 
   chooseDate(date:string):Array<string>{
@@ -205,25 +236,31 @@ export class CalendarComponent implements OnInit {
           let time:string = res.data.time;
           let startDate = (new Date(`${date}T${time}:00`).getTime());  
           let endDate = startDate+3600000;
-          let startMeet = new Date(startDate);
-          let endMeet = new Date(endDate);       
+          let startMeet = new Date(startDate-18000000);
+          let endMeet = new Date(endDate-18000000);       
           let webexMeet = new mettingWebesDto();
           let title2 = (res.data.subject).split(',')[2];
           let title = title2.split(' ')[2];
           title = title+' de '+(res.data.subject).split(',')[1];
           webexMeet.title = title;
-          webexMeet.start = startMeet.toISOString();
-          webexMeet.end = endMeet.toISOString();
+          webexMeet.start_time = startMeet.toISOString();
+          webexMeet.end_time = endMeet.toISOString();
           webexMeet.mode = res.data.mode;
-          webexMeet.room = res.data.room;
-          webexMeet.idWebEx = null;
-          webexMeet.subjectId = (res.data.subject).split(',')[0];
+          webexMeet.classRoom = res.data.room;
+          webexMeet.idWebEx = '';
+          webexMeet.subjectId = Number((res.data.subject).split(',')[0]);
+          webexMeet.supportId = this.supportId;
           if(!res.data.mode){
             localStorage.setItem('newMeet',JSON.stringify(webexMeet));
             this._WebexService.getCode();
           }else{
-            if(webexMeet.room!=null){
+            if(webexMeet.classRoom!=''){
+              console.log(webexMeet);
               localStorage.setItem('newMeet',JSON.stringify(webexMeet));
+              this._MeetsService.createAnewMeet()
+                .subscribe((res:any)=>{
+                  console.log(res);
+                });
             }else{
               console.log(webexMeet);
               this._AlertsService.errorAlert('El proceso se cancelo porque no ha ingresado un salón');

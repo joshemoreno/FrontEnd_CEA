@@ -21,10 +21,14 @@ export class WebexService {
   }
 
   createAmeeting(accessToken:string, body:mettingWebesDto){
+    let starDate = new Date (body.start_time).getTime();
+    let endDate = new Date (body.end_time).getTime();
+    let newStarDate = new Date(starDate+18000000);
+    let newendDate = new Date(endDate+18000000);
     let newBody = {
       title: body.title,
-      start: body.start,
-      end: body.end
+      start: newStarDate,
+      end: newendDate
     }
     const headers = new HttpHeaders({'Accept':'application/json', 'Authorization': `Bearer ${accessToken}`});
     return this.http.post(environment.uriCreateMeeting,newBody,{

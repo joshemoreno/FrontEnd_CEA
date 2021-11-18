@@ -30,7 +30,7 @@ export const environment = {
   logonEndpoint: '/api/auth/logon',
   subjectsEndpoint: '/api/subject',
   usersByRole:'/api/user/roles',
-  // logonEndpoint: '/api/subject',
+  createMeeting: '/api/user/meetings',
   // logonEndpoint: '/api/auth/logon',
   // logonEndpoint: '/api/auth/logon',
   // logonEndpoint: '/api/auth/logon',

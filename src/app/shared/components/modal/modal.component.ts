@@ -40,6 +40,7 @@ export class ModalComponent implements OnInit {
   public disabledRole:boolean = true;
   public cssBorder: string = '#E85757 solid';
   public roleSelect: string = '';
+  public today:string;
   searchId: string = '';
   ModalType: string;
   ModalForm: FormGroup;
@@ -86,33 +87,16 @@ export class ModalComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.today = new Date().toISOString().split('T')[0];
     this.subjects=[];
+    setTimeout(()=>{
     if(this.ModalType == 'comment'){
       this.comment = true;
       this.ModalForm = this.FormComment();
     }
     if(this.ModalType == 'create'){
-      let currenDate = new Date();
-      let newDate:Date;
-      let selectDate = this.dateSelect[0]; 
-      if(this.dateSelect.length==2){
-        let selectTime = this.dateSelect[1];
-        newDate = new Date(`${selectDate}T${selectTime}`);
-      }else{
-        let hours:number = currenDate.getHours();
-        let minute:number = currenDate.getMinutes();
-        let seconds:number = currenDate.getSeconds();
-        newDate = new Date(`${selectDate}T${hours}:${minute}:${seconds}`);
-      }
-      if(currenDate>=newDate){
-        setTimeout(()=>{
-          this.dialogRef.close();
-          this._AlertsService.errorAlert(`la fecha debe ser mayor a ${currenDate.toLocaleString()}`);
-        },0);
-      }else{
         this.create = true;
         this.ModalForm = this.FormCreate();
-      }
     }
     if(this.ModalType == 'edit'){
       this.edit = true;
@@ -146,6 +130,7 @@ export class ModalComponent implements OnInit {
       this.editUser = true;
       this.ModalForm = this.FormEditUser();
     }
+    },1);
   }
 
   convertDateFormat(string) {

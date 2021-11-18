@@ -28,6 +28,7 @@ export const environment = {
   logonEndpoint: '/api/auth/logon',
   subjectsEndpoint: '/api/subject',
   usersByRole:'/api/user/roles',
+  createMeeting: '/api/user/meetings',
 
 
   firebaseConfig:{

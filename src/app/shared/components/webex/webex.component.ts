@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MeetsService } from 'src/app/monitor/services/meets/meets.service';
 import { Access_token } from '../../models/webex/getAccessTokenDto.class';
 import { WebexService } from '../../services/webex/webex.service';
 
@@ -12,7 +13,8 @@ export class WebexComponent implements OnInit {
 
   constructor(
     private _router: ActivatedRoute,
-    private _webexService: WebexService
+    private _webexService: WebexService,
+    private _MeetsService: MeetsService
   ) { }
 
   ngOnInit(): void {
@@ -27,11 +29,21 @@ export class WebexComponent implements OnInit {
     .subscribe((res:any)=>{
       if(res.status=200){
         let accessToken:string = res.body.access_token;
-        let bodyJson = JSON.parse(localStorage.getItem('newMeet')); 
+        let bodyJson = JSON.parse(localStorage.getItem('newMeet'));
         this._webexService.createAmeeting(accessToken,bodyJson)
         .subscribe((res:any)=>{
+          if(res.status==200){
+            let meetId:string = res.body.id;
+            let webLink:string = res.body.webLink;
+            bodyJson.idWebEx = meetId;
+            bodyJson.classRoom = webLink;
+            localStorage.setItem('newMeet',JSON.stringify(bodyJson));
+            this._MeetsService.createAnewMeet()
+            .subscribe((res:any)=>{
+              console.log(res);
+            });
+          }
           localStorage.removeItem('newMeet');
-          console.log(res);
         })
       }
     })

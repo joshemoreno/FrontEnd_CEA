@@ -4,7 +4,8 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpParams
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { SessionService } from '../session/session.service';
@@ -20,16 +21,19 @@ export class InterceptorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this._genericService.show();
     const token:string = this._sessionService.getStorege('Token');
+    let noFollow='https://webexapis.com/v1/meetings';
     let req = request;
-    
-    if(token){
-      request = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${ token }`,
-        }
-      })
+    if(request.url.search(noFollow) !== 0){
+      console.log(request.url);
+      if(token!=null){
+        request = req.clone({
+          setHeaders: {
+            Authorization: `Bearer ${token}`,
+          }
+        })
+      }
     }
-    return next.handle(req).pipe(
+    return next.handle(request).pipe(
       finalize(()=> this._genericService.hide()));
   }
 }
