@@ -29,6 +29,8 @@ export const environment = {
   subjectsEndpoint: '/api/subject',
   usersByRole:'/api/user/roles',
   createMeeting: '/api/user/meetings',
+  getMeetingsByUser:'/api/user/meeting',
+  getOneMeet: '/api/meeting',
 
 
   firebaseConfig:{

@@ -40,7 +40,10 @@ export class WebexComponent implements OnInit {
             localStorage.setItem('newMeet',JSON.stringify(bodyJson));
             this._MeetsService.createAnewMeet()
             .subscribe((res:any)=>{
-              console.log(res);
+              if(res.status==200){
+                window.location.replace('/home');
+                console.log(res);
+              }
             });
           }
           localStorage.removeItem('newMeet');

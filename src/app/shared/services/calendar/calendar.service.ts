@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { requestReservation } from '../../models/reservationsDto';
 import { GenericsService } from '../generics/generics.service';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +60,14 @@ export class CalendarService {
     }
 
     getMeetingsByUser(id:string){
-      return this.http.get(`https://ontosoft.herokuapp.com/api/Appoinments/users/${id}`)
+      let uriGetMeetingsByUser=`${environment.urlBack}${environment.getMeetingsByUser}/${id}`
+      return this.http.get(uriGetMeetingsByUser);
     }
+
+    getAmeetById(id:string){
+      let uriGetAmeet:string=`${environment.urlBack}${environment.getOneMeet}/${id}`
+      return this.http.get(uriGetAmeet);
+    }
+
 
 }

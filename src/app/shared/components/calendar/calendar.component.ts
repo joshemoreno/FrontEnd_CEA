@@ -15,6 +15,8 @@ import { mettingWebesDto } from '../../models/webex/getAccessTokenDto.class';
 import { WebexService } from '../../services/webex/webex.service';
 import { AlertsService } from '../../services/alerts/alerts.service';
 import { MeetsService } from 'src/app/monitor/services/meets/meets.service';
+import { SessionService } from '../../services/session/session.service';
+import { currentUser } from '../../models/token.class';
 
 
 @Component({
@@ -39,7 +41,19 @@ export class CalendarComponent implements OnInit {
     selectable: true,
     selectMirror: false,
     dayMaxEvents: true,
-    progressiveEventRendering: true
+    progressiveEventRendering: true,
+    timeZone: 'UTC',
+    nextDayThreshold: '01:00:00',
+    businessHours:[{
+      daysOfWeek: [ 1, 2, 3, 4, 5 ],
+      startTime: '07:00',
+      endTime: '20:00'
+    },{
+      daysOfWeek: [ 6 ],
+      startTime: '07:00',
+      endTime: '12:00',
+    },
+  ]
     
     // eventsSet: 
     /* you can update a remote database when these fire:
@@ -55,7 +69,9 @@ export class CalendarComponent implements OnInit {
     private _SubjectService: SubjectService,
     private _WebexService: WebexService,
     private _AlertsService: AlertsService,
-    private _MeetsService: MeetsService
+    private _MeetsService: MeetsService,
+    private _CalendarService: CalendarService,
+    private _onSession: SessionService
     )
     {}
 
@@ -67,8 +83,8 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.checkUser();
     this.currenDate = new Date();
-    // id  =  llamando al decode token
-    this.handleEvents('a43c4773-35cc-4b58-923b-faa6474744a7');
+    let user:currentUser = this._onSession.onSession();
+    this.handleEvents(user.codigo);
   }
 
   checkUser(){
@@ -94,7 +110,7 @@ export class CalendarComponent implements OnInit {
     this.openModal();
   };
 
-  editMonitory(clickInfo: EventClickArg){
+  async editMonitory(clickInfo: EventClickArg){
     this.dialogConfig.disableClose = false;
     let titleModal: string;
     let id:string = clickInfo.event._def.publicId;
@@ -107,12 +123,26 @@ export class CalendarComponent implements OnInit {
     if(this.typeUser.asesor){
       titleModal = 'Editar Asesoria'
     }
-    this.dialogConfig.data = {
-      title: titleModal,
-      Modal: 'edit',
-      id: id
-    };
-    this.openModal();
+
+    let editObj = null;
+    
+    this._CalendarService.getAmeetById(id)
+    .subscribe((res: any) => {
+      let time=res.data.start_time.split('T')[1];
+      editObj ={
+        dateEdit:res.data.start_time.split('T')[0],
+        timeEdit:time.split('.')[0],
+        modeEdit:res.data.mode,
+        subjectEdit:2
+      };
+      this.dialogConfig.data = {
+        title: titleModal,
+        Modal: 'edit',
+        id: id,
+        editObj: editObj
+      };
+      this.openModal();
+    });
   };
 
   createMonitory(selectInfo:any) {
@@ -175,35 +205,20 @@ export class CalendarComponent implements OnInit {
     return responseDate;
   }
 
-    // const title = prompt('Please enter a new title for your event');
-    // const calendarApi = selectInfo.view.calendar;
-
-    // calendarApi.unselect(); // clear date selection
-
-    // if (title) {
-    //   calendarApi.addEvent({
-    //     id: createEventId(),
-    //     title,
-    //     start: selectInfo.startStr,
-    //     end: selectInfo.endStr,
-    //     allDay: selectInfo.allDay
-    //   });
-    // }
-
   handleEvents(id:string){
-    let data = [];
-    // this._calendarService.getMeetingsByUser(id)
-    // .subscribe((res:any)=>{
-    //   res.appoinments.map((i:any) =>{
-    //         let obj = {
-    //           id: i.id,
-    //           title: i.title,
-    //           date: i.date
-    //         }
-    //         data.push(obj)
-    //       })
-    //   this.calendarOptions.events=data;
-    // });
+    let showData = [];
+    this._calendarService.getMeetingsByUser(id)
+    .subscribe((res:any)=>{
+      res.data[0].map((i:any) =>{
+            let obj = {
+              id: i.id,
+              title: 'i.title',
+              date: i.start_time
+            }
+            showData.push(obj)
+          })
+      this.calendarOptions.events=showData;      
+    });
   }
 
   openModal():void{

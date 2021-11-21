@@ -41,6 +41,7 @@ export class ModalComponent implements OnInit {
   public cssBorder: string = '#E85757 solid';
   public roleSelect: string = '';
   public today:string;
+  public editObj:any;
   searchId: string = '';
   ModalType: string;
   ModalForm: FormGroup;
@@ -82,6 +83,7 @@ export class ModalComponent implements OnInit {
       this.dateSelect = data.dateSelect;
       this.searchId = data.id;
       this.subject = data.subject;
+      this.editObj = data.editObj;
       this.ModalForm = this.FormDefault();
   }
   
@@ -89,6 +91,10 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
     this.today = new Date().toISOString().split('T')[0];
     this.subjects=[];
+
+    
+    
+    
     setTimeout(()=>{
     if(this.ModalType == 'comment'){
       this.comment = true;
@@ -130,7 +136,7 @@ export class ModalComponent implements OnInit {
       this.editUser = true;
       this.ModalForm = this.FormEditUser();
     }
-    },1);
+    },2);
   }
 
   convertDateFormat(string) {
@@ -138,16 +144,18 @@ export class ModalComponent implements OnInit {
     return info;
   }
 
-  ngAfterContentInit(){
-    if(this.ModalType == 'create' || this.ModalType == 'edit'){
-      setTimeout(()=>{
+  ngAfterContentInit() {
+    if (this.ModalType == 'create' || this.ModalType == 'edit') {
+      setTimeout(() => {
         this._SubjectService.getAllSubjects()
-        .subscribe((res:any)=>{
-          this.subjects = res.data ;
-        });
-      },0)
+          .subscribe((res: any) => {
+            this.subjects = res.data;
+          });
+      }, 0)
     }
   }
+
+
 
   onSubmitForm(optType:string='') {
     let dto:{};
@@ -200,11 +208,11 @@ export class ModalComponent implements OnInit {
 
   FormEdit(){
     return new FormGroup({
-      subject:new FormControl('',[Validators.required]),
-      date:new FormControl('',[Validators.required]),
-      time:new FormControl('',[Validators.required]),
+      subject:new FormControl(this.editObj.subjectEdit,[Validators.required]),
+      date:new FormControl(this.editObj.dateEdit,[Validators.required]),
+      time:new FormControl(this.editObj.timeEdit,[Validators.required]),
       room:new FormControl(),
-      mode:new FormControl(false)
+      mode:new FormControl(this.editObj.modeEdit)
     });
   }
 
