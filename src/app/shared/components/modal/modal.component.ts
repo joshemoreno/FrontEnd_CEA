@@ -30,8 +30,8 @@ export class ModalComponent implements OnInit {
   public user: any;
   public subject: subjectDto;
   public dateSelect: string;
-  public descRoom: string = 'Virtual';
-  public typeRoom: boolean = false;
+  public descRoom: string='Virtual';
+  public typeRoom: boolean;
   public stateUser: number;
   public labelUser: String;
   public stateCheck: boolean;
@@ -91,9 +91,6 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
     this.today = new Date().toISOString().split('T')[0];
     this.subjects=[];
-
-    
-    
     
     setTimeout(()=>{
     if(this.ModalType == 'comment'){
@@ -105,6 +102,10 @@ export class ModalComponent implements OnInit {
         this.ModalForm = this.FormCreate();
     }
     if(this.ModalType == 'edit'){
+      this.typeRoom = this.editObj.modeEdit;
+      if(this.typeRoom){
+        this.descRoom='Presencial';
+      }
       this.edit = true;
       this.ModalForm = this.FormEdit();
     }
@@ -207,11 +208,17 @@ export class ModalComponent implements OnInit {
   }
 
   FormEdit(){
+    let showRoom:string;
+    if(this.editObj.modeEdit){
+      showRoom = this.editObj.roomEdit;
+    }
+    console.log(this.editObj);
+    
     return new FormGroup({
-      subject:new FormControl(this.editObj.subjectEdit,[Validators.required]),
+      subject:new FormControl(`${this.editObj.subjectEdit},${this.editObj.subjectDescEdit},${this.title}`,[Validators.required]),
       date:new FormControl(this.editObj.dateEdit,[Validators.required]),
       time:new FormControl(this.editObj.timeEdit,[Validators.required]),
-      room:new FormControl(),
+      room:new FormControl(showRoom),
       mode:new FormControl(this.editObj.modeEdit)
     });
   }

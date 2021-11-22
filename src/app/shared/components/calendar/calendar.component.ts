@@ -17,6 +17,7 @@ import { AlertsService } from '../../services/alerts/alerts.service';
 import { MeetsService } from 'src/app/monitor/services/meets/meets.service';
 import { SessionService } from '../../services/session/session.service';
 import { currentUser } from '../../models/token.class';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -71,20 +72,23 @@ export class CalendarComponent implements OnInit {
     private _AlertsService: AlertsService,
     private _MeetsService: MeetsService,
     private _CalendarService: CalendarService,
-    private _onSession: SessionService
+    private _onSession: SessionService,
+    private _snackBar: MatSnackBar,
     )
     {}
 
     public subjects: Array<subjectDto>;
     public currenDate:Date;
     private supportId:number;
+    private user:currentUser;
+    private selectMeet:number;
     @Input() typeUser: any;
 
   ngOnInit(): void {
     this.checkUser();
     this.currenDate = new Date();
-    let user:currentUser = this._onSession.onSession();
-    this.handleEvents(user.codigo);
+    this.user = this._onSession.onSession();
+    this.handleEvents(this.user.codigo);
   }
 
   checkUser(){
@@ -115,25 +119,32 @@ export class CalendarComponent implements OnInit {
     let titleModal: string;
     let id:string = clickInfo.event._def.publicId;
     if(this.typeUser.monitor){
-      titleModal = 'Editar Monitoria'
+      this.supportId=1;
+      titleModal = 'Editar Monitoria';
     } 
     if(this.typeUser.tutor){
-      titleModal = 'Editar Tutoria'
+      this.supportId=2;
+      titleModal = 'Editar Tutoria';
     }
     if(this.typeUser.asesor){
-      titleModal = 'Editar Asesoria'
+      this.supportId=3;
+      titleModal = 'Editar Asesoria';
     }
 
     let editObj = null;
     
     this._CalendarService.getAmeetById(id)
     .subscribe((res: any) => {
+      console.log(res.data);
+      
       let time=res.data.start_time.split('T')[1];
       editObj ={
         dateEdit:res.data.start_time.split('T')[0],
         timeEdit:time.split('.')[0],
         modeEdit:res.data.mode,
-        subjectEdit:2
+        subjectEdit:res.data.subjectDescription.subjectId.id,
+        subjectDescEdit:res.data.subjectDescription.subjectId.description,
+        roomEdit:res.data.roomDescription.classRoom
       };
       this.dialogConfig.data = {
         title: titleModal,
@@ -141,6 +152,7 @@ export class CalendarComponent implements OnInit {
         id: id,
         editObj: editObj
       };
+      this.selectMeet= Number(id);
       this.openModal();
     });
   };
@@ -212,11 +224,11 @@ export class CalendarComponent implements OnInit {
       res.data[0].map((i:any) =>{
             let obj = {
               id: i.id,
-              title: 'i.title',
+              title: i.title,
               date: i.start_time
             }
             showData.push(obj)
-          })
+          }) 
       this.calendarOptions.events=showData;      
     });
   }
@@ -244,7 +256,62 @@ export class CalendarComponent implements OnInit {
           this._calendarService.uploadImage(id,question,image);
         }
         if(res.optType==='edit'){
-          console.log(res);
+          let date:string = res.data.date;
+          let time:string = res.data.time;
+          let startDate = (new Date(`${date}T${time}`).getTime());  
+          let endDate = startDate+3600000;
+          let startMeet = new Date(startDate-18000000);
+          let endMeet = new Date(endDate-18000000);
+          let webexMeet = new mettingWebesDto();
+          let title2 = (res.data.subject).split(',')[2];
+          let title_ = title2.split(' ')[1];
+          let title = title_+' de '+(res.data.subject).split(',')[1];
+          webexMeet.id = this.selectMeet;
+          webexMeet.title = title;
+          webexMeet.start_time = startMeet.toISOString();
+          webexMeet.end_time = endMeet.toISOString();
+          webexMeet.mode = res.data.mode;
+          webexMeet.classRoom = res.data.room;
+          webexMeet.idWebEx = null;
+          webexMeet.subjectId = Number((res.data.subject).split(',')[0]);
+          webexMeet.supportId = this.supportId;
+          localStorage.setItem('newMeet',JSON.stringify(webexMeet));
+          if(!res.data.mode){
+            this._WebexService.getCode();
+          }else{
+            if(webexMeet.classRoom!=null){
+              this._MeetsService.editAmeet()
+                .subscribe((res:any)=>{
+                  if(res.status==200){
+                    this.handleEvents(this.user.codigo);
+                    let msgSnack:string;
+                    switch (this.supportId) {
+                      case 1:
+                        msgSnack='monitoria';
+                        break;
+                      case 2:
+                        msgSnack='tutoria';
+                        break;
+                      case 3:
+                        msgSnack='asesoria';
+                        break;
+                      default:
+                        break;
+                    }
+                    this._snackBar.open(`La ${msgSnack} fue editada con exito`, 'ok', {
+                      horizontalPosition: 'end',
+                      verticalPosition: 'top',
+                      duration: 2000,
+                      panelClass: ['succes-scanck-bar'],
+                    });
+                    localStorage.removeItem('newMeet');
+                  }
+                });
+              }else{
+                this._AlertsService.errorAlert('El proceso se cancelo porque no ha ingresado un salón');
+                localStorage.removeItem('newMeet');
+            }
+          }
         }
         if(res.optType==='create'){
           let date:string = res.data.date;
@@ -265,20 +332,41 @@ export class CalendarComponent implements OnInit {
           webexMeet.idWebEx = '';
           webexMeet.subjectId = Number((res.data.subject).split(',')[0]);
           webexMeet.supportId = this.supportId;
+          localStorage.setItem('newMeet',JSON.stringify(webexMeet));
           if(!res.data.mode){
-            localStorage.setItem('newMeet',JSON.stringify(webexMeet));
             this._WebexService.getCode();
           }else{
-            if(webexMeet.classRoom!=''){
-              console.log(webexMeet);
-              localStorage.setItem('newMeet',JSON.stringify(webexMeet));
+            if(webexMeet.classRoom!=null){
               this._MeetsService.createAnewMeet()
                 .subscribe((res:any)=>{
-                  console.log(res);
+                  if(res.status==200){
+                    this.handleEvents(this.user.codigo);
+                    let msgSnack:string;
+                    switch (this.supportId) {
+                      case 1:
+                        msgSnack='monitoria';
+                        break;
+                      case 2:
+                        msgSnack='tutoria';
+                        break;
+                      case 3:
+                        msgSnack='asesoria';
+                        break;
+                      default:
+                        break;
+                    }
+                    this._snackBar.open(`La ${msgSnack} fue agregada con exito`, 'ok', {
+                      horizontalPosition: 'end',
+                      verticalPosition: 'top',
+                      duration: 2000,
+                      panelClass: ['succes-scanck-bar'],
+                    });
+                    localStorage.removeItem('newMeet');
+                  }
                 });
-            }else{
-              console.log(webexMeet);
-              this._AlertsService.errorAlert('El proceso se cancelo porque no ha ingresado un salón');
+              }else{
+                this._AlertsService.errorAlert('El proceso se cancelo porque no ha ingresado un salón');
+                localStorage.removeItem('newMeet');
             }
           }
         }

@@ -28,6 +28,7 @@ export class SessionService {
       user.codigo=decodedToken.codigo;
       user.userName=`${decodedToken.name} ${decodedToken.last_name}`;
       user.email=decodedToken.email;
+      user.role=decodedToken.roles.id;
     }
     return user;
   }

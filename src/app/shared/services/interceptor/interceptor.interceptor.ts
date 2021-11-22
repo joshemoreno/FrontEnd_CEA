@@ -24,7 +24,6 @@ export class InterceptorInterceptor implements HttpInterceptor {
     let noFollow='https://webexapis.com/v1/meetings';
     let req = request;
     if(request.url.search(noFollow) !== 0){
-      console.log(request.url);
       if(token!=null){
         request = req.clone({
           setHeaders: {

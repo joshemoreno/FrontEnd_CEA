@@ -33,7 +33,7 @@ export const environment = {
   createMeeting: '/api/user/meetings',
   getMeetingsByUser:'/api/user/meeting',
   getOneMeet: '/api/meeting',
-  // logonEndpoint: '/api/auth/logon',
+  editAMeet: '/api/meeting',
   // logonEndpoint: '/api/auth/logon',
   // logonEndpoint: '/api/auth/logon',
   // logonEndpoint: '/api/auth/logon',

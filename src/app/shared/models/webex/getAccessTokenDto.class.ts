@@ -9,6 +9,7 @@ export class Access_token {
 }
 
 export class mettingWebesDto {
+    id?:number;
     subjectId:number;
     supportId:number;
     idWebEx?: string;
