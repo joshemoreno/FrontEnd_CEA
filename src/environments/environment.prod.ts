@@ -31,7 +31,10 @@ export const environment = {
   createMeeting: '/api/user/meetings',
   getMeetingsByUser:'/api/user/meeting',
   getOneMeet: '/api/meeting',
-  editAMeet: '/api/meeting',
+  editAMeet: '/api/user/meeting',
+  getProfile: '/api/user/codigo',
+  editProfile: '/api/user',
+
 
 
   firebaseConfig:{

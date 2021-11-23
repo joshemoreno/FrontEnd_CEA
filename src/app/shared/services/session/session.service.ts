@@ -29,6 +29,9 @@ export class SessionService {
       user.userName=`${decodedToken.name} ${decodedToken.last_name}`;
       user.email=decodedToken.email;
       user.role=decodedToken.roles.id;
+      user.tel=decodedToken.phone;
+      user.about=decodedToken.about;
+      user.uriProfile=decodedToken.imageURI;
     }
     return user;
   }

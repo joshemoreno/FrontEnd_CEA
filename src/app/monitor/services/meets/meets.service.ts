@@ -25,4 +25,10 @@ export class MeetsService {
     let body:mettingWebesDto = JSON.parse(localStorage.getItem('newMeet'));
     return this.http.put(`${this.uriEditMeet}/${body.id}`,body,{observe: 'response'})
   }
+
+  deleteAmeet(id:number){
+    let uriDeleteAmeet:string=`${environment.urlBack}${environment.deleteAmeet}/${id}`;
+    return this.http.delete(uriDeleteAmeet,{observe: 'response'});
+  }
+
 }
