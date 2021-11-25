@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataTransferService } from '../../services/data-transfer.service';
 
 @Component({
   selector: 'app-profesionales',

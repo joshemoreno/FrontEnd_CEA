@@ -22,12 +22,9 @@ export class HeaderComponent implements OnInit {
   ) { }
 
 
-  public materias: Array<any> =[
-    {cod: 1, desc:"Fisica 1"},
-    {cod: 2, desc:"Fisica 2"},
-    {cod: 3, desc:"Fisica 3"},
-    {cod: 4, desc:"Matematicas Fundamentales"},
-  ];
+  public monitorias: Array<any> =[];
+  public tutorias: Array<any> =[];
+  public asesorias: Array<any> =[];
 
   public opciones: Array<any> = [
     {opt:"Mis reservas",uri:"/home/estudiante/reservas"},
@@ -44,7 +41,9 @@ export class HeaderComponent implements OnInit {
     checkSession.subscribe(()=>{
       this._sessionService.checkSession() ? null : this.openAlert();
     });
-    this.getSubjects();
+    this.getSubjects(1);
+    this.getSubjects(2);
+    this.getSubjects(3);
   }
 
   goHome(){
@@ -55,10 +54,24 @@ export class HeaderComponent implements OnInit {
     this._authService.logOutUser();
   }
 
-  getSubjects(){
-    this._headerService.getAllSubjects()
+  getSubjects(id:number){
+    this._headerService.getAllSubjects(id)
     .subscribe((res:any)=>{
-      console.log(res.data)
+      res.data.map((index:any)=>{
+        switch (id) {
+          case 1:
+            this.monitorias.push(index.subjectId);
+            break;
+          case 2:
+            this.tutorias.push(index.subjectId);
+            break;
+          case 3:
+            this.asesorias.push(index.subjectId);
+            break;
+          default:
+            break;
+        }
+      })
     })
   }
 
@@ -73,17 +86,17 @@ export class HeaderComponent implements OnInit {
   }
 
   goMonitory(codCourse:number, descCourse: string){
-    localStorage.setItem('subject', JSON.stringify({cod: codCourse, des: descCourse}));
+    localStorage.setItem('subject', JSON.stringify({cod: codCourse, des: descCourse, sup:1}));
     window.location.replace('home/estudiante/monitores');
   }
 
   goTutory(codCourse:number, descCourse: string){
-    localStorage.setItem('subject', JSON.stringify({cod: codCourse, des: descCourse}));
+    localStorage.setItem('subject', JSON.stringify({cod: codCourse, des: descCourse, sup:2}));
     window.location.replace('home/estudiante/tutores');
   }
 
   goAdvisory(codCourse:number, descCourse: string){
-    localStorage.setItem('subject', JSON.stringify({cod: codCourse, des: descCourse}));
+    localStorage.setItem('subject', JSON.stringify({cod: codCourse, des: descCourse, sup:3}));
     window.location.replace('home/estudiante/profesionales');
   }
 

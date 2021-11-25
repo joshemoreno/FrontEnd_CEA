@@ -12,8 +12,10 @@ export class CardComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  public userName:string;
 
+  ngOnInit(): void {
+    this.userName = `${this.person.name} ${this.person.last_name}`;
   }
 
   goToCalendar(id: number){

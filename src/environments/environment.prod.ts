@@ -35,6 +35,8 @@ export const environment = {
   deleteAmeet: '/api/meeting',
   getProfile: '/api/user/codigo',
   editProfile: '/api/user',
+  getSubjectBySuport: '/api/subject/support',
+  getPersonalBySupport: '/api/user/subject',
 
 
 

@@ -12,13 +12,14 @@
     transform:scale(1.05);
 }
 .customImage{
+    justify-self: end;
     align-self: end;
     border-radius: 50%;
 }
 .customCont{
     padding-top: 8%;
     display: grid;
-    grid-template-columns: 60% 45%;
+    grid-template-columns: 60% 40%;
 }
 .customTitel{
     font-weight: 500;

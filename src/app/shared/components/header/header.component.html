@@ -11,7 +11,7 @@
             Monitorias
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item customCursor" *ngFor="let materia of materias" (click)="goMonitory(materia.cod, materia.desc)">{{materia.desc}}</a></li>
+            <li><a class="dropdown-item customCursor" *ngFor="let materia of monitorias" (click)="goMonitory(materia.id, materia.description)">{{materia.description}}</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -19,7 +19,7 @@
             Tutorias
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item customCursor" *ngFor="let materia of materias" (click)="goTutory(materia.cod, materia.desc)" >{{materia.desc}}</a></li>
+            <li><a class="dropdown-item customCursor" *ngFor="let materia of tutorias" (click)="goTutory(materia.id, materia.description)" >{{materia.description}}</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -27,7 +27,7 @@
             Asesorias
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li> <a class="dropdown-item customCursor" *ngFor="let materia of materias" (click)="goAdvisory(materia.cod, materia.desc)" >{{materia.desc}}</a></li>
+            <li> <a class="dropdown-item customCursor" *ngFor="let materia of asesorias" (click)="goAdvisory(materia.id, materia.description)" >{{materia.description}}</a></li>
           </ul>
         </li>
         <span class="example-spacer"></span>

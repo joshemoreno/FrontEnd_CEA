@@ -13,6 +13,7 @@ import { MeetsService } from 'src/app/monitor/services/meets/meets.service';
 import { SessionService } from '../../services/session/session.service';
 import { currentUser } from '../../models/token.class';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { GeneralService } from 'src/app/student/services/general/general.service';
 
 
 @Component({
@@ -61,6 +62,7 @@ export class CalendarComponent implements OnInit {
     private _CalendarService: CalendarService,
     private _onSession: SessionService,
     private _snackBar: MatSnackBar,
+    private generalService: GeneralService
   ) { }
 
   public subjects: Array<subjectDto>;
@@ -74,7 +76,11 @@ export class CalendarComponent implements OnInit {
     this.checkUser();
     this.currenDate = new Date();
     this.user = this._onSession.onSession();
-    this.handleEvents(this.user.codigo);
+    if(this.typeUser.student){
+      this.addEventsCalendar(this.typeUser.arrayMeets.support,this.typeUser.arrayMeets.subject,this.typeUser.arrayMeets.owner);
+    }else{
+      this.handleEvents(this.user.codigo);
+    }
   }
 
   checkUser() {
@@ -217,6 +223,22 @@ export class CalendarComponent implements OnInit {
         })
         this.calendarOptions.events = showData;
       });
+  }
+
+  addEventsCalendar(support:string,subject:string,owner:string){
+    let showData = [];
+    this.generalService.getMeetingsByOwner(support, subject, owner)
+    .subscribe((res: any) => {
+      res.data[0].map((i: any) => {
+        let obj = {
+          id: i.id,
+          title: i.title,
+          date: i.start_time
+        }
+        showData.push(obj)
+      })
+      this.calendarOptions.events = showData;
+    });
   }
 
   openModal(): void {

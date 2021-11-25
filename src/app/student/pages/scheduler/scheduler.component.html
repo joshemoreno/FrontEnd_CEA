@@ -3,18 +3,18 @@
     <div class="infoCard smallContainer">
         <div>
             <div class="container customCont">
-                <h2 class="card-title customTitel">{{owner.name}}</h2>
-                <img class=" customImage" src="{{owner.uriProfile}}" alt="">
+                <h2 class="card-title customTitel">{{ownerShow.userName}}</h2>
+                <img class=" customImage" src="{{ownerShow.imageURI}}" alt="">
             </div>
         </div>
         <div class="card-body">
             <hr class="hide">
             <strong>Contacto</strong>
-            <p class="mb-0 card-text">{{owner.tel}} </p>
-            <p class="mb-0 card-text">{{owner.email}}</p>
+            <p class="mb-0 card-text">{{ownerShow.phone}} </p>
+            <p class="mb-0 card-text">{{ownerShow.email}}</p>
             <hr>
             <strong>Fortalezas</strong>
-            <p class="card-text">{{owner.about}}</p>
+            <p class="card-text">{{ownerShow.about}}</p>
         </div>
     </div>
     <div class="customCalendar">

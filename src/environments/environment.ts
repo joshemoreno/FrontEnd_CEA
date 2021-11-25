@@ -37,7 +37,8 @@ export const environment = {
   deleteAmeet: '/api/meeting',
   getProfile: '/api/user/codigo',
   editProfile: '/api/user',
-  // logonEndpoint: '/api/auth/logon',
+  getSubjectBySuport: '/api/subject/support',
+  getPersonalBySupport: '/api/user/subject',
   // logonEndpoint: '/api/auth/logon',
 
   firebaseConfig:{
