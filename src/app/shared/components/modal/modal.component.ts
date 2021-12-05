@@ -1,17 +1,11 @@
-import { AstVisitor } from '@angular/compiler';
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProgressBarMode } from '@angular/material/progress-bar';
-import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subject } from 'rxjs';
-import { timeout } from 'rxjs/operators';
 import { subjectDto } from 'src/app/organizador/models/subject.class';
 import { SubjectService } from 'src/app/organizador/services/subject/subject.service';
 import { AlertsService } from '../../services/alerts/alerts.service';
-import { CalendarService } from '../../services/calendar/calendar.service';
 
 @Component({
   selector: 'app-modal',
@@ -57,20 +51,12 @@ export class ModalComponent implements OnInit {
   
   public subjects: Array<subjectDto>=[];
 
-  public materias: Array<any> =[
-    {cod: 1, desc:"Fisica 1"},
-    {cod: 2, desc:"Fisica 2"},
-    {cod: 3, desc:"Fisica 3"},
-    {cod: 4, desc:"Matematicas Fundamentales"},
-  ];
-
-
   public roles=[
     {cod: 1, desc: "Estudiante"},
     {cod: 2, desc: "Monitor"},
     {cod: 3, desc: "Tutor"},
-    {cod: 4, desc: "Asesor"},
-    {cod: 5, desc: "Organizador"},
+    {cod: 6, desc: "Asesor"},
+    {cod: 4, desc: "Organizador"},
   ]
   constructor(
     private dialogRef: MatDialogRef<ModalComponent>,
@@ -126,7 +112,9 @@ export class ModalComponent implements OnInit {
       this.ModalForm = this.FormEditSubject();
     }
     if(this.ModalType == 'editUser'){
-      this.stateUser = this.user.state;
+      console.log(this.user.roles.id);
+      
+      this.stateUser = this.user.status;
       if(this.stateUser==1){
         this.stateCheck = true;
         this.labelUser = 'Activo';
@@ -140,11 +128,6 @@ export class ModalComponent implements OnInit {
     },2);
   }
 
-  convertDateFormat(string) {
-    var info = string.split('-').reverse().join('-');
-    return info;
-  }
-
   ngAfterContentInit() {
     if (this.ModalType == 'create' || this.ModalType == 'edit') {
       setTimeout(() => {
@@ -155,8 +138,6 @@ export class ModalComponent implements OnInit {
       }, 0)
     }
   }
-
-
 
   onSubmitForm(optType:string='') {
     let dto:{};
@@ -212,8 +193,6 @@ export class ModalComponent implements OnInit {
     if(this.editObj.modeEdit){
       showRoom = this.editObj.roomEdit;
     }
-    console.log(this.editObj);
-    
     return new FormGroup({
       subject:new FormControl(`${this.editObj.subjectEdit},${this.editObj.subjectDescEdit},${this.title}`,[Validators.required]),
       date:new FormControl(this.editObj.dateEdit,[Validators.required]),
@@ -251,10 +230,11 @@ export class ModalComponent implements OnInit {
   }
 
   FormEditUser(){
+    this.disabledRole=false;
     return new FormGroup({
-      user: new FormControl(this.user.id),
-      profile: new FormControl('',[Validators.required]),
-      state: new FormControl(this.stateUser)
+      user: new FormControl(this.user.codigo),
+      profile: new FormControl((this.user.roles.id).toString(),[Validators.required]),
+      state: new FormControl(this.stateCheck)
     });
   }
 
@@ -292,6 +272,8 @@ export class ModalComponent implements OnInit {
   }
 
   validatorRead(event:any){
+    console.log(event.target.value);
+    
     if(event.target.value.toLocaleUpperCase()==this.user.name.toLocaleUpperCase()){
       if(!this.disabledRole){
         this.disabled = false;

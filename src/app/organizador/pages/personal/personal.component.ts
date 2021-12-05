@@ -40,15 +40,13 @@ export class PersonalComponent implements OnInit {
   constructor(private _PersonalService: PersonalService) { }
 
   ngOnInit(): void {
-      this.getAllMonitores(1);
-      this.getAllTutores(2);
-      this.getAllEstudiantes(3);
-      this.getAllAsesores(5);
+      this.getAllMonitores(2);
+      this.getAllTutores(3);
+      this.getAllEstudiantes(1);
+      this.getAllAsesores(6);
   }
 
   ngAfterContentInit(){
-    // this.cards[0].person = this.getAllMonitores();
-    // console.log(this.cards);
   }
 
 
@@ -56,7 +54,6 @@ export class PersonalComponent implements OnInit {
     let response = [];
     this._PersonalService.getAllPersonal(role)
     .then((res:any)=>{
-      console.log(res);
       this.cards[0].person = res.data
       response = res.data;
     })
@@ -66,7 +63,6 @@ export class PersonalComponent implements OnInit {
     let response = [];
     this._PersonalService.getAllPersonal(role)
     .then((res:any)=>{
-      console.log(res);
       this.cards[1].person = res.data
       response = res.data;
     })
@@ -76,7 +72,6 @@ export class PersonalComponent implements OnInit {
     let response = [];
     this._PersonalService.getAllPersonal(role)
     .then((res:any)=>{
-      console.log(res);
       this.cards[2].person = res.data
       response = res.data;
     })
@@ -86,7 +81,6 @@ export class PersonalComponent implements OnInit {
     let response = [];
     this._PersonalService.getAllPersonal(role)
     .then((res:any)=>{
-      console.log(res);
       this.cards[3].person = res.data
       response = res.data;
     })

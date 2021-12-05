@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { userDto } from '../../models/user.class';
+import { PersonalComponent } from '../../pages/personal/personal.component';
+import { PersonalService } from '../../services/personal/personal.service';
 
 @Component({
   selector: 'app-row-card',
@@ -15,8 +18,10 @@ export class RowCardComponent implements OnInit {
   public statusShow: string = 'Activo';
   public state: number = 2;
   constructor(
+    private _PersonalComponent: PersonalComponent,
     private _snackBar: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _PersonalService: PersonalService
   ) { }
 
   ngOnInit(): void {
@@ -31,39 +36,7 @@ export class RowCardComponent implements OnInit {
 
   }
 
-  changeStatus(){
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    let customWidth:string;
-
-    if(window.innerWidth <= 600){
-      customWidth='100%';
-    }else{
-      customWidth='30%';
-    }  
-
-    dialogConfig.width = customWidth;
-    dialogConfig.data = {
-      title: 'Cambio de estado',
-      Modal: 'status',
-      user: this.person.name
-    }
-
-    const dialogRef = this.dialog.open(ModalComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(res =>{
-      console.log(res);
-      if(typeof res != 'undefined'){
-          this.state = this.state ? 2 : 1;
-          this.statusShow = this.statusShow ? 'Inactivo' : 'Activo';
-          console.log(this.state + this.statusShow)
-      }
-    })
-  }
-
   changeRole(){
-    console.log(this.person);
-    
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -84,10 +57,26 @@ export class RowCardComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(res =>{
       if(typeof res != 'undefined'){
-        console.log(res);
-          // this.state = this.state ? 2 : 1;
-          // this.statusShow = this.statusShow ? 'Inactivo' : 'Activo';
-          // console.log(this.state + this.statusShow)
+        let userEdit = new userDto;
+        userEdit.cod=res.data.user;
+        if(res.data.state){
+          userEdit.status=1;
+        }else{
+          userEdit.status=2;
+        }
+        userEdit.role=Number(res.data.profile);
+        this._PersonalService.editAUser(userEdit)
+          .subscribe((res:any)=>{
+            if(res.status==200){
+              this._PersonalComponent.ngOnInit();
+              this._snackBar.open('Usuario editado con exito', 'ok', {
+                horizontalPosition: 'end',
+                verticalPosition: 'top',
+                duration: 2000,
+                panelClass: ['succes-scanck-bar'],
+              });
+            }
+          })
       }
     })
   }

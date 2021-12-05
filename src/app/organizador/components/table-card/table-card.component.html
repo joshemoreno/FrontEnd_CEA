@@ -14,13 +14,13 @@
       <tbody>
         <tr *ngFor="let request of requests">
           <td class="customItem dateColum">{{request.date}}</td>
-          <td class="customItem ownerColum">{{request.user}}</td>
+          <td class="customItem ownerColum">{{request.name | titlecase }}</td>
           <td class="customItem accionsColum">
             <div class="customColum">
               <button type="button" class="btn btn-primary mx-2 btn-sm customBtn"
-                (click)="acceptRequest(request.cod, request.user)">{{tableProps.firstBottom}}</button>
+                (click)="acceptRequest(request.codigo, request.name)">{{tableProps.firstBottom}}</button>
               <button type="button" class="btn btn-danger mx-2 btn-sm customBtn"
-                (click)="cancelRequest(request.cod, request.user)">{{tableProps.secondBottom}}</button>
+                (click)="cancelRequest(request.codigo, request.name)">{{tableProps.secondBottom}}</button>
             </div>
           </td>
         </tr>

@@ -1,11 +1,12 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 import { AlertsService } from 'src/app/shared/services/alerts/alerts.service';
+import { requestDto } from '../../models/requests.class';
+import { userDto } from '../../models/user.class';
+import { PersonalComponent } from '../../pages/personal/personal.component';
+import { PersonalService } from '../../services/personal/personal.service';
 
 export interface PeriodicElement {
   name: string;
@@ -30,79 +31,42 @@ export class TableCardComponent implements OnInit {
     {cod: 4, desc: "Asesor"},
     {cod: 5, desc: "Organizador"},
   ]
-
-  public requests = [  
-  {cod: 1 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 2 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 3 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 4 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 5 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 6 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 7 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 8 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 9 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 10 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 11, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 12, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 13, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 14, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 15, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 16, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 17, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 18, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 19, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 20, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 5 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 6 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 7 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 8 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 9 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 10 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 11, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 12, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 13, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 14, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 15, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 16, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 17, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 18, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 19, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 20, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 5 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 6 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 7 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 8 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 9 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 10 , user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 11, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 12, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 13, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 14, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 15, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 16, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 17, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 18, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 19, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-  {cod: 20, user: 'Pedro Perez', date: '2021-08-30T08:00:00'},
-]
+  public requests:Array<requestDto>=[];
 
   constructor(
+    private _PersonalComponent: PersonalComponent,
+    private _snackBar: MatSnackBar,
     private _alert: AlertsService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _PersonalService:PersonalService
     ) { 
 
   }
 
   ngOnInit(): void {
+    this.getUserIncative();
   }
 
+  getUserIncative(){
+    this._PersonalService.getPersonalInavtive()
+      .subscribe((res:any)=>{
+        res.data.map((index)=>{
+          let userList = new requestDto();
+          userList.codigo=index.codigo;
+          userList.date= new Date(index.createdAt).toLocaleString();
+          userList.name=`${index.name} ${index.last_name}`;
+          this.requests.push(userList);
+        });
+      });
+  }  
 
-  acceptRequest(cod:number, user:string){
-    this.openModal(cod,user);
+
+  acceptRequest(cod:string, name:string){
+    this.openModal(cod,name);
   }
 
-  cancelRequest(cod:number, user:string){
-    this._alert.confirmAlert(`Seguro que desea cancelar la solicitud del usuario ${user}`,'','Sí','No')
+  cancelRequest(cod:string, name:string){
+    this._alert.confirmAlert(`Seguro que desea cancelar la solicitud del usuario ${name}`,'','Sí','No')
     .then((res:any)=>{
       if(res.isConfirmed){
         console.log('chao'+cod)
@@ -110,7 +74,7 @@ export class TableCardComponent implements OnInit {
     })
   }
 
-  openModal(cod:number, user:string):void{
+  openModal(cod:string, name:string):void{
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -123,6 +87,11 @@ export class TableCardComponent implements OnInit {
       customWidth='50%';
     }  
 
+    let user={
+      codigo:cod,
+      name:name
+    }
+
     dialogConfig.width = customWidth;
     dialogConfig.data = {
       title: 'Acceptar nuevo usuario',
@@ -133,7 +102,23 @@ export class TableCardComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(res =>{
       if(typeof res != 'undefined'){
-        console.log(res, cod);
+        let editUser = new userDto();
+        editUser.cod=cod;
+        editUser.role=res.data.profile;
+        editUser.status=1;
+        this._PersonalService.editAUser(editUser)
+          .subscribe((res:any)=>{
+            if(res.status){
+              this._PersonalComponent.ngOnInit();
+              this.getUserIncative();
+              this._snackBar.open('Usuario agregado con exito', 'ok', {
+                horizontalPosition: 'end',
+                verticalPosition: 'top',
+                duration: 2000,
+                panelClass: ['succes-scanck-bar'],
+              });
+            }
+          })
       }
     })
   }

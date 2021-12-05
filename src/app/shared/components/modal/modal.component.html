@@ -155,20 +155,20 @@
   <div mat-dialog-content>
     <form [formGroup]="ModalForm">
       <div class="mb-3">
-        <h3>Para aceptar al usuario {{user}} primero debes asignarle un perfil para su ingreso</h3>
+        <h3>Para aceptar al usuario {{user.name}} primero debes asignarle un perfil para su ingreso</h3>
         <select class="form-select" formControlName="profile" (click)="validatorRole($event)">
           <option value="" disabled selected hidden>Seleciona un perfil</option>
           <option *ngFor="let role of roles" value="{{role.cod}}">{{role.desc}}</option>
         </select>
       </div>
       <hr>
-      <P>Por favor escriba <strong>{{user}}</strong> para Confirmar</P>
+      <P>Por favor escriba <strong>{{user.name}}</strong> para Confirmar</P>
       <div class="mb-3">
         <input type="text" class="form-control customInputFile" (input)="validatorRead($event)" [ngStyle]="{'border': cssBorder}">
       </div>
       <div class="customButtonAccions">
         <button class="btn btn-danger customButton" (click)="close()">Cancelar</button>
-        <button type="submit" [disabled]="disabled" [disabled]="disabledRole" class="btn btn-success customButton"
+        <button type="submit" [disabled]="disabled" class="btn btn-success customButton"
           (click)="onSubmitForm('newUser')">Confirmar</button>
       </div>
     </form>
@@ -188,7 +188,7 @@
         </select>
         <p class="customState">Estado:</p>
         <div class="form-check form-switch customCheck">
-          <input class="form-check-input customSwitch" type="checkbox" (click)="changeState()" [checked]="stateCheck">
+          <input class="form-check-input customSwitch" type="checkbox" (click)="changeState()" formControlName="state">
           <label class="form-check-label customLabel" for="flexSwitchCheckChecked">{{labelUser}}</label>
         </div>
       </div>

@@ -39,7 +39,7 @@ export const environment = {
   editProfile: '/api/user',
   getSubjectBySuport: '/api/subject/support',
   getPersonalBySupport: '/api/user/subject',
-  // logonEndpoint: '/api/auth/logon',
+  inactiveUser: '/api/user/inactive',
 
   firebaseConfig:{
     apiKey: "AIzaSyAAsBO_6-J0yooOHmKvhHWa8jQgJhbFSLs",

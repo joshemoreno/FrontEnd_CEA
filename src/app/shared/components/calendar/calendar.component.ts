@@ -4,7 +4,6 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { CalendarService } from '../../services/calendar/calendar.service';
 import esLocale from '@fullcalendar/core/locales/es';
-import { SubjectService } from 'src/app/organizador/services/subject/subject.service';
 import { subjectDto } from 'src/app/organizador/models/subject.class';
 import { mettingWebesDto } from '../../models/webex/getAccessTokenDto.class';
 import { WebexService } from '../../services/webex/webex.service';
@@ -313,6 +312,7 @@ export class CalendarComponent implements OnInit {
                       panelClass: ['succes-scanck-bar'],
                     });
                     localStorage.removeItem('newMeet');
+                    window.location.reload();
                   }else{
                     this._snackBar.open(`No se pudo editar la ${msgSnack} seleccionada`, 'ok', {
                       horizontalPosition: 'end',
@@ -377,6 +377,7 @@ export class CalendarComponent implements OnInit {
                       panelClass: ['succes-scanck-bar'],
                     });
                     localStorage.removeItem('newMeet');
+                    window.location.reload();
                   }else{
                     this._snackBar.open(`No se pudo agregar la ${msgSnack}`, 'ok', {
                       horizontalPosition: 'end',
@@ -417,6 +418,7 @@ export class CalendarComponent implements OnInit {
                   duration: 2000,
                   panelClass: ['succes-scanck-bar'],
                 });
+                window.location.reload();
               }else{
                 this._snackBar.open(`No se pudo eliminar la ${msgSnack} selecccionada`, 'ok', {
                   horizontalPosition: 'end',

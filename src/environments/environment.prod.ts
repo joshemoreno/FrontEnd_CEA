@@ -37,6 +37,7 @@ export const environment = {
   editProfile: '/api/user',
   getSubjectBySuport: '/api/subject/support',
   getPersonalBySupport: '/api/user/subject',
+  inactiveUser: '/api/user/inactive',
 
 
 

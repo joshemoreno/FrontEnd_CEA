@@ -21,7 +21,7 @@ export class MonitorOrganizerComponent implements OnInit {
   ];
 
   public HourCountDis = 0;
-  public HourCountReservation = 20;
+  public HourCountReservation = 0;
 
   public typeUser:{};
   public editMyData = false;

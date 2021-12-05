@@ -23,7 +23,7 @@ export class MonitoresComponent implements OnInit {
     this.descSubject=subjectJson.des;
     this.codeSubject=subjectJson.cod;
     this.codeSupport=subjectJson.sup;
-    this.getMonitorBySubject();
+    this.getMonitorBySubject();    
   }
 
   getMonitorBySubject(){
