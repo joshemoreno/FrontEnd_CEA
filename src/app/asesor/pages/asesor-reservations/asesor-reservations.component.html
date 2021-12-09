@@ -1,46 +1,30 @@
 <h1 class="blockquote customText">Tus reservas</h1>
 
-<table mat-table [dataSource]="dataSource" >
-
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-  
-    <!-- Position Column -->
-    <ng-container matColumnDef="subject">
-      <th mat-header-cell *matHeaderCellDef class="customTitle">Materia</th>
-      <td mat-cell *matCellDef="let element" class="customItem subjectColum"> {{element.subject}} </td>
-    </ng-container>
-  
-    <!-- Name Column -->
-    <ng-container matColumnDef="owner">
-      <th mat-header-cell *matHeaderCellDef class="customTitle">Encargado</th>
-      <td mat-cell *matCellDef="let element"  class="customItem ownerColum"> {{element.owner}} </td>
-    </ng-container>
-  
-    <!-- Weight Column -->
-    <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef class="customTitle">Fecha</th>
-      <td mat-cell *matCellDef="let element"  class="customItem dateColum"> {{element.date}} </td>
-    </ng-container>
-  
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="detail">
-      <th mat-header-cell *matHeaderCellDef class="customTitle">Detalles</th>
-      <td mat-cell *matCellDef="let element"  class="customItem detailsColum"> {{element.detail}} </td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="Accions">
-      <th mat-header-cell *matHeaderCellDef class="customTitle">Acciones</th>
-    <td mat-cell *matCellDef="let element"  class="customItem accionsColum">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" class="customTitle">{{reservationTitles[0]}}</th>
+      <th scope="col" class="customTitle">{{reservationTitles[1]}}</th>
+      <th scope="col" class="customTitle">{{reservationTitles[2]}}</th>
+      <th scope="col" class="customTitle">{{reservationTitles[3]}}</th>
+      <th scope="col" class="customTitle">{{reservationTitles[4]}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reservation of reservations">
+      <td class="customItem subjectColum">{{reservation.subjet}}</td>
+      <td class="customItem ownerColum">{{reservation.owner}}</td>
+      <td class="customItem dateColum">{{reservation.date}}</td>
+      <td class="customItem detailsColum">{{reservation.detail}}</td>
+      <td class="customItem accionsColum">
         <div class="customColum">
-            <a class="customLink" (click)="getLink(element.cod)">Link</a>
-            <a class="customCancel" (click)="getLink(element.cod)">Cancelar</a>
+          <h3 *ngIf="reservation.mode">Salón: {{reservation.room}}</h3>
+          <button *ngIf="!reservation.mode" type="button" class="btn btn-primary mx-2 btn-sm customBtn"
+            (click)="getLink(reservation)">link</button>
+          <button type="button" class="btn btn-danger mx-2 btn-sm customBtn"
+            (click)="cancelReservation(reservation)">Cancelar</button>
         </div>
-    </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FileInterface } from '../../models/file.interface';
-import { take, finalize } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { requestReservation } from '../../models/reservationsDto';
 import { GenericsService } from '../generics/generics.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { currentUser } from '../../models/token.class';
+import { SessionService } from '../session/session.service';
+import { WebexService } from '../webex/webex.service';
+import { MeetsService } from 'src/app/monitor/services/meets/meets.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +17,18 @@ import { environment } from 'src/environments/environment';
 export class CalendarService {
 
   private filePath: any;
-  private urlDownload: any;
+  private user: currentUser;
 
   constructor(
     private _storage:AngularFireStorage,
     private _genericService: GenericsService,
     private http : HttpClient,
-    ) { }
+    private _onSession: SessionService,
+    private _WebexService: WebexService,
+    private _MeetsService: MeetsService,
+    ) { 
+      this.user = this._onSession.onSession();
+    }
     
     uploadImage(id:string, question:string, image:FileInterface){
       this._genericService.show();
@@ -56,7 +64,24 @@ export class CalendarService {
 
     createReservation(reservation:requestReservation){
       this._genericService.hide();
-      console.log(reservation)
+      this.getAmeetById(reservation.id).subscribe((res:any)=>{
+          if(res.data.mode){
+            this._MeetsService.createReservetion(reservation)
+              .subscribe((res)=>{
+                console.log(res);
+              })
+          }else{
+            let dtoJson={
+              localId: res.data.roomDescription.id,
+              idWebEx: res.data.roomDescription.idWebEx,
+              email: this.user.email,
+            }
+            localStorage.setItem('typeWebEx', '2');
+            localStorage.setItem('reservationDetail', JSON.stringify(reservation));
+            localStorage.setItem('intationJson', JSON.stringify(dtoJson));
+            this._WebexService.getCode();
+          }
+      })
     }
 
     getMeetingsByUser(id:string){

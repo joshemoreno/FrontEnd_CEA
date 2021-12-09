@@ -28,13 +28,6 @@ export class SchedulerComponent implements OnInit {
     }
   };
 
-  
-  ratingDisplay: number;
-  
-  onRatingSet(rating: number): void {
-    this.ratingDisplay = rating;
-  }
-
   constructor(private generalService: GeneralService) { 
     this.typeUser={
       student: true,
@@ -62,11 +55,6 @@ export class SchedulerComponent implements OnInit {
     this.typeUser.arrayMeets.support=storage.sup;
     this.typeUser.arrayMeets.subject=storage.cod;
     this.typeUser.arrayMeets.owner=owner;
-    this.generalService.getMeetingsByOwner(storage.sup, storage.cod, owner)
-      .subscribe((res:any)=>{
-        
-        // this.typeUser.arrayMeets=res.data;
-      })
   }
   
   getDetailOwner(){

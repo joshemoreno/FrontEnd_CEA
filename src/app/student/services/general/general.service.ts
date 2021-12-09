@@ -20,8 +20,13 @@ export class GeneralService {
   }
   
   getMeetingsByOwner(support:string,subject:string,codUser:string){
-    let uriGetDetail = `${environment.urlBack}${environment.getMeetingsByUser}`
+    let uriGetDetail = `${environment.urlBack}${environment.getMeetingsByUser}`;
     return this.http.get(`${uriGetDetail}/${support}/${subject}/${codUser}`);    
+  }
+
+  getAllReserves(){
+    let uriGetAllReserves = `${environment.urlBack}${environment.getAllReserve}`;
+    return this.http.get(uriGetAllReserves);
   }
 
 

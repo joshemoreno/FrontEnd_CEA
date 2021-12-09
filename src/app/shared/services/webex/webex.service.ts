@@ -36,5 +36,20 @@ export class WebexService {
       observe: 'response'
     });
   }
+  
+  createAInvitantion(dtoJson:any,accessToken:string){
+    let newBody = {
+      email: dtoJson.email,
+      meetingId: dtoJson.idWebEx,
+      sendEmail: true,
+      coHost: false
+    }
+    const headers = new HttpHeaders({'Accept':'application/json', 'Authorization': `Bearer ${accessToken}`});
+    return this.http.post(environment.uriMeetingInvitees,newBody,{
+      headers: headers,
+      observe: 'response'
+    });
+    
+  }
 
 }

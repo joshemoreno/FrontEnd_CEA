@@ -24,6 +24,8 @@ th.mat-sort-header-sorted {
     justify-self: center;
 }
 .customItem{
+    text-align: center;
+    vertical-align: middle;
     font-size: medium;
     color: black;
 }
@@ -69,4 +71,8 @@ th.mat-sort-header-sorted {
     color: blue;
     text-decoration: underline blue;
     cursor: pointer;
+}
+
+h3{
+    margin: 0 !important;
 }

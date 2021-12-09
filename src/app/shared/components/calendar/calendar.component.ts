@@ -75,9 +75,9 @@ export class CalendarComponent implements OnInit {
     this.checkUser();
     this.currenDate = new Date();
     this.user = this._onSession.onSession();
-    if(this.typeUser.student){
-      this.addEventsCalendar(this.typeUser.arrayMeets.support,this.typeUser.arrayMeets.subject,this.typeUser.arrayMeets.owner);
-    }else{
+    if (this.typeUser.student) {
+      this.addEventsCalendar(this.typeUser.arrayMeets.support, this.typeUser.arrayMeets.subject, this.typeUser.arrayMeets.owner);
+    } else {
       this.handleEvents(this.user.codigo);
     }
   }
@@ -224,20 +224,20 @@ export class CalendarComponent implements OnInit {
       });
   }
 
-  addEventsCalendar(support:string,subject:string,owner:string){
+  addEventsCalendar(support: string, subject: string, owner: string) {
     let showData = [];
     this.generalService.getMeetingsByOwner(support, subject, owner)
-    .subscribe((res: any) => {
-      res.data[0].map((i: any) => {
-        let obj = {
-          id: i.id,
-          title: i.title,
-          date: i.start_time
-        }
-        showData.push(obj)
-      })
-      this.calendarOptions.events = showData;
-    });
+      .subscribe((res: any) => {
+        res.data[0].map((i: any) => {
+          let obj = {
+            id: i.id,
+            title: i.title,
+            date: i.start_time
+          }
+          showData.push(obj)
+        })
+        this.calendarOptions.events = showData;
+      });
   }
 
   openModal(): void {
@@ -283,6 +283,7 @@ export class CalendarComponent implements OnInit {
           webexMeet.subjectId = Number((res.data.subject).split(',')[0]);
           webexMeet.supportId = this.supportId;
           localStorage.setItem('newMeet', JSON.stringify(webexMeet));
+          localStorage.setItem('typeWebEx', '1');
           if (!res.data.mode) {
             this._WebexService.getCode();
           } else {
@@ -313,7 +314,7 @@ export class CalendarComponent implements OnInit {
                     });
                     localStorage.removeItem('newMeet');
                     window.location.reload();
-                  }else{
+                  } else {
                     this._snackBar.open(`No se pudo editar la ${msgSnack} seleccionada`, 'ok', {
                       horizontalPosition: 'end',
                       verticalPosition: 'top',
@@ -348,6 +349,7 @@ export class CalendarComponent implements OnInit {
           webexMeet.subjectId = Number((res.data.subject).split(',')[0]);
           webexMeet.supportId = this.supportId;
           localStorage.setItem('newMeet', JSON.stringify(webexMeet));
+          localStorage.setItem('typeWebEx', '1');
           if (!res.data.mode) {
             this._WebexService.getCode();
           } else {
@@ -378,7 +380,7 @@ export class CalendarComponent implements OnInit {
                     });
                     localStorage.removeItem('newMeet');
                     window.location.reload();
-                  }else{
+                  } else {
                     this._snackBar.open(`No se pudo agregar la ${msgSnack}`, 'ok', {
                       horizontalPosition: 'end',
                       verticalPosition: 'top',
@@ -419,7 +421,7 @@ export class CalendarComponent implements OnInit {
                   panelClass: ['succes-scanck-bar'],
                 });
                 window.location.reload();
-              }else{
+              } else {
                 this._snackBar.open(`No se pudo eliminar la ${msgSnack} selecccionada`, 'ok', {
                   horizontalPosition: 'end',
                   verticalPosition: 'top',

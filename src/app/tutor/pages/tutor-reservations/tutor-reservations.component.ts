@@ -1,18 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PeriodicElement } from './../../models/interfaces/table.interface'
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {cod: 1 ,subject: 'Fisica 1', owner: 'Pedro Perez', date: '2021-08-30T08:00:00',detail: 'Duda sobre el tema de caidalibre', link:'http://localhost:4200'},
-  {cod: 2 ,subject: 'Fisica 1', owner: 'Pedro Perez', date: '2021-08-30T08:00:00',detail: 'Duda sobre el tema de caidalibre', link:'http://localhost:4200'},
-  {cod: 3 ,subject: 'Fisica 1', owner: 'Pedro Perez', date: '2021-08-30T08:00:00',detail: 'Duda sobre el tema de caidalibre', link:'http://localhost:4200'},
-  {cod: 4 ,subject: 'Fisica 1', owner: 'Pedro Perez', date: '2021-08-30T08:00:00',detail: 'Duda sobre el tema de caidalibre', link:'http://localhost:4200'},
-  {cod: 5 ,subject: 'Fisica 1', owner: 'Pedro Perez', date: '2021-08-30T08:00:00',detail: 'Duda sobre el tema de caidalibre', link:'http://localhost:4200'},
-  {cod: 6 ,subject: 'Fisica 1', owner: 'Pedro Perez', date: '2021-08-30T08:00:00',detail: 'Duda sobre el tema de caidalibre', link:'http://localhost:4200'},
-  {cod: 7 ,subject: 'Fisica 1', owner: 'Pedro Perez', date: '2021-08-30T08:00:00',detail: 'Duda sobre el tema de caidalibre', link:'http://localhost:4200'},
-  {cod: 8 ,subject: 'Fisica 1', owner: 'Pedro Perez', date: '2021-08-30T08:00:00',detail: 'Duda sobre el tema de caidalibre', link:'http://localhost:4200'},
-  {cod: 9 ,subject: 'Fisica 1', owner: 'Pedro Perez', date: '2021-08-30T08:00:00',detail: 'Duda sobre el tema de caidalibre', link:'http://localhost:4200'},
-  {cod: 10 ,subject: 'Fisica 1', owner: 'Pedro Perez', date: '2021-08-30T08:00:00',detail: 'Duda sobre el tema de caidalibreDuda sobre el tema de caidalibreDuda sobre el tema de caidalibreDuda sobre el tema de caidalibreDuda sobre el tema de caidalibreDuda sobre el tema de caidalibre', link:'http://localhost:4200'},
-];
+import { GeneralService } from 'src/app/monitor/services/general/general.service';
+import { reservationsObj } from '../../models/class/reservation.class';
 
 
 @Component({
@@ -22,13 +10,34 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class TutorReservationsComponent implements OnInit {
 
-  constructor() { }
+  public reservations:Array<any>=[];
+  public reservationTitles:Array<any>=['Materia','Encargado','Fecha','Detalles','Acciones'];
 
-  displayedColumns: string[] = ['subject', 'owner', 'date', 'detail','Accions'];
-  dataSource = ELEMENT_DATA;
+
+  constructor(
+    private _GeneralService: GeneralService
+    ){
+
+  }
 
   ngOnInit(): void {
-    
+    this.getReserves();
+  }
+
+  getReserves(){
+    this._GeneralService.getAllReserves()
+      .subscribe((res:any)=>{
+        res.map((index)=>{
+          let reservationObj = new reservationsObj();
+          reservationObj.subjet=index.subject;
+          reservationObj.owner=index.incharge;
+          reservationObj.date=new Date(index.date).toLocaleString();
+          reservationObj.detail=index.question;
+          reservationObj.room=index.room;
+          reservationObj.mode=index.mode;
+          this.reservations.push(reservationObj);
+        });
+      })
   }
 
   getLink(cod:number){

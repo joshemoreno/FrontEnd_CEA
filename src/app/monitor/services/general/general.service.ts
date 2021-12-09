@@ -20,4 +20,9 @@ export class GeneralService {
     let uriGetProfile=`${environment.urlBack}${environment.editProfile}/${id}`;
     return this.http.put(uriGetProfile,body,{observe: 'response'});
   }
+
+  getAllReserves(){
+    let uriGetAllReserves = `${environment.urlBack}${environment.getAllReserve}`;
+    return this.http.get(uriGetAllReserves);
+  }
 }

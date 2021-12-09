@@ -40,6 +40,8 @@ export const environment = {
   getSubjectBySuport: '/api/subject/support',
   getPersonalBySupport: '/api/user/subject',
   inactiveUser: '/api/user/inactive',
+  createReserve: '/api/user/reserve',
+  getAllReserve: '/api/user/reserve',
 
   firebaseConfig:{
     apiKey: "AIzaSyAAsBO_6-J0yooOHmKvhHWa8jQgJhbFSLs",
