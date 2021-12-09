@@ -40,6 +40,9 @@ export const environment = {
   inactiveUser: '/api/user/inactive',
   createReserve: '/api/user/reserve',
   getAllReserve: '/api/user/reserve',
+  createComment: '/api/user/comments',
+  getAllComment: '/api/comment',
+  readComment: '/api/comment',
 
 
 
