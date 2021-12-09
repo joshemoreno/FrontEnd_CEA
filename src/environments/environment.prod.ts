@@ -38,6 +38,8 @@ export const environment = {
   getSubjectBySuport: '/api/subject/support',
   getPersonalBySupport: '/api/user/subject',
   inactiveUser: '/api/user/inactive',
+  createReserve: '/api/user/reserve',
+  getAllReserve: '/api/user/reserve',
 
 
 
