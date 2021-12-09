@@ -15,14 +15,12 @@
         <tbody>
           <tr *ngFor="let comment of comments">
             <td class="customItem dateColum">{{comment.date}}</td>
-            <td class="customItem ownerColum">{{comment.user}}</td>
-            <td class="customItem commentColum">{{comment.desc}}</td>
+            <td class="customItem ownerColum">{{comment.name | titlecase}}</td>
+            <td class="customItem commentColum">{{comment.description | slice:0:30}}...</td>
             <td class="customItem accionsColum">
               <div class="customColum">
                 <button type="button" class="btn btn-primary mx-2 btn-sm customBtn"
-                  (click)="acceptRequest(comment.cod, comment.user)">{{commentTable.firstBottom}}</button>
-                <button type="button" class="btn btn-danger mx-2 btn-sm customBtn"
-                  (click)="cancelRequest(comment.cod, comment.user)">{{commentTable.secondBottom}}</button>
+                (click)="openModal(comment.id, comment.description)">Leer</button>
               </div>
             </td>
           </tr>

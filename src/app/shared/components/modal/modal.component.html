@@ -226,3 +226,14 @@
     </form>
   </div>
 </div>
+
+<div *ngIf="read" class="customCard">
+  <h2 mat-dialog-title class="customTitle">{{title}}</h2>
+  <div mat-dialog-content>
+    <h3>{{description}}</h3>
+      <div class="customButtonAccions">
+        <button type="submit" [disabled]="ModalForm.invalid" class="btn btn-success customButton"
+          (click)="onSubmitForm('read')">Aceptar</button>
+      </div>
+  </div>
+</div>

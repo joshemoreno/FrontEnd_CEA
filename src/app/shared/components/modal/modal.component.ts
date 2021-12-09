@@ -36,6 +36,7 @@ export class ModalComponent implements OnInit {
   public roleSelect: string = '';
   public today:string;
   public editObj:any;
+  public description:any;
   searchId: string = '';
   ModalType: string;
   ModalForm: FormGroup;
@@ -70,6 +71,7 @@ export class ModalComponent implements OnInit {
       this.searchId = data.id;
       this.subject = data.subject;
       this.editObj = data.editObj;
+      this.description = data.description;
       this.ModalForm = this.FormDefault();
   }
   
@@ -110,6 +112,9 @@ export class ModalComponent implements OnInit {
     if(this.ModalType == 'editSubject'){
       this.editSubject = true;
       this.ModalForm = this.FormEditSubject();
+    }
+    if(this.ModalType == 'read'){
+      this.read = true;
     }
     if(this.ModalType == 'editUser'){
       console.log(this.user.roles.id);
