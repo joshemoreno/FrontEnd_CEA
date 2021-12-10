@@ -43,6 +43,9 @@ export const environment = {
   createComment: '/api/user/comments',
   getAllComment: '/api/comment',
   readComment: '/api/comment',
+  deleteReserve: '/api/reserve',
+  getSubjectList: '/api/user/subject',
+  getCountReserve: '/api/user/reserveMeeting',
 
 
 
