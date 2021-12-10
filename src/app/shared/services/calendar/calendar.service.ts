@@ -67,7 +67,7 @@ export class CalendarService {
       this.getAmeetById(reservation.id).subscribe((res:any)=>{
           if(res.data.mode){
             this._MeetsService.createReservetion(reservation)
-              .subscribe((res)=>{
+              .subscribe((res:any)=>{
                 console.log(res);
               })
           }else{

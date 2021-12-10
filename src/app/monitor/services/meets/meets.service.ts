@@ -32,13 +32,11 @@ export class MeetsService {
   }
 
   createReservetion(reservationDetail:any){
-    
     let dto={
       meetingId: Number (reservationDetail.id),
       uri: reservationDetail.uriImage,
       question: reservationDetail.question
     }
-    console.log(dto);
     let uriCreateReservation:string=`${environment.urlBack}${environment.createReserve}`
     return this.http.post(uriCreateReservation,dto,{observe: 'response'})
   }

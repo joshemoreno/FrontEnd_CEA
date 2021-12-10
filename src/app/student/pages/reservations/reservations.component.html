@@ -17,11 +17,11 @@
       <td class="customItem dateColum">{{reservation.date}}</td>
       <td class="customItem detailsColum">{{reservation.detail}}</td>
       <td class="customItem accionsColum">
-        <div class="customColum">
+        <div class="customColum ">
           <h3 *ngIf="reservation.mode">Salón: {{reservation.room}}</h3>
           <button *ngIf="!reservation.mode" type="button" class="btn btn-primary mx-2 btn-sm customBtn"
             (click)="getLink(reservation)">link</button>
-          <button type="button" class="btn btn-danger mx-2 btn-sm customBtn"
+          <button type="button" class="btn btn-danger btn-xs customBtn"
             (click)="cancelReservation(reservation)">Cancelar</button>
         </div>
       </td>

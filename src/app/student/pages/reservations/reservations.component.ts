@@ -43,8 +43,11 @@ export class ReservationsComponent implements OnInit{
     console.log(cod);
   }
 
-  cancelReservation(cod:number){
-    console.log(cod);
+  cancelReservation(reservation:any){
+    console.log(reservation);
+    
+    // this._GeneralService.deleteReservation
+    
   }
 
 }

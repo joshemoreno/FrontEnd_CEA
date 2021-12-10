@@ -57,6 +57,11 @@ th.mat-sort-header-sorted {
 .customColum{
     display: grid;
     grid-template-columns: 50% 50%;
+    vertical-align: middle;
+    margin-top: auto;
+    margin-bottom: auto;
+    align-content: center;
+    justify-content: center;
 }
 
 .customCancel{
@@ -71,6 +76,13 @@ th.mat-sort-header-sorted {
     color: blue;
     text-decoration: underline blue;
     cursor: pointer;
+}
+
+.customBtn{
+    justify-self: center;
+    align-self: center;
+    height: 40px;
+    white-space: normal !important;
 }
 
 h3{

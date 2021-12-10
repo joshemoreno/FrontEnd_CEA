@@ -13,12 +13,7 @@ import { GeneralService } from '../../services/general/general.service';
 })
 export class MonitorOrganizerComponent implements OnInit {
 
-  public materias: Array<any> =[
-    {cod: 1, desc:"Fisica 1"},
-    {cod: 2, desc:"Fisica 2"},
-    {cod: 3, desc:"Fisica 3"},
-    {cod: 4, desc:"Matematicas Fundamentales"},
-  ];
+  public materias: Array<any> =[];
 
   public HourCountDis = 0;
   public HourCountReservation = 0;
@@ -60,6 +55,7 @@ export class MonitorOrganizerComponent implements OnInit {
   ngOnInit(): void {
     this.getProfile();
     this.getMeetDetail();
+    this.getSubjectList();
     this.typeUser={
       student: false,
       monitor:true,
@@ -118,6 +114,18 @@ export class MonitorOrganizerComponent implements OnInit {
         }
       })
     this.editMyData=false;
+  }
+
+  getSubjectList(){
+    this._GeneralService.getSubjectList()
+      .subscribe((res:any)=>{
+        this.materias=res;
+      });
+
+    this._GeneralService.getCountReserve()
+      .subscribe((res:any)=>{
+        this.HourCountReservation=res;
+      })
   }
 
 }

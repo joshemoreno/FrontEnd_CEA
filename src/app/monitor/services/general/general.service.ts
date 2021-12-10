@@ -25,4 +25,15 @@ export class GeneralService {
     let uriGetAllReserves = `${environment.urlBack}${environment.getAllReserve}`;
     return this.http.get(uriGetAllReserves);
   }
+
+  getSubjectList(){
+    let uriGetSubjectList=`${environment.urlBack}${environment.getSubjectList}`;
+    return this.http.get(uriGetSubjectList);
+  }
+
+  getCountReserve(){
+    let uriCountReserve=`${environment.urlBack}${environment.getCountReserve}`;
+    return this.http.get(uriCountReserve);
+  }
+
 }
