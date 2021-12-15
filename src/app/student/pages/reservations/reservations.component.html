@@ -15,7 +15,7 @@
       <td class="customItem subjectColum">{{reservation.subjet}}</td>
       <td class="customItem ownerColum">{{reservation.owner}}</td>
       <td class="customItem dateColum">{{reservation.date}}</td>
-      <td class="customItem detailsColum">{{reservation.detail}}</td>
+      <td class="customItem detailsColum">{{reservation.detail}} <a *ngIf="reservation.UriImage != null" href="{{reservation.UriImage}}" target="_blank">Imagen de apoyo</a> </td>
       <td class="customItem accionsColum">
         <div class="customColum ">
           <h3 *ngIf="reservation.mode">Salón: {{reservation.room}}</h3>

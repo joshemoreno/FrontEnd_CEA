@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { reservationsObj } from '../../models/class/reservation.class';
 import { GeneralService } from '../../services/general/general.service';
-import { PeriodicElement } from './../../models/interfaces/table.interface'
 
 @Component({
   selector: 'app-monitor-reservations',
@@ -15,6 +15,7 @@ export class MonitorReservationsComponent implements OnInit {
 
 
   constructor(
+    private _snackBar: MatSnackBar,
     private _GeneralService: GeneralService
     ){
 
@@ -41,12 +42,30 @@ export class MonitorReservationsComponent implements OnInit {
       })
   }
 
-  getLink(cod:number){
-    console.log(cod);
+  getLink(reservation:reservationsObj){
+    window.open(reservation.room,'_blank');
   }
 
-  cancelReservation(cod:number){
-    console.log(cod);
+  cancelReservation(reservation:any){
+    this._GeneralService.deleteReservation(reservation.id)
+      .subscribe((res:any)=>{
+        if(res.status==200){
+          this._snackBar.open('Su reserva a sido eliminada con exito', 'ok', {
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            duration: 2000,
+            panelClass: ['succes-scanck-bar'],
+          });
+          window.location.reload();
+        }else{
+          this._snackBar.open('Se presento un problema al eliminar la reserva', 'ok', {
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            duration: 2000,
+            panelClass: ['error-scanck-bar'],
+          });
+        }
+      })
   }
   
 }

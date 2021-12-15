@@ -117,7 +117,7 @@
               </div>
               <img class="customIcon" src="../../../../assets/Info.png" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Bottom popover" alt="">
           </div>
-          <input type="file" class="form-control customInputFile" formControlName="file" (change)="handleImage($event)">
+          <input type="file" accept="image/*" class="form-control customInputFile" formControlName="file" (change)="handleImage($event)">
         </div>
       </div>
       <ng-container *ngIf="!loading">

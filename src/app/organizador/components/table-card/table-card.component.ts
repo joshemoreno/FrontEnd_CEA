@@ -110,7 +110,7 @@ export class TableCardComponent implements OnInit {
           .subscribe((res:any)=>{
             if(res.status){
               this._PersonalComponent.ngOnInit();
-              this.getUserIncative();
+              this.ngOnInit();
               this._snackBar.open('Usuario agregado con exito', 'ok', {
                 horizontalPosition: 'end',
                 verticalPosition: 'top',

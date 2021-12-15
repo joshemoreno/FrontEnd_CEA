@@ -26,17 +26,12 @@ export class HeaderComponent implements OnInit {
   public tutorias: Array<any> =[];
   public asesorias: Array<any> =[];
 
-  public opciones: Array<any> = [
-    {opt:"Mis reservas",uri:"/home/estudiante/reservas"},
-    {opt:"Gestión monitorias",uri:"/home/monitor/monitorias"},
-    {opt:"Gestión tutorias",uri:"/home/tutor/tutorias"},
-    {opt:"Gestión asesorias",uri:"/home/asesor/asesorias"},
-    {opt:"Metricas",uri:"/home/organizador/metricas"},
-    {opt:"Admin personal",uri:"/home/organizador/personas"}
-  ]
+  public opciones: Array<any> = []
 
   ngOnInit(): void {
+    this.filterOptions();
     this.getCurrentUser();
+    this.getCurrentUserRole();
     const checkSession = interval(10000);
     checkSession.subscribe(()=>{
       this._sessionService.checkSession() ? null : this.openAlert();
@@ -83,6 +78,31 @@ export class HeaderComponent implements OnInit {
   getCurrentUser(){
     let user = this._sessionService.onSession();
     return user.userName;
+  }
+
+  getCurrentUserRole(){
+    let user = this._sessionService.onSession();
+    return user.role;
+  }
+
+  filterOptions(){
+    let role = this.getCurrentUserRole();
+    if(role == 1){
+      this.opciones.push({opt:"Mis reservas",uri:"/home/estudiante/reservas"});
+    }
+    if(role == 2){
+      this.opciones.push({opt:"Gestión monitorias",uri:"/home/monitor/monitorias"});
+    }
+    if(role == 3){
+      this.opciones.push({opt:"Gestión tutorias",uri:"/home/tutor/tutorias"});
+    }
+    if(role == 6){
+      this.opciones.push({opt:"Gestión asesorias",uri:"/home/asesor/asesorias"});
+    }
+    if(role == 4){
+      this.opciones.push({opt:"Metricas",uri:"/home/organizador/metricas"});
+      this.opciones.push({opt:"Admin personal",uri:"/home/organizador/personas"});
+    }
   }
 
   goMonitory(codCourse:number, descCourse: string){

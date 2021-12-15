@@ -63,8 +63,8 @@
                     </div>
                 </div>
                 <p class="mb-0 card-text customSub">Materias registradas</p>
-                <ng-container *ngFor="let materia of materias">
-                    <li>{{materia.desc}}</li>
+                <ng-container *ngFor="let materia of materias | slice:0:8">
+                    <li>{{materia.subject}}</li>
                 </ng-container>
             </div>
         </div>

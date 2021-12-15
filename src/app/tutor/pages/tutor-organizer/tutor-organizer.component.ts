@@ -13,15 +13,10 @@ import { SessionService } from 'src/app/shared/services/session/session.service'
 })
 export class TutorOrganizerComponent implements OnInit {
 
-  public materias: Array<any> =[
-    {cod: 1, desc:"Fisica 1"},
-    {cod: 2, desc:"Fisica 2"},
-    {cod: 3, desc:"Fisica 3"},
-    {cod: 4, desc:"Matematicas Fundamentales"},
-  ];
+  public materias: Array<any> =[];
 
-  public HourCountDis = 120;
-  public HourCountReservation = 20;
+  public HourCountDis = 0;
+  public HourCountReservation = 0;
 
   public typeUser:{};
   public editMyData = false;
@@ -61,6 +56,7 @@ export class TutorOrganizerComponent implements OnInit {
   ngOnInit(): void {
     this.getProfile();
     this.getMeetDetail();
+    this.getSubjectList();
     this.typeUser={
       student: false,
       monitor:false,
@@ -119,6 +115,18 @@ export class TutorOrganizerComponent implements OnInit {
         }
       })
     this.editMyData=false;
+  }
+
+  getSubjectList(){
+    this._GeneralService.getSubjectList()
+      .subscribe((res:any)=>{
+        this.materias=res;
+      });
+
+    this._GeneralService.getCountReserve()
+      .subscribe((res:any)=>{
+        this.HourCountReservation=res;
+      })
   }
 
 }

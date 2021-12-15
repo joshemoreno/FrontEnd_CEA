@@ -38,7 +38,6 @@ export class CalendarComponent implements OnInit {
     selectMirror: false,
     dayMaxEvents: true,
     progressiveEventRendering: true,
-    timeZone: 'UTC',
     nextDayThreshold: '01:00:00',
     businessHours: [{
       daysOfWeek: [1, 2, 3, 4, 5],
@@ -213,10 +212,11 @@ export class CalendarComponent implements OnInit {
     this._calendarService.getMeetingsByUser(id)
       .subscribe((res: any) => {
         res.data[0].map((i: any) => {
+          let newDate = new Date(i.start_time).getTime()+18000000; 
           let obj = {
             id: i.id,
             title: i.title,
-            date: i.start_time
+            date: new Date(newDate)
           }
           showData.push(obj)
         })
@@ -229,10 +229,11 @@ export class CalendarComponent implements OnInit {
     this.generalService.getMeetingsByOwner(support, subject, owner)
       .subscribe((res: any) => {
         res.data[0].map((i: any) => {
+          let newDate = new Date(i.start_time).getTime()+18000000; 
           let obj = {
             id: i.id,
             title: i.title,
-            date: i.start_time
+            date: new Date(newDate)
           }
           showData.push(obj)
         })

@@ -29,9 +29,9 @@ export class GeneralService {
     return this.http.get(uriGetAllReserves);
   }
 
-  deleteReservation(){
-    let uriDeleteReservation=`${environment.urlBack}${environment.deleteReserve}`;
-    return this.http.delete(uriDeleteReservation);
+  deleteReservation(id:number){
+    let uriDeleteReservation=`${environment.urlBack}${environment.deleteReserve}/${id}`;
+    return this.http.delete(uriDeleteReservation,{observe: 'response'});
   }
 
 

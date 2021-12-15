@@ -4,6 +4,11 @@ import { WelcomeComponent } from './auth/pages/welcome/welcome.component';
 import { HomeComponent } from './home/pages/home/home.component';
 import { WebexComponent } from './shared/components/webex/webex.component';
 import { GuardGuard } from './shared/services/guard/guard.guard';
+import { AsesorGuard } from './shared/services/guard/others/asesor/asesor.guard';
+import { MonitorGuard } from './shared/services/guard/others/monitor/monitor.guard';
+import { OrganizadorGuard } from './shared/services/guard/others/organizador/organizador.guard';
+import { StudentGuard } from './shared/services/guard/others/student/student.guard';
+import { TutorGuard } from './shared/services/guard/others/tutor/tutor.guard';
 
 const routes: Routes = [
 
@@ -30,27 +35,27 @@ const routes: Routes = [
   {
     path: 'home/estudiante',
     loadChildren: () => import('./student/student.module').then( m => m.StudentModule ),
-    canActivate: [GuardGuard],
+    canActivate: [StudentGuard],
   },
   {
     path: 'home/monitor',
     loadChildren: () => import('./monitor/monitor.module').then( m => m.MonitorModule ),
-    canActivate: [GuardGuard],
+    canActivate: [MonitorGuard],
   },
   {
     path: 'home/tutor',
     loadChildren: () => import('./tutor/tutor.module').then( m => m.TutorModule ),
-    canActivate: [GuardGuard],
+    canActivate: [TutorGuard],
   },
   {
     path: 'home/asesor',
     loadChildren: () => import('./asesor/asesor.module').then( m => m.AsesorModule ),
-    canActivate: [GuardGuard],
+    canActivate: [AsesorGuard],
   },
   {
     path: 'home/organizador',
     loadChildren: () => import('./organizador/organizador.module').then( m => m.OrganizadorModule ),
-    canActivate: [GuardGuard],
+    canActivate: [OrganizadorGuard],
   },
   {
     path: '**',

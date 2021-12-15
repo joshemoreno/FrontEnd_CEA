@@ -37,8 +37,8 @@ export class MeetsService {
       uri: reservationDetail.uriImage,
       question: reservationDetail.question
     }
-    let uriCreateReservation:string=`${environment.urlBack}${environment.createReserve}`
-    return this.http.post(uriCreateReservation,dto,{observe: 'response'})
+    let uriCreateReservation:string=`${environment.urlBack}${environment.createReserve}`;
+    return this.http.post(uriCreateReservation,dto,{observe: 'response'});
   }
 
 }

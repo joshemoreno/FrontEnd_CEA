@@ -73,6 +73,13 @@ th.mat-sort-header-sorted {
     cursor: pointer;
 }
 
+.customBtn{
+    justify-self: center;
+    align-self: center;
+    height: 40px;
+    white-space: normal !important;
+}
+
 h3{
     margin: 0 !important;
 }

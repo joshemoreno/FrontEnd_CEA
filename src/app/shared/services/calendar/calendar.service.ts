@@ -10,7 +10,7 @@ import { currentUser } from '../../models/token.class';
 import { SessionService } from '../session/session.service';
 import { WebexService } from '../webex/webex.service';
 import { MeetsService } from 'src/app/monitor/services/meets/meets.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root'
 })
@@ -26,6 +26,7 @@ export class CalendarService {
     private _onSession: SessionService,
     private _WebexService: WebexService,
     private _MeetsService: MeetsService,
+    private _snackBar: MatSnackBar
     ) { 
       this.user = this._onSession.onSession();
     }
@@ -68,7 +69,23 @@ export class CalendarService {
           if(res.data.mode){
             this._MeetsService.createReservetion(reservation)
               .subscribe((res:any)=>{
-                console.log(res);
+                if(res.status==200){
+                  this._snackBar.open('Se realizo la reserva con exito', 'ok', {
+                    horizontalPosition: 'end',
+                    verticalPosition: 'top',
+                    duration: 2000,
+                    panelClass: ['succes-scanck-bar'],
+                  });
+                }
+              },(error:any)=>{
+                if(error.status==409){
+                  this._snackBar.open('Esta reunión ya se encuentra reservada', 'ok', {
+                    horizontalPosition: 'end',
+                    verticalPosition: 'top',
+                    duration: 2000,
+                    panelClass: ['error-scanck-bar'],
+                  });
+                }
               })
           }else{
             let dtoJson={
