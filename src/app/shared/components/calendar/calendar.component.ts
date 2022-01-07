@@ -125,7 +125,6 @@ export class CalendarComponent implements OnInit {
 
     this._CalendarService.getAmeetById(id)
       .subscribe((res: any) => {
-        console.log(res.data);
 
         let time = res.data.start_time.split('T')[1];
         editObj = {

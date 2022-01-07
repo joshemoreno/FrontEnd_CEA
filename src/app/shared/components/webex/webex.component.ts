@@ -124,12 +124,10 @@ export class WebexComponent implements OnInit {
           let dtoJson = JSON.parse(localStorage.getItem('intationJson'));
           this._webexService.createAInvitantion(dtoJson, accessToken)
             .subscribe((res: any) => {
-              console.log(res);
               if (res.status == 200) {
                 let reservationDetail = JSON.parse(localStorage.getItem('reservationDetail'));
                 this._MeetsService.createReservetion(reservationDetail)
                 .subscribe((res: any) => {
-                      console.log(res);
                       if (res.status == 200) {
                           this._AlertsService.infoAlert('Usted fue invitado a la reunión, por favor revise su correo institucional')
                             .then((res: any) => {

@@ -117,7 +117,6 @@ export class ModalComponent implements OnInit {
       this.read = true;
     }
     if(this.ModalType == 'editUser'){
-      console.log(this.user.roles.id);
       
       this.stateUser = this.user.status;
       if(this.stateUser==1){
@@ -277,7 +276,6 @@ export class ModalComponent implements OnInit {
   }
 
   validatorRead(event:any){
-    console.log(event.target.value);
     
     if(event.target.value.toLocaleUpperCase()==this.user.name.toLocaleUpperCase()){
       if(!this.disabledRole){
