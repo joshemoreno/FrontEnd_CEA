@@ -6,6 +6,7 @@ import { AlertsService } from 'src/app/shared/services/alerts/alerts.service';
 import { requestDto } from '../../models/requests.class';
 import { userDto } from '../../models/user.class';
 import { PersonalComponent } from '../../pages/personal/personal.component';
+import { GeneralService } from '../../services/general/general.service';
 import { PersonalService } from '../../services/personal/personal.service';
 
 export interface PeriodicElement {
@@ -38,7 +39,8 @@ export class TableCardComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private _alert: AlertsService,
     public dialog: MatDialog,
-    private _PersonalService:PersonalService
+    private _PersonalService:PersonalService,
+    private _GeneralService:GeneralService
     ) { 
 
   }
@@ -69,7 +71,18 @@ export class TableCardComponent implements OnInit {
     this._alert.confirmAlert(`Seguro que desea cancelar la solicitud del usuario ${name}`,'','Sí','No')
     .then((res:any)=>{
       if(res.isConfirmed){
-        console.log('chao'+cod)
+        this._GeneralService.deleteRequest(cod)
+          .subscribe((res:any)=>{
+            if(res.status==200){
+              window.location.reload();
+              this._snackBar.open('La solicitud ha sido rechada con exito', 'ok', {
+                horizontalPosition: 'end',
+                verticalPosition: 'top',
+                duration: 2000,
+                panelClass: ['succes-scanck-bar'],
+              });
+            }
+          })
       }
     })
   }
@@ -108,9 +121,8 @@ export class TableCardComponent implements OnInit {
         editUser.status=1;
         this._PersonalService.editAUser(editUser)
           .subscribe((res:any)=>{
-            if(res.status){
-              this._PersonalComponent.ngOnInit();
-              this.ngOnInit();
+            if(res.status==200){
+              window.location.reload();
               this._snackBar.open('Usuario agregado con exito', 'ok', {
                 horizontalPosition: 'end',
                 verticalPosition: 'top',

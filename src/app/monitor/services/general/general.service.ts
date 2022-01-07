@@ -22,7 +22,7 @@ export class GeneralService {
   }
 
   getAllReserves(){
-    let uriGetAllReserves = `${environment.urlBack}${environment.getAllReserve}`;
+    let uriGetAllReserves = `${environment.urlBack}${environment.getAllReserveByOwner}`;
     return this.http.get(uriGetAllReserves);
   }
 

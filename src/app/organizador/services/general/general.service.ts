@@ -19,5 +19,10 @@ export class GeneralService {
     return this.http.put(`${uriReadMessage}/${cod}`,{status:true},{observe: 'response'});
   }
 
+  deleteRequest(cod:string){
+    let uriDelete=`${environment.urlBack}${environment.deleteUser}`;
+    return this.http.delete(`${uriDelete}/${cod}`,{observe: 'response'});
+  }
+
 
 }

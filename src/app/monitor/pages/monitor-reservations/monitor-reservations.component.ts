@@ -29,6 +29,8 @@ export class MonitorReservationsComponent implements OnInit {
   getReserves(){
     this._GeneralService.getAllReserves()
       .subscribe((res:any)=>{
+        console.log(res);
+        
         res.map((index)=>{
           let reservationObj = new reservationsObj();
           reservationObj.subjet=index.subject;
@@ -37,6 +39,8 @@ export class MonitorReservationsComponent implements OnInit {
           reservationObj.detail=index.question;
           reservationObj.room=index.room;
           reservationObj.mode=index.mode;
+          reservationObj.id=index.id;
+          reservationObj.UriImage=index.UriImage;
           this.reservations.push(reservationObj);
         });
       })

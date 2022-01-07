@@ -29,7 +29,6 @@ export class CommentTableComponent implements OnInit {
   getAllComments(){
     this._GeneralService.getAllComments()
       .subscribe((res:any)=>{
-        console.log(res.comment);
         res.comment.map((index)=>{
           index.date=new Date(index.date).toLocaleDateString();
         })

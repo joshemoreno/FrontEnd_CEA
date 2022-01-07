@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { requestLogOn } from '../../models/request.class';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AlertsService } from 'src/app/shared/services/alerts/alerts.service';
 
 @Component({
   selector: 'app-logon',
@@ -15,7 +16,8 @@ export class LogonComponent implements OnInit {
     private _authSercive: AuthService, 
     private _router: ActivatedRoute, 
     private router: Router, 
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private _AlertsService: AlertsService
     ) 
     {}
 
@@ -33,6 +35,17 @@ export class LogonComponent implements OnInit {
       if(res.code=200){
         localStorage.setItem('Token',res.token);
         this.router.navigateByUrl('home');
+      }
+    },(error:any)=>{ 
+      if(error.status == 401){
+        this._AlertsService
+          .errorAlert('Usted no ha sido autorizado para ingresar a la aplicación, por favor espere')
+          .then((res:any)=>{
+            window.location.replace('/auth/login');
+          })
+      }
+      if(error.status == 500){
+        window.location.replace('/auth/login');
       }
     })
   }

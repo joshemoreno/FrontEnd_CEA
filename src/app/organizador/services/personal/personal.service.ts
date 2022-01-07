@@ -30,7 +30,7 @@ export class PersonalService {
     let edit={
       status:user.status,
       roles:{
-        id:user.role
+        id:Number(user.role)
       }
     }
     return this.http.put(`${this.uriPutPersonal}/${user.cod}`,edit,{observe: 'response'});

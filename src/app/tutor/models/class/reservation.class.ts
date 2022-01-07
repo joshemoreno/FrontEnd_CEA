@@ -5,4 +5,6 @@ export class reservationsObj{
     detail:string;
     room:string;
     mode:boolean;
+    id:number;
+    UriImage:string;
 }

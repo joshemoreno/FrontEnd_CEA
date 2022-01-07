@@ -36,6 +36,8 @@ export class AsesorReservationsComponent implements OnInit {
           reservationObj.detail=index.question;
           reservationObj.room=index.room;
           reservationObj.mode=index.mode;
+          reservationObj.id=index.id;
+          reservationObj.UriImage=index.UriImage;
           this.reservations.push(reservationObj);
         });
       })
