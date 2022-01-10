@@ -100,8 +100,8 @@ export class HeaderComponent implements OnInit {
       this.opciones.push({opt:"Gestión asesorias",uri:"/home/asesor/asesorias"});
     }
     if(role == 4){
-      this.opciones.push({opt:"Metricas",uri:"/home/organizador/metricas"});
-      this.opciones.push({opt:"Admin personal",uri:"/home/organizador/personas"});
+      this.opciones.push({opt:"Admin. personal",uri:"/home/organizador/personas"});
+      this.opciones.push({opt:"Otros servicios",uri:"/home/organizador/metricas"});
     }
   }
 
