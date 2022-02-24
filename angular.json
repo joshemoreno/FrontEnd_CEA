@@ -20,6 +20,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "clone-deep"
+            ],
             "outputPath": "dist/frontEnd",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -32,8 +36,7 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
-            ],
-            "scripts": []
+            ]
           },
           "configurations": {
             "production": {
@@ -41,7 +44,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",

@@ -1,0 +1,30 @@
+<div class="customCont">
+    <div class="customHead">
+      <h1 class="customText">{{commentTable.title}}</h1>
+    </div>
+    <div class="customScroll">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="customTitle">{{commentTable.firstColum}}</th>
+            <th scope="col" class="customTitle">{{commentTable.secondColum}}</th>
+            <th scope="col" class="customTitle">{{commentTable.thirdColum}}</th>
+            <th scope="col" class="customTitle">{{commentTable.fourColum}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let comment of comments">
+            <td class="customItem dateColum">{{comment.date}}</td>
+            <td class="customItem ownerColum">{{comment.name | titlecase}}</td>
+            <td class="customItem commentColum">{{comment.description | slice:0:30}}...</td>
+            <td class="customItem accionsColum">
+              <div class="customColum">
+                <button type="button" class="btn btn-primary mx-2 btn-sm customBtn"
+                (click)="openModal(comment.id, comment.description)">Leer</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -1,0 +1,85 @@
+.customText{
+    margin-top: 4%;
+    font-weight: 500;
+    margin-bottom: 2%;
+    justify-self: start;
+    padding-left: 5%;
+}
+
+table {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;    
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.customTitle{
+    text-align: center;
+    font-weight: bold !important;
+    color: black;
+    font-size: large;
+    justify-self: center;
+}
+.customItem{
+    text-align: center;
+    vertical-align: middle;
+    font-size: medium;
+    color: black;
+}
+
+.subjectColum{
+    text-align: center;
+    width: 10%;
+}
+
+.ownerColum{
+    text-align: center;
+    width: 10%;
+}
+
+.dateColum{
+    text-align: center;
+    width: 10%;
+}
+
+.detailsColum{
+    text-align: center;
+    width: 35%;
+}
+.accionsColum{
+    text-align: center;
+    width: 15%;
+}
+
+.customColum{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.customCancel{
+    justify-self: center;
+    color: red;
+    text-decoration:  underline red;
+    cursor: pointer;
+}
+
+.customLink{
+    justify-self: center;
+    color: blue;
+    text-decoration: underline blue;
+    cursor: pointer;
+}
+
+.customBtn{
+    justify-self: center;
+    align-self: center;
+    height: 40px;
+    white-space: normal !important;
+}
+
+h3{
+    margin: 0 !important;
+}

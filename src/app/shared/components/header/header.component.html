@@ -1,42 +1,33 @@
 <nav class=" navbar navbar-dark bg-dark navbar-expand-lg nabVar">
   <div class="container-fluid">
-    <img src="../../../../assets/Logo.png" alt="" height="40">
+    <a (click)="goHome()" ><img src="../../../../assets/Logo.png" alt="" height="40" class="logo"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto me-auto mb-2 ps-3 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle nabText" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+        <li *ngIf="monitorias.length != 0 && getCurrentUserRole() == 1" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nabText" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Monitorias
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item customCursor" *ngFor="let materia of monitorias" (click)="goMonitory(materia.id, materia.description)">{{materia.description}}</a></li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle nabText" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+        <li *ngIf="tutorias.length != 0 && getCurrentUserRole() == 1"   class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nabText" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Tutorias
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item customCursor" *ngFor="let materia of tutorias" (click)="goTutory(materia.id, materia.description)" >{{materia.description}}</a></li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle nabText" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+        <li *ngIf="asesorias.length != 0 && getCurrentUserRole() == 1" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nabText" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Asesorias
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li> <a class="dropdown-item customCursor" *ngFor="let materia of asesorias" (click)="goAdvisory(materia.id, materia.description)" >{{materia.description}}</a></li>
           </ul>
         </li>
         <span class="example-spacer"></span>
@@ -44,14 +35,15 @@
       <ul class="navbar-nav me-4 mb-2 mb-lg-0">
         <li><hr class="dropdown-divider"></li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle nabText" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Jose Antonio Moreno Popayan
+          <a class="nav-link dropdown-toggle nabText"id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{getCurrentUser()}}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <ng-container *ngFor="let opcion of opciones">
+              <li><a class="dropdown-item" [routerLink]="opcion.uri">{{opcion.opt}}</a></li>
+            </ng-container>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" (click)="logOut()">Cerrar sesión</a></li>
           </ul>
         </li>
       </ul>

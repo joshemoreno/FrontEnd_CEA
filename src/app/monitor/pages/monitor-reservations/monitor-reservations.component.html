@@ -1,0 +1,30 @@
+<h1 class="blockquote customText">Tus reservas</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" class="customTitle">{{reservationTitles[0]}}</th>
+      <th scope="col" class="customTitle">{{reservationTitles[1]}}</th>
+      <th scope="col" class="customTitle">{{reservationTitles[2]}}</th>
+      <th scope="col" class="customTitle">{{reservationTitles[3]}}</th>
+      <th scope="col" class="customTitle">{{reservationTitles[4]}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reservation of reservations">
+      <td class="customItem subjectColum">{{reservation.subjet}}</td>
+      <td class="customItem ownerColum">{{reservation.owner}}</td>
+      <td class="customItem dateColum">{{reservation.date}}</td>
+      <td class="customItem detailsColum">{{reservation.detail}} <a *ngIf="reservation.UriImage != null" href="{{reservation.UriImage}}" target="_blank">Imagen de apoyo</a>  </td>
+      <td class="customItem accionsColum">
+        <div class="customColum">
+          <h3 *ngIf="reservation.mode">Salón: {{reservation.room}}</h3>
+          <button *ngIf="!reservation.mode" type="button" class="btn btn-primary mx-2 btn-sm customBtn"
+            (click)="getLink(reservation)">link</button>
+          <button type="button" class="btn btn-danger mx-2 btn-sm customBtn"
+            (click)="cancelReservation(reservation)">Cancelar</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

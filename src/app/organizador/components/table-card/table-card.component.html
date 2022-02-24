@@ -1,0 +1,30 @@
+<div class="customCont">
+  <div class="customHead">
+    <h1 class="customText">{{tableProps.title}}</h1>
+  </div>
+  <div class="customScroll">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="customTitle">{{tableProps.firstColum}}</th>
+          <th scope="col" class="customTitle">{{tableProps.secondColum}}</th>
+          <th scope="col" class="customTitle">{{tableProps.thirdColum}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of requests">
+          <td class="customItem dateColum">{{request.date}}</td>
+          <td class="customItem ownerColum">{{request.name | titlecase }}</td>
+          <td class="customItem accionsColum">
+            <div class="customColum">
+              <button type="button" class="btn btn-primary mx-2 btn-sm customBtn"
+                (click)="acceptRequest(request.codigo, request.name)">{{tableProps.firstBottom}}</button>
+              <button type="button" class="btn btn-danger mx-2 btn-sm customBtn"
+                (click)="cancelRequest(request.codigo, request.name)">{{tableProps.secondBottom}}</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

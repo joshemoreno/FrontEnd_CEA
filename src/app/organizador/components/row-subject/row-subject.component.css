@@ -1,0 +1,24 @@
+.customRow{
+    display: grid;
+    grid-template-columns: 75% 20%;
+    position: relative;
+    grid-column-gap: 1em;
+}
+
+.editBtn{
+    justify-self: center;
+    align-self: center;
+}
+
+.customDivider{
+    margin: 0 !important;
+}
+
+.customText{
+    margin: 0;
+}
+
+.customPerson{
+    margin-top: auto;
+    margin-bottom: auto;
+}

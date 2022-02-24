@@ -1,0 +1,46 @@
+.customText{
+    margin-top: 4%;
+    font-weight: 500;
+    margin-bottom: 4%;
+}
+.customContainer{  
+    display: grid;
+    grid-template-columns: repeat(4, 20%);
+    gap: 5%;
+    padding-left: 10%;
+    padding-right: 5%;
+    padding-bottom: 8%;
+}
+
+@media (max-width: 1370px) {
+    .customContainer{
+        padding-left: 5%;
+        padding-right: 0%;
+    }  
+}
+
+
+@media (max-width: 1160px) {
+    .customContainer{  
+        display: grid;
+        grid-template-columns: repeat(3, 30%);
+        gap: 5%;
+        padding-left: 10%;
+        padding-right: 5%;
+    }
+}
+
+@media (max-width: 850px) {
+    .customContainer{  
+        display: grid;
+        grid-template-columns: repeat(2, 45%);
+        gap: 5%;
+    }
+}
+@media (max-width: 550px) {
+    .customContainer{  
+        display: grid;
+        grid-template-columns: repeat(1, 100%);
+        gap: 2%;
+    }
+}
