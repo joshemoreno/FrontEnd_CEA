@@ -17,7 +17,7 @@ export const environment = {
   uriAccessToken:'https://webexapis.com/v1/access_token',
   uriCreateMeeting:'https://webexapis.com/v1/meetings',
   uriMeetingInvitees:'https://webexapis.com/v1/meetingInvitees',
-  redirect_uri:'http://localhost:4200/webEx',
+  redirect_uri:'https://proyectocea.web.app//webEx',
   grant_type:'authorization_code',
   client_secret:'8b3799187636aaa9dd6a556c40b56e5f380f3914ebe5a0bb6111b002c0d3a370',
   client_id:'Ce070a17e97544e67bb329f030e4ff59426af5ea618a17a715f1bb13d5a7fd3a7',
