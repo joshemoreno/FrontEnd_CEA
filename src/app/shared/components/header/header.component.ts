@@ -170,11 +170,15 @@ export class HeaderComponent implements OnInit {
             if(res.status==201){
               let arreglo:Array<any> = [];
               this.reservas = res.body;
-              Promise.all(this.reservas.map((item:any)=>{
-                let row = new exportData(item);
-                arreglo.push(row);
-              }))
-              this._excelService.exportAsExcelFile(arreglo,`Reservas${new Date().toLocaleDateString()}`);
+              if(this.reservas.length == 0){
+                this._alertService.infoAlert('No se encuentran datos para el rango de fechas seleccionado');
+              }else{
+                Promise.all(this.reservas.map((item:any)=>{
+                  let row = new exportData(item);
+                  arreglo.push(row);
+                }))
+                this._excelService.exportAsExcelFile(arreglo,`Reservas${new Date().toLocaleDateString()}`);
+              }
             }
           })
       }
