@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      { path: 'monitorias', component: MonitorOrganizerComponent, pathMatch: 'full' },
+      { path: 'Monitorias', component: MonitorOrganizerComponent, pathMatch: 'full' },
       { path: 'reservas', component: MonitorReservationsComponent, pathMatch: 'full' },
       { path: '**', redirectTo:'/home'}
     ]

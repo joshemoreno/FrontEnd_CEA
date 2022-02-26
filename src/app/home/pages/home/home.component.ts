@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
 
     dialogConfig.width = customWidth;
     dialogConfig.data = {
-      title: 'Envia tu mensaje',
+      title: 'Envía tu mensaje',
       Modal: 'comment'
     }
 

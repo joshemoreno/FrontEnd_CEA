@@ -114,11 +114,11 @@ export class CalendarComponent implements OnInit {
     }
     if (this.typeUser.tutor) {
       this.supportId = 2;
-      titleModal = 'Editar Tutoria';
+      titleModal = 'Editar Tutoría';
     }
     if (this.typeUser.asesor) {
       this.supportId = 3;
-      titleModal = 'Editar Asesoria';
+      titleModal = 'Editar Asesoría';
     }
 
     let editObj = null;
@@ -152,15 +152,15 @@ export class CalendarComponent implements OnInit {
     let titleModal: string;
     if (this.typeUser.monitor) {
       this.supportId = 1;
-      titleModal = 'Crear una Monitoria'
+      titleModal = 'Crear una Monitoría'
     }
     if (this.typeUser.tutor) {
       this.supportId = 2;
-      titleModal = 'Crear una Tutoria'
+      titleModal = 'Crear una Tutoría'
     }
     if (this.typeUser.asesor) {
       this.supportId = 3;
-      titleModal = 'Crear una Asesoria'
+      titleModal = 'Crear una Asesoría'
     }
 
     this.dialogConfig.data = {
@@ -293,13 +293,13 @@ export class CalendarComponent implements OnInit {
                   let msgSnack: string;
                   switch (this.supportId) {
                     case 1:
-                      msgSnack = 'monitoria';
+                      msgSnack = 'Monitoría';
                       break;
                     case 2:
-                      msgSnack = 'tutoria';
+                      msgSnack = 'Tutoría';
                       break;
                     case 3:
-                      msgSnack = 'asesoria';
+                      msgSnack = 'Asesoría';
                       break;
                     default:
                       break;
@@ -359,13 +359,13 @@ export class CalendarComponent implements OnInit {
                   let msgSnack: string;
                   switch (this.supportId) {
                     case 1:
-                      msgSnack = 'monitoria';
+                      msgSnack = 'Monitoría';
                       break;
                     case 2:
-                      msgSnack = 'tutoria';
+                      msgSnack = 'Tutoría';
                       break;
                     case 3:
-                      msgSnack = 'asesoria';
+                      msgSnack = 'Asesoría';
                       break;
                     default:
                       break;
@@ -401,13 +401,13 @@ export class CalendarComponent implements OnInit {
               let msgSnack: string;
               switch (this.supportId) {
                 case 1:
-                  msgSnack = 'monitoria';
+                  msgSnack = 'Monitoría';
                   break;
                 case 2:
-                  msgSnack = 'tutoria';
+                  msgSnack = 'Tutoría';
                   break;
                 case 3:
-                  msgSnack = 'asesoria';
+                  msgSnack = 'Asesoría';
                   break;
                 default:
                   break;

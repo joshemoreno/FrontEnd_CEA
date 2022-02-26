@@ -5,7 +5,7 @@
         <h1 class="mt-3">Ayudanos a identificarte</h1>
         <form [formGroup]="roleForm" (ngSubmit)="getRole()">
             <select class="form-select customSelect" formControlName="role">
-                <option value="" disabled selected hidden>Seleciona un perfil</option>
+                <option value="" disabled selected hidden>Selecciona un perfil</option>
                 <option *ngFor="let role of roles" value="{{role.role}}">{{role.opt}}</option>
             </select>
             <div class="d-grid gap-2 col-5 mx-auto">

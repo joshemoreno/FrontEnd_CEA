@@ -31,7 +31,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { WebexComponent } from './components/webex/webex.component'; 
-import { HeaderComponent } from './components/header/header.component';
 
 
 

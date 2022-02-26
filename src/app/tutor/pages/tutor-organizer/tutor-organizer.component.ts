@@ -91,7 +91,7 @@ export class TutorOrganizerComponent implements OnInit {
   saveData(){
     let request = this.dataForm.value;
     let body={
-      phone: (request.phone).toString(),
+      phone: request.phone == null ? '' : (request.phone).toString(),
       about: request.skills
     };
     this._GeneralService.editProfile(this.user.codigo,body)

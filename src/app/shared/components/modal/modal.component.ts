@@ -44,6 +44,7 @@ export class ModalComponent implements OnInit {
   create: boolean = false;
   edit: boolean = false;
   read: boolean = false;
+  export: boolean = false;
   reservation: boolean = false;
   status : boolean = false;
   newUser : boolean = false;
@@ -77,7 +78,7 @@ export class ModalComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.today = new Date().toISOString().split('T')[0];
+    this.today = new Date(new Date().setHours(0o0,0o0,0o0,0o0)).toISOString().split('T')[0];
     this.subjects=[];
     
     setTimeout(()=>{
@@ -115,6 +116,10 @@ export class ModalComponent implements OnInit {
     }
     if(this.ModalType == 'read'){
       this.read = true;
+    }
+    if(this.ModalType == 'export'){
+      this.export = true;
+      this.ModalForm = this.FormExport();
     }
     if(this.ModalType == 'editUser'){
       
@@ -239,6 +244,13 @@ export class ModalComponent implements OnInit {
       user: new FormControl(this.user.codigo),
       profile: new FormControl((this.user.roles.id).toString(),[Validators.required]),
       state: new FormControl(this.stateCheck)
+    });
+  }
+
+  FormExport(){
+    return new FormGroup({
+      initialDate: new FormControl(this.today),
+      finalDate: new FormControl(this.today)
     });
   }
 

@@ -16,7 +16,7 @@
         </li>
         <li *ngIf="tutorias.length != 0 && getCurrentUserRole() == 1"   class="nav-item dropdown">
           <a class="nav-link dropdown-toggle nabText" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Tutorias
+            Tutorías
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item customCursor" *ngFor="let materia of tutorias" (click)="goTutory(materia.id, materia.description)" >{{materia.description}}</a></li>
@@ -24,7 +24,7 @@
         </li>
         <li *ngIf="asesorias.length != 0 && getCurrentUserRole() == 1" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle nabText" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Asesorias
+            Asesorías
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li> <a class="dropdown-item customCursor" *ngFor="let materia of asesorias" (click)="goAdvisory(materia.id, materia.description)" >{{materia.description}}</a></li>
@@ -42,8 +42,9 @@
             <ng-container *ngFor="let opcion of opciones">
               <li><a class="dropdown-item" [routerLink]="opcion.uri">{{opcion.opt}}</a></li>
             </ng-container>
+            <li><a class="dropdown-item customCursor" *ngIf="getCurrentUserRole() == 4" (click)="callExportData()">Exportar</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" (click)="logOut()">Cerrar sesión</a></li>
+            <li><a class="dropdown-item customCursor" (click)="logOut()">Cerrar sesión</a></li>
           </ul>
         </li>
       </ul>

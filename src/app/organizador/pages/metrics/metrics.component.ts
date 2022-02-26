@@ -32,10 +32,10 @@ export class MetricsComponent implements OnInit {
 
   public cards = [
     {
-      title: 'Demanda de tutorias'
+      title: 'Demanda de Tutorías'
     },
     {
-      title: 'Demanda de monitorias'
+      title: 'Demanda de Monitorías'
     },
     {
       title: 'Demanda de asesorias'

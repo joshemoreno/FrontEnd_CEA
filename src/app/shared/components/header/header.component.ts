@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { interval, timer } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { exportData, exportFileDto } from '../../models/export/export.model';
 import { AlertsService } from '../../services/alerts/alerts.service';
+import { excelService } from '../../services/excel/excel.service';
+import { GenericsService } from '../../services/generics/generics.service';
 import { HeaderService } from '../../services/header/header.service';
 import { SessionService } from '../../services/session/session.service';
+import { ModalComponent } from '../modal/modal.component';
 
 
 @Component({
@@ -18,13 +24,18 @@ export class HeaderComponent implements OnInit {
     private _alertService: AlertsService,
     private _sessionService : SessionService, 
     private _authService: AuthService,
-    private _headerService: HeaderService
+    private _headerService: HeaderService,
+    private _GeneralService: GenericsService,
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog,
+    private _excelService: excelService
   ) { }
 
 
   public monitorias: Array<any> =[];
   public tutorias: Array<any> =[];
   public asesorias: Array<any> =[];
+  public reservas: Array<any> =[];
 
   public opciones: Array<any> = []
 
@@ -88,16 +99,16 @@ export class HeaderComponent implements OnInit {
   filterOptions(){
     let role = this.getCurrentUserRole();
     if(role == 1){
-      this.opciones.push({opt:"Mis reservas",uri:"/home/estudiante/reservas"});
+      this.opciones.push({opt:"Mis Reservas",uri:"/home/estudiante/reservas"});
     }
     if(role == 2){
-      this.opciones.push({opt:"Gestión monitorias",uri:"/home/monitor/monitorias"});
+      this.opciones.push({opt:"Gestión Monitorías",uri:"/home/monitor/monitorias"});
     }
     if(role == 3){
-      this.opciones.push({opt:"Gestión tutorias",uri:"/home/tutor/tutorias"});
+      this.opciones.push({opt:"Gestión Tutorías",uri:"/home/tutor/tutorias"});
     }
     if(role == 6){
-      this.opciones.push({opt:"Gestión asesorias",uri:"/home/asesor/asesorias"});
+      this.opciones.push({opt:"Gestión Asesorías",uri:"/home/asesor/asesorias"});
     }
     if(role == 4){
       this.opciones.push({opt:"Admin. personal",uri:"/home/organizador/personas"});
@@ -130,6 +141,44 @@ export class HeaderComponent implements OnInit {
         this._authService.logOutUser();
       }
     });
+  }
+
+  callExportData(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    let customWidth:string;
+
+    if(window.innerWidth <= 600){
+      customWidth='100%';
+    }else{
+      customWidth='50%';
+    }  
+
+    dialogConfig.width = customWidth;
+    dialogConfig.data = {
+      title: 'Exportar consolidado',
+      Modal: 'export'
+    }
+
+    const dialogRef = this.dialog.open(ModalComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(res =>{
+      if(typeof res != 'undefined'){
+        let filter = new exportFileDto(res.data);
+        this._GeneralService.generateXls(filter)
+          .subscribe((res:any)=>{          
+            if(res.status==201){
+              let arreglo:Array<any> = [];
+              this.reservas = res.body;
+              Promise.all(this.reservas.map((item:any)=>{
+                let row = new exportData(item);
+                arreglo.push(row);
+              }))
+              this._excelService.exportAsExcelFile(arreglo,`Reservas${new Date().toLocaleDateString()}`);
+            }
+          })
+      }
+    })
   }
 
 }

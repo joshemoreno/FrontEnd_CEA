@@ -48,6 +48,7 @@ export const environment = {
   deleteReserve: '/api/reserve',
   getSubjectList: '/api/user/subject',
   getCountReserve: '/api/user/reserveMeeting',
+  generateXls: '/api/reserve/generaXlsx',
 
 
 

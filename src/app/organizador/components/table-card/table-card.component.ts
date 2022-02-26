@@ -107,7 +107,7 @@ export class TableCardComponent implements OnInit {
 
     dialogConfig.width = customWidth;
     dialogConfig.data = {
-      title: 'Acceptar nuevo usuario',
+      title: 'Aceptar nuevo usuario',
       Modal: 'newUser',
       user: user
     }
